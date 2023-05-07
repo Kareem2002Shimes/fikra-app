@@ -55,6 +55,7 @@ const customStyles = {
   menu: (defaultStyles: any) => ({
     ...defaultStyles,
     background: "#1F2038",
+    zIndex: "9999",
   }),
 };
 const ValueContainer = ({ children, ...props }: any) => {
@@ -76,7 +77,7 @@ const options = [
 ];
 function Header() {
   return (
-    <header>
+    <header className="border-b-[1px] border-input-border relative z-50">
       <div className="home-container py-[8px] flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image

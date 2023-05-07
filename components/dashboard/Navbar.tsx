@@ -42,7 +42,7 @@ function Navbar() {
             <span className="hidden md:block text-sm font-[500] text-neutral-100 mx-[8px]">
               You only have two attempts.
             </span>
-            <div className="content-center border-[2px] border-dashed rounded-[50%] border-accent-color w-[56px] h-[56px]">
+            <div className="content-center dashed-border-dashboard rounded-[50% w-[56px] h-[56px]">
               <span className="content-center text-md font-[500] text-white">
                 1/3
               </span>

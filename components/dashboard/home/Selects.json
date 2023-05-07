@@ -1,0 +1,172 @@
+{
+  "selects": [
+    {
+      "id": 1,
+      "placeholder": "Choose space",
+      "groupedOptions": [
+        {
+          "label": "Administrative Spaces",
+
+          "options": [
+            {
+              "value": "balcony",
+              "label": "Balcony"
+            },
+            { "value": "bathroom", "label": "Bathroom" },
+            { "value": "bedroom", "label": "Bedroom" },
+            { "value": "closet", "label": "Closet" },
+            { "value": "corridor", "label": "Corridor" },
+            { "value": "dining room", "label": "Dining room" },
+            { "value": "dressing Room", "label": "Dressing Room" },
+            { "value": "external laundries", "label": "External laundries" },
+            { "value": "family cinema room", "label": "Family cinema room" },
+            { "value": "gaming room", "label": "Gaming room" },
+            { "value": "gym room", "label": "Gym room" },
+            { "value": "hallway", "label": "Hallway" },
+            { "value": "home office", "label": "Home office" },
+            { "value": "kitchen", "label": "Kitchen" },
+            { "value": "laundry room", "label": "Laundry room" },
+            { "value": "living room", "label": "Laundry room" },
+            { "value": "master Bedroom", "label": "Master Bedroom" },
+            { "value": "men's majlis", "label": "Men's majlis" },
+            { "value": "stairway", "label": "Stairway" },
+            { "value": "women's majlis", "label": "Women's majlis" }
+          ]
+        },
+        {
+          "label": "Commercial Spaces",
+          "options": [
+            {
+              "value": "clothing store",
+              "label": "Clothing store"
+            },
+            { "value": "coffee shop", "label": "Coffee shop" },
+            { "value": "hotel bathroom", "label": "Hotel bathroom" },
+            { "value": "hotel lobby", "label": "Hotel lobby" },
+            { "value": "hotel room", "label": "Hotel room" },
+            { "value": "men's barber shop", "label": "Men's barber shop" },
+            { "value": "restaurant", "label": "Restaurant" },
+            { "value": "supermarket", "label": "Supermarket" },
+            { "value": "wedding Hall", "label": "Wedding Hall" },
+            {
+              "value": "women's beauty salon",
+              "label": "Women's beauty salon"
+            }
+          ]
+        },
+        {
+          "label": "Administrative spaces",
+
+          "options": [
+            {
+              "value": "archive room",
+              "label": "Archive room"
+            },
+            { "value": "director Office", "label": "Director Office" },
+            { "value": "entertainment room", "label": "Entertainment room" },
+            { "value": "meeting room", "label": "Meeting room" },
+            { "value": "office", "label": "Office" },
+            { "value": "reception", "label": "Reception" },
+            { "value": "secretarial office", "label": "Secretarial office" },
+            { "value": "servers room", "label": "Servers room" },
+            { "value": "staff dining room", "label": "Staff dining room" },
+            {
+              "value": "workshop room",
+              "label": "Workshop room"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "placeholder": "Choose the type of room",
+      "options": [
+        { "value": "option 1", "label": "Option 1" },
+        { "value": "option 2", "label": "Option 2" },
+        { "value": "option 3", "label": "Option 3" }
+      ]
+    },
+
+    {
+      "id": 3,
+      "placeholder": "Choose the style",
+      "options": [
+        { "value": "art Deco", "label": "Art Deco" },
+        { "value": "art nouveau", "label": "Art nouveau" },
+        { "value": "asian Zen", "label": "Asian Zen" },
+        { "value": "baroque", "label": "Baroque" },
+        { "value": "biophilic", "label": "Biophilic" },
+        { "value": "bohemian", "label": "Bohemian" },
+        { "value": "coastal", "label": "Coastal" },
+        { "value": "contemporary", "label": "Contemporary" },
+        { "value": "cottagecore", "label": "Cottagecore" },
+        { "value": "cyberpunk", "label": "Cyberpunk" },
+        { "value": "easter", "label": "Easter" },
+        { "value": "eclectic", "label": "Eclectic" },
+        { "value": "french Country", "label": "French Country" },
+        { "value": "hollywood Glam", "label": "Hollywood Glam" },
+        { "value": "industrial", "label": "Industrial" },
+        { "value": "interior AI", "label": "Interior AI" },
+        { "value": "japanese", "label": "Japanese" },
+        { "value": "maximalist", "label": "Maximalist" },
+        { "value": "mediterranean", "label": "Mediterranean" },
+        { "value": "mid Century Modern", "label": "Mid Century Modern" },
+        { "value": "minimalist", "label": "Minimalist" },
+        { "value": "modern Farmhouse", "label": "Modern Farmhouse" },
+        { "value": "modern", "label": "Modern" },
+        { "value": "rustic", "label": "Rustic" },
+        { "value": "scandinavian", "label": "Scandinavian" },
+        { "value": "shabby Chic", "label": "Shabby Chic" },
+        { "value": "sketch", "label": "Sketch" },
+        { "value": "southwestern", "label": "Southwestern" },
+        { "value": "traditional", "label": "Traditional" },
+        { "value": "transitional", "label": "Transitional" },
+        { "value": "tropical", "label": "Tropical" },
+        { "value": "vaporwave", "label": "Vaporwave" },
+        { "value": "vintage", "label": "Vintage" }
+      ]
+    },
+    {
+      "id": 4,
+      "placeholder": "Mode",
+      "options": [
+        {
+          "value": "your Space (Image to Image)",
+          "label": "Your Space (Image to Image)"
+        },
+        {
+          "value": "concept (no image needed)",
+          "label": "Concept (no image needed)"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "placeholder": "Quality",
+      "options": [
+        { "value": "half Quality", "label": "Half Quality" },
+        { "value": "base Quality", "label": "Base Quality" },
+        { "value": "high quality (2x cost)", "label": "High quality (2x cost)" }
+      ]
+    },
+    {
+      "id": 6,
+      "placeholder": "Style",
+      "options": [
+        { "value": "style Low", "label": "Style Low" },
+        { "value": "style Med", "label": "Style Med" },
+        { "value": "style High", "label": "Style High" },
+        { "value": "style Very High", "label": "Style Very High" }
+      ]
+    },
+    {
+      "id": 7,
+      "placeholder": "Resolution",
+      "options": [
+        { "value": "high (slow)", "label": "High (slow)" },
+        { "value": "low (fast)", "label": "Low (fast)" }
+      ]
+    }
+  ]
+}

@@ -1,6 +1,10 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import localFont from "next/font/local";
+import { SessionProvider } from "next-auth/react";
+import ToasterProvider from "@/providers/ToasterProvider";
+import { Provider } from "react-redux";
+import { store } from "@/redux/app/store";
 const somar = localFont({
   src: [
     {
@@ -22,11 +26,19 @@ const somar = localFont({
   ],
   variable: "--font-somar",
 });
-console.log(somar);
-export default function App({ Component, pageProps }: AppProps) {
+
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
-    <main className={`${somar.variable} font-sans bg-neutral-900`}>
-      <Component {...pageProps} />
-    </main>
+    <SessionProvider session={session}>
+      <Provider store={store}>
+        <ToasterProvider />
+        <main className={`${somar.variable} font-sans bg-neutral-900`}>
+          <Component {...pageProps} />
+        </main>
+      </Provider>
+    </SessionProvider>
   );
 }

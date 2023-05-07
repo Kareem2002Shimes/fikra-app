@@ -4,7 +4,7 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
-
+    "./node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
@@ -17,6 +17,18 @@ module.exports = {
         check: 'url("/images/auth/icons/check.png")',
       },
       colors: {
+        error: {
+          50: "#FEF2F2",
+          100: "#FEE2E2",
+          200: "#FECACA",
+          300: "#FCA5A5",
+          400: "#F87171",
+          500: "#EF4444",
+          600: "#DC2626",
+          700: "#B91C1C",
+          800: "#991B1B",
+          900: "#7F1D1D",
+        },
         "accent-color": "#0473FB",
         "neutral-50": "#F5F6FF",
         "neutral-100": "#EBECFF",
@@ -29,7 +41,8 @@ module.exports = {
         "neutral-800": "#1C1C30",
         "neutral-900": "#171727",
         "input-border": "#484984",
-        "custom-border": "#22233F",
+        "auth-border": "#22233F",
+        "sidebar-bg2": "#202037",
       },
       fontSize: {
         xs: ["12px", "16px"],

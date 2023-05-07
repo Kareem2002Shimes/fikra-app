@@ -9,17 +9,35 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@heroicons/react": "^2.0.17",
+    "@hookform/resolvers": "^3.0.1",
+    "@material-tailwind/react": "^2.0.0",
+    "@reduxjs/toolkit": "^1.9.5",
+    "@types/cookie": "^0.5.1",
     "@types/node": "18.15.11",
     "@types/react": "18.0.35",
     "@types/react-dom": "18.0.11",
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
+    "js-cookie": "^3.0.5",
+    "jwt-decode": "^3.1.2",
+    "lottie-react": "^2.4.0",
     "next": "13.3.0",
+    "next-auth": "^4.22.1",
+    "next-redux-wrapper": "^8.1.0",
     "react": "18.2.0",
+    "react-auth-code-input": "^3.2.1",
     "react-dom": "18.2.0",
-    "typescript": "5.0.4"
+    "react-hook-form": "^7.43.9",
+    "react-hot-toast": "^2.4.1",
+    "react-redux": "^8.0.5",
+    "react-select": "^5.7.2",
+    "redux-persist": "^6.0.0",
+    "typescript": "5.0.4",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.21",
     "tailwindcss": "^3.3.1"

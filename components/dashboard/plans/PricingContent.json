@@ -1,0 +1,54 @@
+[
+  {
+    "id": 1,
+    "plan": "Primary plan",
+    "desc": "For individuals who want to design for their own",
+    "price": { "month": 15, "year": 30 },
+    "quantity": {
+      "month": { "min": 20, "average": 50, "max": 100 },
+      "year": { "min": 120, "average": 300, "max": 800 }
+    },
+    "features": [
+      "50 designs/mon",
+      "Includes only home decors",
+      "Basic quality",
+      "1 user"
+    ]
+  },
+  {
+    "id": 2,
+    "plan": "Pro plan",
+    "desc": "For individuals specialized in design",
+    "price": { "month": 35, "year": 70 },
+    "quantity": {
+      "month": { "min": 120, "average": 300, "max": 800 },
+      "year": { "min": 240, "average": 600, "max": 1600 }
+    },
+    "features": [
+      "Include all different spaces (facilities, home, business)",
+      "300 design with speed mode",
+      "100 designs with slow mode",
+      "full control of quality",
+      "full control of ___",
+      "1 user"
+    ]
+  },
+  {
+    "id": 3,
+    "plan": "Advanced Plan",
+    "desc": "For teams and specialized designing firms",
+    "price": { "month": 200, "year": 400 },
+    "quantity": {
+      "month": { "min": 800, "average": 1200, "max": 2000 },
+      "year": { "min": 1400, "average": 2400, "max": 4000 }
+    },
+    "features": [
+      "Design all types of spaces (home, facilities, businesses)",
+      "1000 designs with speed mode",
+      "Unlimited designs with slow mode",
+      "full control of quality",
+      "full control of ___",
+      "10 users"
+    ]
+  }
+]

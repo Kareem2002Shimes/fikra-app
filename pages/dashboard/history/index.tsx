@@ -40,6 +40,7 @@ function History() {
               <div className="flex items-center">
                 {icons.map((icon) => (
                   <button
+                    key={icon}
                     type="button"
                     className="bg-[#2C2C2C] hover:bg-accent-color transition-all duration-300 ease w-[48px] h-[48px] content-center rounded-[8px] mr-[8px] last-of-type:mr-0"
                   >

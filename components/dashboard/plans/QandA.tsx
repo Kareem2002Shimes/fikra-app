@@ -31,6 +31,7 @@ export default function QandA() {
     <Fragment>
       {data.map((item) => (
         <Accordion
+          key={item.id}
           open={open === item.id}
           icon={<Icon id={item.id} open={open} />}
         >

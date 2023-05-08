@@ -109,7 +109,7 @@ function Header() {
           />
           <Link
             href="/"
-            className="coloredBtn hidden sm:flex ml-[24px] w-[130px] h-[32px] content-center text-neutral-50 rounded-[8px]"
+            className="coloredBtn-home-header hidden sm:flex ml-[24px] w-[130px] h-[32px] content-center text-neutral-50 rounded-[8px]"
           >
             Try for free
           </Link>

@@ -58,7 +58,7 @@ button {
 .coloredBtn {
   background: linear-gradient(139.41deg, #3c79fe 13.26%, #7b1ad2 106.32%);
 }
-.coloredBtn-home {
+.coloredBtn-home-header {
   background: linear-gradient(91.85deg, #397dff 0%, #7e16d0 100%);
 }
 .coloredBtn-pricing {
@@ -66,7 +66,7 @@ button {
 }
 .coloredBtn:hover,
 .coloredBtn-pricing:hover,
-.coloredBtn-home:hover {
+.coloredBtn-home-header:hover {
   background-image: linear-gradient(
     148.98deg,
     #3c79fe -122.06%,
@@ -95,6 +95,20 @@ button {
     linear-gradient(139.41deg, #3c79fe 13.26%, #7b1ad2 106.32%) border-box;
   border-radius: 16px;
   border: 2px solid transparent;
+}
+.nonFilledBtn {
+  background: linear-gradient(#1f2038, #1f2038) padding-box,
+    linear-gradient(139.41deg, #3c79fe 13.26%, #7b1ad2 106.32%) border-box;
+  border-radius: 8px;
+  border: 2px solid transparent;
+}
+.nonFilledBtn:hover {
+  border: none;
+  background: linear-gradient(148.98deg, #3c79fe -122.06%, #7b1ad2 107.07%);
+}
+.nonFilledBtn:active {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+    linear-gradient(148.98deg, #3c79fe -122.06%, #7b1ad2 107.07%);
 }
 /* scrollbar styling */
 ::-webkit-scrollbar {
@@ -150,11 +164,44 @@ input[type="range"]::-webkit-slider-thumb:active {
   background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='100' ry='100' stroke='rgb(4,115,251)' stroke-width='1' stroke-dasharray='8' stroke-dashoffset='86' stroke-linecap='butt'/%3e%3c/svg%3e");
 }
 /* home animation */
+
 @keyframes fadeTop {
   0% {
-    transform: translateY(5%);
+    transform: translateY(22%);
   }
   100% {
-    transform: translateY(-480%);
+    transform: translateY(-22%);
+  }
+}
+@keyframes fadeBottom {
+  0% {
+    transform: translateY(-22%);
+  }
+  100% {
+    transform: translateY(22%);
+  }
+}
+@keyframes container {
+  0% {
+    transform: translateY(800%);
+  }
+  100% {
+    transform: translateY(-850%);
+  }
+}
+.top-animation {
+  animation: fadeTop 10s linear 2s infinite alternate;
+}
+.bottom-animation {
+  animation: fadeBottom 10s linear 2s infinite alternate;
+}
+
+@media screen and (max-width: 576px) {
+  .top-animation,
+  .bottom-animation {
+    animation: none;
+  }
+  .container-animation {
+    animation: container 25s linear 2s infinite alternate;
   }
 }

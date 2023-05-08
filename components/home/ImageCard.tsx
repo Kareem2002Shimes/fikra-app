@@ -1,10 +1,7 @@
 import Image from "next/image";
 function ImageCard() {
   return (
-    <div
-      style={{ animation: "fadeTop 15s linear 2s infinite alternate" }}
-      className="relative w-full h-[325px] dashed-border"
-    >
+    <div className="relative container-animation w-full h-[325px] dashed-border mb-[35px] last-of-type:mb-0">
       <Image
         src="/images/dashboard/styleIdeas/1.jpg"
         alt="img"

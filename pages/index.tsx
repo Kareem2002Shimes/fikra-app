@@ -10,7 +10,7 @@ function HomePage() {
         <title>home page</title>
       </Head>
       <Header />
-      <main className="text-white ">
+      <main>
         <Landing />
       </main>
     </Fragment>

@@ -5,7 +5,7 @@ function Landing() {
   return (
     <section className="overflow-hidden relative h-[calc(100vh-65px)] w-full ">
       <Overlay />
-      <div className=" px-[16px] sm:px-0 absolute w-full text-center left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] z-50 content-center flex-col">
+      <div className=" px-[16px] sm:px-0 absolute w-full text-center left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] z-40 content-center flex-col">
         <h1 className="text-white  font-[700] w-full text-[30px] md:text-[40px] lg:text-[56px] leading-[52px] lg:leading-[72px] mb-[16px]">
           Any Space you Have Fikra Had
           <br /> the design for it

@@ -1,15 +1,11 @@
 import Image from "next/image";
 import Select, { components } from "react-select";
 import Link from "next/link";
-const LangIcon = (
+import { signOut, useSession } from "next-auth/react";
+import { Fragment } from "react";
+const KSAIcon = (
   <div className="mr-[8px]">
-    <Image
-      src="/images/home/lang.svg"
-      alt="arrow-icon"
-      width={24}
-      height={24}
-      className="rotate-[-270deg]"
-    />
+    <Image src="/images/home/KSA.svg" alt="arrow-icon" width={24} height={24} />
   </div>
 );
 const customStyles = {
@@ -63,7 +59,7 @@ const ValueContainer = ({ children, ...props }: any) => {
     components.ValueContainer && (
       <components.ValueContainer {...props}>
         <div className="flex items-center">
-          {!!children && LangIcon}
+          {props.getValue().map((op: any) => op.value === "ar" && KSAIcon)}
           {children}
         </div>
       </components.ValueContainer>
@@ -72,10 +68,11 @@ const ValueContainer = ({ children, ...props }: any) => {
 };
 const options = [
   { value: "en", label: "En" },
-  { value: "ar", label: "Ar" },
+  { value: "ar", label: "عربي" },
   { value: "ger", label: "Ger" },
 ];
 function Header() {
+  const { data } = useSession();
   return (
     <header className="border-b-[1px] border-input-border relative z-50">
       <div className="home-container py-[8px] flex items-center justify-between">
@@ -100,19 +97,37 @@ function Header() {
             isClearable={false}
             styles={customStyles}
             isSearchable={false}
+            instanceId={options[0].value as string}
             components={{
               IndicatorSeparator: () => null,
               ValueContainer,
               Placeholder: () => null,
             }}
-            defaultValue={options[0]}
+            defaultValue={options[1]}
           />
-          <Link
-            href="/"
-            className="coloredBtn-home-header hidden sm:flex ml-[24px] w-[130px] h-[32px] content-center text-neutral-50 rounded-[8px]"
-          >
-            Try for free
-          </Link>
+          {data?.user ? (
+            <button
+              onClick={() => signOut({ callbackUrl: "/" })}
+              className="text-neutral-50 text-md font-[500] mr-[8px] w-fit sm:w-[130px] h-[40px] content-center transition-all duration-200 ease-in-out hover:text-accent-color"
+            >
+              Logout
+            </button>
+          ) : (
+            <Fragment>
+              <Link
+                href="/auth/login"
+                className="text-neutral-50 text-md font-[500] mr-[8px] w-fit sm:w-[130px] h-[40px] content-center transition-all duration-200 ease-in-out hover:text-accent-color"
+              >
+                Login
+              </Link>
+              <Link
+                href="/auth/signup"
+                className="coloredBtn-home-header text-md font-[500] hidden sm:flex w-[195px] h-[40px] content-center text-neutral-50 rounded-[8px]"
+              >
+                Create an account
+              </Link>
+            </Fragment>
+          )}
         </div>
       </div>
     </header>

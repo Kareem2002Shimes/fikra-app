@@ -4,7 +4,7 @@
 
 @layer {
   .home-container {
-    @apply px-[72px];
+    @apply px-[15px] sm:px-[72px];
   }
   .form-label {
     @apply block mb-2 text-md font-[500] text-white;

@@ -10,7 +10,7 @@ import "swiper/css/effect-coverflow";
 function Companies() {
   const [comps, setComps] = useState([1, 2, 3, 4, 5, 6]);
   return (
-    <div className="pt-[50px] home-container ">
+    <div className="pt-[50px] home-container pb-[50px]">
       <h2 className="text-white text-md font-[400] text-center mb-[24px] tracking-[0.8px]">
         Companies trust us
       </h2>
@@ -57,7 +57,10 @@ function Companies() {
           }}
         ></div>
         {comps.map((comp: number) => (
-          <SwiperSlide className="px-[12px] first-of-type:pl-0 last-of-type:pr-0 ">
+          <SwiperSlide
+            key={comp}
+            className="px-[12px] first-of-type:pl-0 last-of-type:pr-0 "
+          >
             <div className="h-[48px] content-center relative bg-neutral-800">
               <Image
                 src={`/images/companies/${comp}.svg`}

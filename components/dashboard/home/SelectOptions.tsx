@@ -17,7 +17,7 @@ function SelectOptions({
   value,
   placeholder,
   instanceId,
-  setSelectedSpace,
+  setSelected,
 }: any) {
   const customStyles = {
     option: (defaultStyles: any, state: any) => ({
@@ -85,8 +85,8 @@ function SelectOptions({
     }),
   };
 
-  const handleChange = (selectedSpace: any) => {
-    setSelectedSpace(selectedSpace);
+  const handleChange = (selected: any) => {
+    setSelected(selected);
   };
   const ValueContainer = ({ children, ...props }: any) => {
     return (

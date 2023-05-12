@@ -1,6 +1,10 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Select, { components } from "react-select";
+import DefaultView from "./DefaultView";
+import Cookies from "js-cookie";
+import { TestContext } from "./TestContext";
+import StyleSlider from "./StyleSlider";
 
 const options = [
   {
@@ -14,17 +18,9 @@ const options = [
 function View() {
   const [open, setOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState(null);
-  const [ideas, setIdeas] = useState(["1", "2", "3", "4"]);
-  const [styleIdeas, setStyleIdeas] = useState([
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-  ]);
+  const [ideas, setIdeas] = useState([1, 2, 3, 4]);
+  const { image, setImage }: any = useContext(TestContext);
+  const [activeIdea, setActiveIdea] = useState(null);
   const customStyles = {
     option: (defaultStyles: any, state: any) => ({
       ...defaultStyles,
@@ -66,6 +62,7 @@ function View() {
   const handleChange = (selected: any) => {
     setSelected(selected);
   };
+
   const ValueContainer = ({ children, ...props }: any) => {
     return (
       components.ValueContainer && (
@@ -86,8 +83,18 @@ function View() {
       )
     );
   };
+  const handleIdeas = (idea: number) => {
+    console.log(idea);
+    idea === 1
+      ? setImage("/images/dashboard/singleIdea.jpg")
+      : idea === 2
+      ? setImage("/images/dashboard/singleIdea2.jpg")
+      : idea === 3
+      ? setImage("/images/dashboard/singleIdea3.jpg")
+      : idea === 4 && setImage("/images/dashboard/singleIdea4.jpg");
+  };
   return (
-    <div className="w-[calc(100%-300px)] overflow-y-scroll">
+    <div className=" overflow-y-scroll w-full">
       <div className="px-[24px] pt-[16px]">
         <div className="flex items-center relative mb-[8px]">
           <Select
@@ -116,7 +123,12 @@ function View() {
         </div>
         <div className="h-[526px] bg-neutral-800 rounded-[16px] p-[16px] flex">
           <div className="w-full h-full relative content-center rounded-[8px] mr-[16px]">
-            <Image src="/images/dashboard/test.png" alt="img" fill={true} />
+            {image ? (
+              <Image src={image} alt="img" fill={true} />
+            ) : (
+              <DefaultView />
+            )}
+
             {/* Test Image here */}
           </div>
           <div className="w-[135px] h-full">
@@ -124,7 +136,15 @@ function View() {
               <button
                 type="button"
                 key={idea}
-                className="content-center flex-col mb-[16px] w-[135px] h-[64px] rounded-[16px] border-[1px] border-input-border"
+                onClick={() => {
+                  setActiveIdea(idea as any);
+                  handleIdeas(idea);
+                }}
+                className={`content-center ${
+                  activeIdea === idea
+                    ? "bg-accent-color border-transparent"
+                    : " border-[1px] border-input-border"
+                } hover:bg-accent-color transition-all duration-200 ease-in hover:border-transparent flex-col mb-[16px] w-[135px] h-[64px] rounded-[16px]`}
               >
                 <span className="text-neutral-200 text-xs font-[500] mb-[2px]">
                   Show
@@ -136,7 +156,11 @@ function View() {
             ))}
             <button
               type="button"
-              className="w-[135px] h-[120px] mt-[70px] text-white content-center flex-col primary-border"
+              onClick={() => {
+                setImage("/images/dashboard/test_result.jpg");
+                setActiveIdea(null);
+              }}
+              className="w-[135px] h-[120px]  mt-[70px] text-white content-center flex-col primary-border"
             >
               <Image
                 src="images/dashboard/icons/home/new-idea-icon.svg"
@@ -151,30 +175,12 @@ function View() {
         </div>
       </div>
       <div className="px-[24px] mt-[16px] border-t-[1px] border-input-border">
-        <span className="text-white text-lg font-[700] py-[10px] block">
+        <span className="text-white text-lg font-[700] py-[15px] block">
           Choose the style of ideas
         </span>
-        <div className="pb-[16px] flex items-center overflow-x-scroll">
-          {styleIdeas.map((idea) => (
-            <Image
-              key={idea}
-              src="/images/dashboard/styleIdeas/1.jpg"
-              alt="style-ideas-img"
-              width={150}
-              height={150}
-              className="rounded-[8px] object-contain mr-[12px] last-of-type:mr-0 cursor-pointer"
-            />
-          ))}
 
-          {/* Test Image here */}
-          {/* <div className="w-[15] h-[15] p-2 absolute top-0 right-0 rounded-[50%] bg-accent-color border-[2px] border-neutral-900">
-                <Image
-                  src="/images/dashboard/icons/home/checkedArrow.svg"
-                  alt="arrow-icon"
-                  width={12}
-                  height={12}
-                />
-              </div> */}
+        <div className="relative">
+          <StyleSlider />
         </div>
       </div>
     </div>

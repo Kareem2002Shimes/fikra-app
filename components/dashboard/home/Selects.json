@@ -3,10 +3,14 @@
     {
       "id": 1,
       "placeholder": "Choose space",
+      "options": [
+        { "value": "residential Spaces", "label": "Residential Spaces" },
+        { "value": "commercial Spaces", "label": "Commercial Spaces" },
+        { "value": "administrative spaces", "label": "Administrative spaces" }
+      ],
       "groupedOptions": [
         {
-          "label": "Administrative Spaces",
-
+          "label": "Residential Spaces",
           "options": [
             {
               "value": "balcony",
@@ -81,10 +85,78 @@
     {
       "id": 2,
       "placeholder": "Choose the type of room",
-      "options": [
-        { "value": "option 1", "label": "Option 1" },
-        { "value": "option 2", "label": "Option 2" },
-        { "value": "option 3", "label": "Option 3" }
+      "groupedOptions": [
+        {
+          "label": "Residential Spaces",
+          "options": [
+            {
+              "value": "balcony",
+              "label": "Balcony"
+            },
+            { "value": "bathroom", "label": "Bathroom" },
+            { "value": "bedroom", "label": "Bedroom" },
+            { "value": "closet", "label": "Closet" },
+            { "value": "corridor", "label": "Corridor" },
+            { "value": "dining room", "label": "Dining room" },
+            { "value": "dressing Room", "label": "Dressing Room" },
+            { "value": "external laundries", "label": "External laundries" },
+            { "value": "family cinema room", "label": "Family cinema room" },
+            { "value": "gaming room", "label": "Gaming room" },
+            { "value": "gym room", "label": "Gym room" },
+            { "value": "hallway", "label": "Hallway" },
+            { "value": "home office", "label": "Home office" },
+            { "value": "kitchen", "label": "Kitchen" },
+            { "value": "laundry room", "label": "Laundry room" },
+            { "value": "living room", "label": "Laundry room" },
+            { "value": "master Bedroom", "label": "Master Bedroom" },
+            { "value": "men's majlis", "label": "Men's majlis" },
+            { "value": "stairway", "label": "Stairway" },
+            { "value": "women's majlis", "label": "Women's majlis" }
+          ]
+        },
+        {
+          "label": "Commercial Spaces",
+          "options": [
+            {
+              "value": "clothing store",
+              "label": "Clothing store"
+            },
+            { "value": "coffee shop", "label": "Coffee shop" },
+            { "value": "hotel bathroom", "label": "Hotel bathroom" },
+            { "value": "hotel lobby", "label": "Hotel lobby" },
+            { "value": "hotel room", "label": "Hotel room" },
+            { "value": "men's barber shop", "label": "Men's barber shop" },
+            { "value": "restaurant", "label": "Restaurant" },
+            { "value": "supermarket", "label": "Supermarket" },
+            { "value": "wedding Hall", "label": "Wedding Hall" },
+            {
+              "value": "women's beauty salon",
+              "label": "Women's beauty salon"
+            }
+          ]
+        },
+        {
+          "label": "Administrative spaces",
+
+          "options": [
+            {
+              "value": "archive room",
+              "label": "Archive room"
+            },
+            { "value": "director Office", "label": "Director Office" },
+            { "value": "entertainment room", "label": "Entertainment room" },
+            { "value": "meeting room", "label": "Meeting room" },
+            { "value": "office", "label": "Office" },
+            { "value": "reception", "label": "Reception" },
+            { "value": "secretarial office", "label": "Secretarial office" },
+            { "value": "servers room", "label": "Servers room" },
+            { "value": "staff dining room", "label": "Staff dining room" },
+            {
+              "value": "workshop room",
+              "label": "Workshop room"
+            }
+          ]
+        }
       ]
     },
 
@@ -92,39 +164,171 @@
       "id": 3,
       "placeholder": "Choose the style",
       "options": [
-        { "value": "art Deco", "label": "Art Deco" },
-        { "value": "art nouveau", "label": "Art nouveau" },
-        { "value": "asian Zen", "label": "Asian Zen" },
-        { "value": "baroque", "label": "Baroque" },
-        { "value": "biophilic", "label": "Biophilic" },
-        { "value": "bohemian", "label": "Bohemian" },
-        { "value": "coastal", "label": "Coastal" },
-        { "value": "contemporary", "label": "Contemporary" },
-        { "value": "cottagecore", "label": "Cottagecore" },
-        { "value": "cyberpunk", "label": "Cyberpunk" },
-        { "value": "easter", "label": "Easter" },
-        { "value": "eclectic", "label": "Eclectic" },
-        { "value": "french Country", "label": "French Country" },
-        { "value": "hollywood Glam", "label": "Hollywood Glam" },
-        { "value": "industrial", "label": "Industrial" },
-        { "value": "interior AI", "label": "Interior AI" },
-        { "value": "japanese", "label": "Japanese" },
-        { "value": "maximalist", "label": "Maximalist" },
-        { "value": "mediterranean", "label": "Mediterranean" },
-        { "value": "mid Century Modern", "label": "Mid Century Modern" },
-        { "value": "minimalist", "label": "Minimalist" },
-        { "value": "modern Farmhouse", "label": "Modern Farmhouse" },
-        { "value": "modern", "label": "Modern" },
-        { "value": "rustic", "label": "Rustic" },
-        { "value": "scandinavian", "label": "Scandinavian" },
-        { "value": "shabby Chic", "label": "Shabby Chic" },
-        { "value": "sketch", "label": "Sketch" },
-        { "value": "southwestern", "label": "Southwestern" },
-        { "value": "traditional", "label": "Traditional" },
-        { "value": "transitional", "label": "Transitional" },
-        { "value": "tropical", "label": "Tropical" },
-        { "value": "vaporwave", "label": "Vaporwave" },
-        { "value": "vintage", "label": "Vintage" }
+        {
+          "value": "art Deco",
+          "label": "Art Deco",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "art nouveau",
+          "label": "Art nouveau",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "asian Zen",
+          "label": "Asian Zen",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "baroque",
+          "label": "Baroque",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "biophilic",
+          "label": "Biophilic",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "bohemian",
+          "label": "Bohemian",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "coastal",
+          "label": "Coastal",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "contemporary",
+          "label": "Contemporary",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "cottagecore",
+          "label": "Cottagecore",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "cyberpunk",
+          "label": "Cyberpunk",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "easter",
+          "label": "Easter",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "eclectic",
+          "label": "Eclectic",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "french Country",
+          "label": "French Country",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "hollywood Glam",
+          "label": "Hollywood Glam",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "industrial",
+          "label": "Industrial",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "interior AI",
+          "label": "Interior AI",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "japanese",
+          "label": "Japanese",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "maximalist",
+          "label": "Maximalist",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "mediterranean",
+          "label": "Mediterranean",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "mid Century Modern",
+          "label": "Mid Century Modern",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "minimalist",
+          "label": "Minimalist",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "modern Farmhouse",
+          "label": "Modern Farmhouse",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "modern",
+          "label": "Modern",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "rustic",
+          "label": "Rustic",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "scandinavian",
+          "label": "Scandinavian",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "shabby Chic",
+          "label": "Shabby Chic",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "sketch",
+          "label": "Sketch",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "southwestern",
+          "label": "Southwestern",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "traditional",
+          "label": "Traditional",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "transitional",
+          "label": "Transitional",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "tropical",
+          "label": "Tropical",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "vaporwave",
+          "label": "Vaporwave",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        },
+        {
+          "value": "vintage",
+          "label": "Vintage",
+          "image": "/images/dashboard/styleIdeas/1.jpg"
+        }
       ]
     },
     {

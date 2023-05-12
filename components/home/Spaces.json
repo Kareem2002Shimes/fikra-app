@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "images": [
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg"
+    ],
+    "category": {
+      "name": "Modern",
+      "icon": "/images/home/space-category-icon.svg"
+    }
+  },
+  {
+    "id": 2,
+    "images": [
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg"
+    ],
+    "category": {
+      "name": "Morocco",
+      "icon": "/images/home/space-category-icon.svg"
+    }
+  },
+  {
+    "id": 3,
+    "images": [
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg"
+    ],
+    "category": {
+      "name": "Galaxy",
+      "icon": "/images/home/space-category-icon.svg"
+    }
+  },
+  {
+    "id": 4,
+    "images": [
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg",
+      "/images/dashboard/styleIdeas/1.jpg"
+    ],
+    "category": {
+      "name": "Islami",
+      "icon": "/images/home/space-category-icon.svg"
+    }
+  },
+  {
+    "id": 5,
+    "category": {
+      "name": "Explore More",
+      "icon": "/images/home/spaces-arrow.svg"
+    }
+  }
+]

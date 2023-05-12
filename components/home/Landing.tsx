@@ -1,5 +1,5 @@
 import Overlay from "./Overlay";
-import Image from "next/image";
+
 import Link from "next/link";
 function Landing() {
   return (
@@ -16,7 +16,7 @@ function Landing() {
         </p>
         <div className="content-center w-full flex-col sm:flex-row">
           <Link
-            href="/"
+            href="/auth/signup"
             className="coloredBtn w-full sm:w-[208px] h-[56px] mb-[24px] sm:mb-0 sm:mr-[24px] font-[600] rounded-[8px] text-white content-center "
           >
             Start now for free

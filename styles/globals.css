@@ -4,7 +4,7 @@
 
 @layer {
   .home-container {
-    @apply px-[15px] sm:px-[72px];
+    @apply px-[16px] sm:px-[72px];
   }
   .form-label {
     @apply block mb-2 text-md font-[500] text-white;
@@ -96,6 +96,14 @@ button {
   border-radius: 16px;
   border: 2px solid transparent;
 }
+.primary-border:hover {
+  background-image: linear-gradient(
+    148.98deg,
+    #3c79fe -122.06%,
+    #7b1ad2 107.07%
+  );
+  border-color: transparent;
+}
 .nonFilledBtn {
   background: linear-gradient(#1f2038, #1f2038) padding-box,
     linear-gradient(139.41deg, #3c79fe 13.26%, #7b1ad2 106.32%) border-box;
@@ -122,6 +130,35 @@ button {
 
 ::-webkit-scrollbar-thumb {
   background: white;
+}
+/* dashboard style ideas slider */
+
+.slider-conatiner .swiper-scrollbar .swiper-scrollbar-drag {
+  background-color: white;
+  height: 6px;
+}
+
+.swiper div.swiper-scrollbar {
+  height: 6px;
+  background-color: #22233f;
+  width: 100%;
+  left: 0;
+}
+.swiper {
+  margin-bottom: 15px;
+}
+.slider-conatiner .swiper-slide {
+  margin: 0 16px 60px;
+  width: 88px;
+  height: 88px;
+  position: relative;
+}
+
+.slider-conatiner .swiper-slide:first-of-type {
+  margin-left: 0;
+}
+.slider-conatiner .swiper-slide:last-of-type {
+  margin-right: 0;
 }
 /* pricing slider */
 input[type="range"] {
@@ -204,4 +241,9 @@ input[type="range"]::-webkit-slider-thumb:active {
   .container-animation {
     animation: container 25s linear 2s infinite alternate;
   }
+}
+
+/* space slider  */
+.space-btn {
+  background: linear-gradient(139.41deg, #3c79fe 13.26%, #7b1ad2 106.32%);
 }

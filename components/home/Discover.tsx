@@ -33,6 +33,7 @@ function Discover() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[32px] mb-[40px]">
           {content.map((item) => (
             <DiscoverCard
+              key={item.title}
               title={item.title}
               desc={item.desc}
               icon={item.icon}

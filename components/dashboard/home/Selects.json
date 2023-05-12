@@ -7,79 +7,6 @@
         { "value": "residential Spaces", "label": "Residential Spaces" },
         { "value": "commercial Spaces", "label": "Commercial Spaces" },
         { "value": "administrative spaces", "label": "Administrative spaces" }
-      ],
-      "groupedOptions": [
-        {
-          "label": "Residential Spaces",
-          "options": [
-            {
-              "value": "balcony",
-              "label": "Balcony"
-            },
-            { "value": "bathroom", "label": "Bathroom" },
-            { "value": "bedroom", "label": "Bedroom" },
-            { "value": "closet", "label": "Closet" },
-            { "value": "corridor", "label": "Corridor" },
-            { "value": "dining room", "label": "Dining room" },
-            { "value": "dressing Room", "label": "Dressing Room" },
-            { "value": "external laundries", "label": "External laundries" },
-            { "value": "family cinema room", "label": "Family cinema room" },
-            { "value": "gaming room", "label": "Gaming room" },
-            { "value": "gym room", "label": "Gym room" },
-            { "value": "hallway", "label": "Hallway" },
-            { "value": "home office", "label": "Home office" },
-            { "value": "kitchen", "label": "Kitchen" },
-            { "value": "laundry room", "label": "Laundry room" },
-            { "value": "living room", "label": "Laundry room" },
-            { "value": "master Bedroom", "label": "Master Bedroom" },
-            { "value": "men's majlis", "label": "Men's majlis" },
-            { "value": "stairway", "label": "Stairway" },
-            { "value": "women's majlis", "label": "Women's majlis" }
-          ]
-        },
-        {
-          "label": "Commercial Spaces",
-          "options": [
-            {
-              "value": "clothing store",
-              "label": "Clothing store"
-            },
-            { "value": "coffee shop", "label": "Coffee shop" },
-            { "value": "hotel bathroom", "label": "Hotel bathroom" },
-            { "value": "hotel lobby", "label": "Hotel lobby" },
-            { "value": "hotel room", "label": "Hotel room" },
-            { "value": "men's barber shop", "label": "Men's barber shop" },
-            { "value": "restaurant", "label": "Restaurant" },
-            { "value": "supermarket", "label": "Supermarket" },
-            { "value": "wedding Hall", "label": "Wedding Hall" },
-            {
-              "value": "women's beauty salon",
-              "label": "Women's beauty salon"
-            }
-          ]
-        },
-        {
-          "label": "Administrative spaces",
-
-          "options": [
-            {
-              "value": "archive room",
-              "label": "Archive room"
-            },
-            { "value": "director Office", "label": "Director Office" },
-            { "value": "entertainment room", "label": "Entertainment room" },
-            { "value": "meeting room", "label": "Meeting room" },
-            { "value": "office", "label": "Office" },
-            { "value": "reception", "label": "Reception" },
-            { "value": "secretarial office", "label": "Secretarial office" },
-            { "value": "servers room", "label": "Servers room" },
-            { "value": "staff dining room", "label": "Staff dining room" },
-            {
-              "value": "workshop room",
-              "label": "Workshop room"
-            }
-          ]
-        }
       ]
     },
     {
@@ -91,27 +18,104 @@
           "options": [
             {
               "value": "balcony",
-              "label": "Balcony"
+              "label": "Balcony",
+              "ref": "Residential Spaces"
             },
-            { "value": "bathroom", "label": "Bathroom" },
-            { "value": "bedroom", "label": "Bedroom" },
-            { "value": "closet", "label": "Closet" },
-            { "value": "corridor", "label": "Corridor" },
-            { "value": "dining room", "label": "Dining room" },
-            { "value": "dressing Room", "label": "Dressing Room" },
-            { "value": "external laundries", "label": "External laundries" },
-            { "value": "family cinema room", "label": "Family cinema room" },
-            { "value": "gaming room", "label": "Gaming room" },
-            { "value": "gym room", "label": "Gym room" },
-            { "value": "hallway", "label": "Hallway" },
-            { "value": "home office", "label": "Home office" },
-            { "value": "kitchen", "label": "Kitchen" },
-            { "value": "laundry room", "label": "Laundry room" },
-            { "value": "living room", "label": "Laundry room" },
-            { "value": "master Bedroom", "label": "Master Bedroom" },
-            { "value": "men's majlis", "label": "Men's majlis" },
-            { "value": "stairway", "label": "Stairway" },
-            { "value": "women's majlis", "label": "Women's majlis" }
+            {
+              "value": "bathroom",
+              "label": "Bathroom",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "bedroom",
+              "label": "Bedroom",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "closet",
+              "label": "Closet",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "corridor",
+              "label": "Corridor",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "dining room",
+              "label": "Dining room",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "dressing Room",
+              "label": "Dressing Room",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "external laundries",
+              "label": "External laundries",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "family cinema room",
+              "label": "Family cinema room",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "gaming room",
+              "label": "Gaming room",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "gym room",
+              "label": "Gym room",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "hallway",
+              "label": "Hallway",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "home office",
+              "label": "Home office",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "kitchen",
+              "label": "Kitchen",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "laundry room",
+              "label": "Laundry room",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "living room",
+              "label": "Laundry room",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "master Bedroom",
+              "label": "Master Bedroom",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "men's majlis",
+              "label": "Men's majlis",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "stairway",
+              "label": "Stairway",
+              "ref": "Residential Spaces"
+            },
+            {
+              "value": "women's majlis",
+              "label": "Women's majlis",
+              "ref": "Residential Spaces"
+            }
           ]
         },
         {
@@ -119,19 +123,53 @@
           "options": [
             {
               "value": "clothing store",
-              "label": "Clothing store"
+              "label": "Clothing store",
+              "ref": "Commercial Spaces"
             },
-            { "value": "coffee shop", "label": "Coffee shop" },
-            { "value": "hotel bathroom", "label": "Hotel bathroom" },
-            { "value": "hotel lobby", "label": "Hotel lobby" },
-            { "value": "hotel room", "label": "Hotel room" },
-            { "value": "men's barber shop", "label": "Men's barber shop" },
-            { "value": "restaurant", "label": "Restaurant" },
-            { "value": "supermarket", "label": "Supermarket" },
-            { "value": "wedding Hall", "label": "Wedding Hall" },
+            {
+              "value": "coffee shop",
+              "label": "Coffee shop",
+              "ref": "Commercial Spaces"
+            },
+            {
+              "value": "hotel bathroom",
+              "label": "Hotel bathroom",
+              "ref": "Commercial Spaces"
+            },
+            {
+              "value": "hotel lobby",
+              "label": "Hotel lobby",
+              "ref": "Commercial Spaces"
+            },
+            {
+              "value": "hotel room",
+              "label": "Hotel room",
+              "ref": "Commercial Spaces"
+            },
+            {
+              "value": "men's barber shop",
+              "label": "Men's barber shop",
+              "ref": "Commercial Spaces"
+            },
+            {
+              "value": "restaurant",
+              "label": "Restaurant",
+              "ref": "Commercial Spaces"
+            },
+            {
+              "value": "supermarket",
+              "label": "Supermarket",
+              "ref": "Commercial Spaces"
+            },
+            {
+              "value": "wedding Hall",
+              "label": "Wedding Hall",
+              "ref": "Commercial Spaces"
+            },
             {
               "value": "women's beauty salon",
-              "label": "Women's beauty salon"
+              "label": "Women's beauty salon",
+              "ref": "Commercial Spaces"
             }
           ]
         },
@@ -141,19 +179,53 @@
           "options": [
             {
               "value": "archive room",
-              "label": "Archive room"
+              "label": "Archive room",
+              "ref": "Administrative spaces"
             },
-            { "value": "director Office", "label": "Director Office" },
-            { "value": "entertainment room", "label": "Entertainment room" },
-            { "value": "meeting room", "label": "Meeting room" },
-            { "value": "office", "label": "Office" },
-            { "value": "reception", "label": "Reception" },
-            { "value": "secretarial office", "label": "Secretarial office" },
-            { "value": "servers room", "label": "Servers room" },
-            { "value": "staff dining room", "label": "Staff dining room" },
+            {
+              "value": "director Office",
+              "label": "Director Office",
+              "ref": "Administrative spaces"
+            },
+            {
+              "value": "entertainment room",
+              "label": "Entertainment room",
+              "ref": "Administrative spaces"
+            },
+            {
+              "value": "meeting room",
+              "label": "Meeting room",
+              "ref": "Administrative spaces"
+            },
+            {
+              "value": "office",
+              "label": "Office",
+              "ref": "Administrative spaces"
+            },
+            {
+              "value": "reception",
+              "label": "Reception",
+              "ref": "Administrative spaces"
+            },
+            {
+              "value": "secretarial office",
+              "label": "Secretarial office",
+              "ref": "Administrative spaces"
+            },
+            {
+              "value": "servers room",
+              "label": "Servers room",
+              "ref": "Administrative spaces"
+            },
+            {
+              "value": "staff dining room",
+              "label": "Staff dining room",
+              "ref": "Administrative spaces"
+            },
             {
               "value": "workshop room",
-              "label": "Workshop room"
+              "label": "Workshop room",
+              "ref": "Administrative spaces"
             }
           ]
         }

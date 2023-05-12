@@ -7,6 +7,7 @@ function PlaceFilterBox() {
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-[16px] mb-[80px]">
       {Spaces.map((item) => (
         <button
+          key={item.id}
           type="button"
           onClick={() => item.id !== 5 && setActive(item.id)}
           className={`w-[165px] h-[64px] ${
@@ -20,7 +21,7 @@ function PlaceFilterBox() {
               background:
                 active === item.id && item.id !== 5
                   ? "rgba(255, 255, 255, 0.08)"
-                  : "",
+                  : "transparent",
             }}
             className={`content-center mr-[8px] rounded-[24px] ${
               item.id === 5 ? "order-2 mr-0" : "w-[40px] h-[40px]"

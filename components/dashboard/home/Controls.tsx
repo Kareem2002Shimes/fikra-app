@@ -1,11 +1,23 @@
 import Image from "next/image";
-import { SyntheticEvent, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "./SelectOptions";
 import data from "./Selects.json";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import Cookies from "js-cookie";
-import { TestContext } from "./TestContext";
+
+import { useAppDispatch, useAppSelector } from "@/redux/app/store";
+import {
+  setActiveIdea,
+  setReceivedImage,
+  setSelectedSpace,
+} from "@/redux/features/settings/settingsSlice";
+import { setSelectedTypeOfRoom } from "@/redux/features/settings/settingsSlice";
+import { setSelectedChooseStyle } from "@/redux/features/settings/settingsSlice";
+import { setSelectedMode } from "@/redux/features/settings/settingsSlice";
+import { setSelectedQuality } from "@/redux/features/settings/settingsSlice";
+import { setUploadedImage } from "@/redux/features/settings/settingsSlice";
+import { setSelectedResolution } from "@/redux/features/settings/settingsSlice";
+import { setSelectedStyle } from "@/redux/features/settings/settingsSlice";
 
 const spaceOptions = data.selects[0];
 const typeOfRoomOptions = data.selects[1];
@@ -15,82 +27,86 @@ const qualityOptions = data.selects[4];
 const styleOptions = data.selects[5];
 const resolutionOptions = data.selects[6];
 
-let residentialSpacesRoom: any;
-let commercialSpacesRoom: any;
-let administrativeSpacesRoom: any;
-
-let residentialSpacesOptionsValue: any;
-let commercialSpacesOptionsValue: any;
-let administrativeSpacesOptionsValue: any;
-
-if (typeOfRoomOptions.groupedOptions && spaceOptions.groupedOptions) {
-  // for rooms
-  residentialSpacesRoom = typeOfRoomOptions.groupedOptions[0];
-  commercialSpacesRoom = typeOfRoomOptions.groupedOptions[1];
-  administrativeSpacesRoom = typeOfRoomOptions.groupedOptions[2];
-  // for spaces
-  residentialSpacesOptionsValue = spaceOptions.groupedOptions[0].options.map(
-    (op) => op.value
-  );
-  commercialSpacesOptionsValue = spaceOptions.groupedOptions[1].options.map(
-    (op) => op.value
-  );
-  administrativeSpacesOptionsValue = spaceOptions.groupedOptions[2].options.map(
-    (op) => op.value
-  );
-}
-
 function Controls() {
-  const { setImage, selectedChooseStyle, setSelectedChooseStyle }: any =
-    useContext(TestContext);
-
-  const [selectedSpace, setSelectedSpace] = useState<any>(null);
-  const [selectedTypeOfRoom, setSelectedTypeOfRoom] = useState<any>(null);
-  const [selectedMode, setSelectedMode] = useState<any>(null);
-  const [selectedQuality, setSelectedQuality] = useState(null);
-  const [selectedStyle, setSelectedStyle] = useState(null);
-  const [selectedResolution, setSelectedResolution] = useState(null);
-  const [typeOfRoom, setTypeOfRoom] = useState(residentialSpacesRoom.options);
-  const [uploadedImage, setUploadedImage] = useState<any>(null);
-
+  const settings = useAppSelector((state) => state.settings);
+  const dispatch = useAppDispatch();
+  const [typeOfRoom, setTypeOfRoom] = useState(
+    typeOfRoomOptions.groupedOptions &&
+      typeOfRoomOptions.groupedOptions[0]?.options
+  );
+  const [imageUrl, setImageUrl] = useState("");
   const reset = () => {
-    setSelectedSpace(null);
-    setSelectedTypeOfRoom(null);
-    setSelectedChooseStyle(null);
-    setSelectedMode(null);
-    setSelectedQuality(null);
-    setUploadedImage(null);
-    setSelectedResolution(null);
-    setSelectedStyle(null);
+    dispatch(setSelectedSpace(null));
+    dispatch(setSelectedTypeOfRoom(null));
+    dispatch(setSelectedChooseStyle(null));
+    dispatch(setSelectedMode(null));
+    dispatch(setSelectedQuality(null));
+    dispatch(setSelectedResolution(null));
+    dispatch(setSelectedStyle(null));
+    dispatch(setUploadedImage(null));
+    setImageUrl("");
   };
 
   useEffect(() => {
-    if (selectedSpace) {
-      if (selectedSpace.label === residentialSpacesRoom.label) {
-        setTypeOfRoom(residentialSpacesRoom.options);
-      } else if (selectedSpace.label === commercialSpacesRoom.label) {
-        setTypeOfRoom(commercialSpacesRoom.options);
-      } else if (selectedSpace.label === administrativeSpacesRoom.label) {
-        setTypeOfRoom(administrativeSpacesRoom.options);
+    // show rooms according to space
+    if (settings.selectedSpace && typeOfRoomOptions.groupedOptions) {
+      if (
+        settings.selectedSpace.label ===
+        typeOfRoomOptions.groupedOptions[0].label
+      ) {
+        setTypeOfRoom(typeOfRoomOptions.groupedOptions[0].options);
+      } else if (
+        settings.selectedSpace.label ===
+        typeOfRoomOptions.groupedOptions[1].label
+      ) {
+        setTypeOfRoom(typeOfRoomOptions.groupedOptions[1].options);
+      } else if (
+        settings.selectedSpace.label ===
+        typeOfRoomOptions.groupedOptions[2].label
+      ) {
+        setTypeOfRoom(typeOfRoomOptions.groupedOptions[2].options);
       }
     }
-    if (selectedTypeOfRoom && spaceOptions.options) {
-      if (residentialSpacesOptionsValue.includes(selectedTypeOfRoom.value)) {
-        setSelectedSpace(spaceOptions.options[0]);
-      } else if (
-        commercialSpacesOptionsValue.includes(selectedTypeOfRoom.value)
-      ) {
-        setSelectedSpace(spaceOptions.options[1]);
-      } else if (
-        administrativeSpacesOptionsValue.includes(selectedTypeOfRoom.value)
-      ) {
-        setSelectedSpace(spaceOptions.options[2]);
+    // if room selected space selected also
+
+    if (settings.selectedTypeOfRoom && !settings.selectedSpace) {
+      const lables = spaceOptions.options?.map((op) => op.label);
+      if (lables?.includes(settings.selectedTypeOfRoom.ref as string)) {
+        dispatch(
+          setSelectedSpace(
+            spaceOptions.options?.find(
+              (element) => element.label === settings.selectedTypeOfRoom?.ref
+            )
+          )
+        );
       }
     }
-    if (uploadedImage && modeOptions.options) {
-      setSelectedMode(modeOptions.options[0]);
+    // if room was selected and then change space
+    if (
+      settings.selectedSpace?.label !== settings.selectedTypeOfRoom?.ref &&
+      settings.selectedTypeOfRoom &&
+      settings.selectedSpace
+    ) {
+      dispatch(setSelectedTypeOfRoom(null));
     }
-  }, [selectedSpace, selectedTypeOfRoom, uploadedImage]);
+
+    // if image uploaded mode option will be selected
+    if (settings.uploadedImage && modeOptions.options) {
+      dispatch(setSelectedMode(modeOptions.options[0]));
+    }
+
+    if (settings.selectedChooseStyle) {
+      dispatch(setActiveIdea(settings.selectedChooseStyle.value));
+    }
+    if (!settings.selectedChooseStyle) {
+      dispatch(setActiveIdea(null));
+    }
+  }, [
+    settings.selectedSpace,
+    settings.selectedTypeOfRoom,
+    settings.uploadedImage,
+    settings.selectedChooseStyle,
+  ]);
   const handleChange = (e: any) => {
     const image = e.target.files[0];
     if (
@@ -101,45 +117,50 @@ function Controls() {
       toast.error(`Not an image , please select image`);
       return;
     } else {
-      setUploadedImage(image);
+      dispatch(setUploadedImage(image));
+      setImageUrl(URL.createObjectURL(image));
     }
   };
   const handleSumbit = (e: any) => {
     e.preventDefault();
     if (
-      !selectedSpace ||
-      !selectedTypeOfRoom ||
-      !selectedChooseStyle ||
-      !selectedMode ||
-      !selectedResolution ||
-      (selectedMode?.value !== "concept (no image needed)" && !uploadedImage) ||
-      (selectedMode?.value === "concept (no image needed)" &&
-        !selectedQuality) ||
-      (selectedMode?.value === "concept (no image needed)" && !selectedStyle)
+      !settings.selectedSpace ||
+      !settings.selectedTypeOfRoom ||
+      !settings.selectedChooseStyle ||
+      !settings.selectedMode ||
+      !settings.selectedResolution ||
+      (settings.selectedMode?.value !== "concept (no image needed)" &&
+        !settings.uploadedImage) ||
+      (settings.selectedMode?.value === "concept (no image needed)" &&
+        !settings.selectedQuality) ||
+      (settings.selectedMode?.value === "concept (no image needed)" &&
+        !settings.selectedStyle)
     ) {
       toast.error("Please fill in all fields!");
     } else {
       const payload = {
-        space: selectedSpace,
-        room: selectedTypeOfRoom,
-        style: selectedChooseStyle,
-        mode: selectedMode,
-        resolution: selectedResolution,
+        space: settings.selectedSpace,
+        room: settings.selectedTypeOfRoom,
+        style: settings.selectedChooseStyle,
+        mode: settings.selectedMode,
+        resolution: settings.selectedResolution,
         image:
-          selectedMode?.value !== "concept (no image needed)" && uploadedImage,
+          settings.selectedMode?.value !== "concept (no image needed)" &&
+          settings.uploadedImage,
         styleType:
-          selectedMode?.value === "concept (no image needed)" && selectedStyle,
+          settings.selectedMode?.value === "concept (no image needed)" &&
+          settings.selectedStyle,
         quality:
-          selectedMode?.value === "concept (no image needed)" &&
-          selectedQuality,
+          settings.selectedMode?.value === "concept (no image needed)" &&
+          settings.selectedQuality,
       };
       // this payload will send to an API
       if (
-        selectedMode?.value !== "concept (no image needed)" &&
-        uploadedImage
+        settings.selectedMode?.value !== "concept (no image needed)" &&
+        settings.uploadedImage
       ) {
         const formData = new FormData();
-        formData.append("file", uploadedImage);
+        formData.append("file", settings.uploadedImage);
         formData.append("upload_preset", "mddbfkqa");
         axios
           .post(
@@ -148,16 +169,15 @@ function Controls() {
           )
           .then((res) => {
             reset();
-            setImage("/images/dashboard/test_result.jpg");
+            dispatch(setReceivedImage("/images/dashboard/test_result.jpg"));
           })
-          .catch((error) => console.log(error.message));
+          .catch((error) => toast.error(error.message));
       } else {
         reset();
-        setImage("/images/dashboard/test_result.jpg");
+        dispatch(setReceivedImage("/images/dashboard/test_result.jpg"));
       }
     }
   };
-
   return (
     <div className=" min-w-[306px] px-[16px] pb-[16px] bg-neutral-800 overflow-y-scroll ">
       <div className="border-b-[1px] border-auth-border py-[16px]">
@@ -181,7 +201,8 @@ function Controls() {
           instanceId={spaceOptions.id}
           options={spaceOptions.options}
           setSelected={setSelectedSpace}
-          value={selectedSpace}
+          dispatch={dispatch}
+          value={settings.selectedSpace}
           placeholder={spaceOptions.placeholder}
         />
 
@@ -189,30 +210,34 @@ function Controls() {
           instanceId={typeOfRoomOptions.id}
           options={typeOfRoom}
           setSelected={setSelectedTypeOfRoom}
-          value={selectedTypeOfRoom}
+          dispatch={dispatch}
+          value={settings.selectedTypeOfRoom}
           placeholder={typeOfRoomOptions.placeholder}
         />
         <Select
           instanceId={chooseStyleOptions.id}
           options={chooseStyleOptions.options}
           setSelected={setSelectedChooseStyle}
-          value={selectedChooseStyle}
+          dispatch={dispatch}
+          value={settings.selectedChooseStyle}
           placeholder={chooseStyleOptions.placeholder}
         />
         <Select
           instanceId={modeOptions.id}
           options={modeOptions.options}
           setSelected={setSelectedMode}
-          value={selectedMode}
+          dispatch={dispatch}
+          value={settings.selectedMode}
           placeholder={modeOptions.placeholder}
         />
-        {selectedMode?.value !== "concept (no image needed)" &&
-          (uploadedImage ? (
+        {settings.selectedMode?.value !== "concept (no image needed)" &&
+          (settings.uploadedImage && imageUrl ? (
             <div className="mb-[24px] relative">
               <button
                 onClick={() => {
-                  setUploadedImage(null);
-                  setSelectedMode(null);
+                  setImageUrl("");
+                  dispatch(setUploadedImage(null));
+                  dispatch(setSelectedMode(null));
                 }}
                 className="w-[89px] h-[24px] group hover:bg-error-400 hover:text-white text-neutral-600 transition-all duration-100 ease-in absolute top-[8px] left-[8px] content-center bg-white rounded-[16px] font-[400] text-sm"
               >
@@ -222,7 +247,7 @@ function Controls() {
                 Delete
               </button>
               <Image
-                src={URL.createObjectURL(uploadedImage)}
+                src={imageUrl}
                 alt="uploaded-img"
                 width={268}
                 height={152}
@@ -254,20 +279,22 @@ function Controls() {
               </span>
             </div>
           ))}
-        {selectedMode?.value === "concept (no image needed)" && (
+        {settings.selectedMode?.value === "concept (no image needed)" && (
           <>
             <Select
               instanceId={qualityOptions.id}
               options={qualityOptions.options}
               setSelected={setSelectedQuality}
-              value={selectedQuality}
+              dispatch={dispatch}
+              value={settings.selectedQuality}
               placeholder={qualityOptions.placeholder}
             />
             <Select
               instanceId={styleOptions.id}
               options={styleOptions.options}
               setSelected={setSelectedStyle}
-              value={selectedStyle}
+              dispatch={dispatch}
+              value={settings.selectedStyle}
               placeholder={styleOptions.placeholder}
             />
           </>
@@ -277,7 +304,8 @@ function Controls() {
           instanceId={resolutionOptions.id}
           options={resolutionOptions.options}
           setSelected={setSelectedResolution}
-          value={selectedResolution}
+          dispatch={dispatch}
+          value={settings.selectedResolution}
           placeholder={resolutionOptions.placeholder}
         />
         <div className="border-t-[1px] border-auth-border pt-[16px]">

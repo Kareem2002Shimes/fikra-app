@@ -59,7 +59,12 @@ const ValueContainer = ({ children, ...props }: any) => {
     components.ValueContainer && (
       <components.ValueContainer {...props}>
         <div className="flex items-center">
-          {props.getValue().map((op: any) => op.value === "ar" && KSAIcon)}
+          {props
+            .getValue()
+            .map(
+              (op: any) =>
+                op.value === "ar" && <div key={op.value}>{KSAIcon}</div>
+            )}
           {children}
         </div>
       </components.ValueContainer>

@@ -42,7 +42,10 @@ function PlaceSlider() {
         className="h-[527px] "
       >
         {data?.map((img: string) => (
-          <SwiperSlide className="relative w-[246px] h-full">
+          <SwiperSlide
+            key={img}
+            className="relative w-[246px] h-full select-none"
+          >
             <Image
               src={img}
               alt="slider-img"

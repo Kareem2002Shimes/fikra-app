@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -6,19 +6,23 @@ import "swiper/css/scrollbar";
 import { selects } from "./Selects.json";
 import { Scrollbar } from "swiper";
 import Image from "next/image";
-import { TestContext } from "./TestContext";
+import { useAppDispatch, useAppSelector } from "@/redux/app/store";
+import {
+  setActiveIdea,
+  setSelectedChooseStyle,
+} from "@/redux/features/settings/settingsSlice";
 function StyleSlider() {
   const [styleIdeas, setStyleIdeas] = useState<any>(selects[2]);
-  const [active, setActive] = useState(0);
-  const { selectedChooseStyle, setSelectedChooseStyle }: any =
-    useContext(TestContext);
-
+  const dispatch = useAppDispatch();
+  const settings = useAppSelector((state) => state.settings);
   useEffect(() => {
-    if (active) {
-      setSelectedChooseStyle(styleIdeas.options[active]);
-      console.log(styleIdeas.options[active]);
+    if (settings.activeIdea) {
+      const option = styleIdeas.options?.find(
+        (op: any) => op.value === settings.activeIdea
+      );
+      dispatch(setSelectedChooseStyle(option));
     }
-  }, [selectedChooseStyle, active]);
+  }, [settings.activeIdea]);
   return (
     <div className="absolute top-0 left-0 w-full ">
       <Swiper
@@ -28,20 +32,20 @@ function StyleSlider() {
         }}
         slidesPerView={8}
         modules={[Scrollbar]}
-        className="slider-conatiner"
+        className="slider-conatiner cursor-grab"
       >
         {styleIdeas.options?.map((item: any) => (
           <SwiperSlide
             key={item.label}
-            className="hover:cursor-pointer group relative "
-            onClick={() => setActive(styleIdeas.options.indexOf(item))}
+            className="hover:cursor-pointer group relative select-none"
+            onClick={() => dispatch(setActiveIdea(item.value))}
           >
             <Image
               src={item.image}
               alt="slider-img"
               fill={true}
-              className={`object-cover rounded-[8px]  ${
-                active === styleIdeas.options.indexOf(item)
+              className={`object-cover rounded-[8px] pointer-events-none  ${
+                settings.activeIdea === item.value
                   ? "opacity-[1]"
                   : "opacity-[0.5]"
               } group-hover:opacity-[1]  transition-opacity duration-200 ease-in-out`}
@@ -49,14 +53,14 @@ function StyleSlider() {
 
             <span
               className={`text-md font-[600] ${
-                active === styleIdeas.options.indexOf(item)
+                settings.activeIdea === item.value
                   ? "opacity-[1]"
                   : "opacity-[0.5]"
               }  group-hover:opacity-[1]  transition-opacity duration-200 ease-in-out text-white absolute w-full text-center z-10 bottom-[-40px] left-[50%] translate-x-[-50%]`}
             >
               {item.label}
             </span>
-            {active === styleIdeas.options.indexOf(item) && (
+            {settings.activeIdea === item.value && (
               <div className="bg-accent-color absolute top-[5px] left-[5px] z-10 border-[2px] border-neutral-900 rounded-[50%] w-[30px] h-[30px] content-center">
                 <Image
                   src="/images/dashboard/icons/home/checkedArrow.svg"

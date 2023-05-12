@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Select, { components } from "react-select";
 import DefaultView from "./DefaultView";
-import Cookies from "js-cookie";
-import { TestContext } from "./TestContext";
 import StyleSlider from "./StyleSlider";
+import { useAppDispatch, useAppSelector } from "@/redux/app/store";
+import { setReceivedImage } from "@/redux/features/settings/settingsSlice";
 
 const options = [
   {
@@ -16,11 +16,11 @@ const options = [
   { value: "type img (jpg)", label: "Type img (jpg)" },
 ];
 function View() {
-  const [open, setOpen] = useState<boolean>(false);
   const [selected, setSelected] = useState(null);
   const [ideas, setIdeas] = useState([1, 2, 3, 4]);
-  const { image, setImage }: any = useContext(TestContext);
   const [activeIdea, setActiveIdea] = useState(null);
+  const settings = useAppSelector((state) => state.settings);
+  const dispatch = useAppDispatch();
   const customStyles = {
     option: (defaultStyles: any, state: any) => ({
       ...defaultStyles,
@@ -84,14 +84,14 @@ function View() {
     );
   };
   const handleIdeas = (idea: number) => {
-    console.log(idea);
     idea === 1
-      ? setImage("/images/dashboard/singleIdea.jpg")
+      ? dispatch(setReceivedImage("/images/dashboard/singleIdea.jpg"))
       : idea === 2
-      ? setImage("/images/dashboard/singleIdea2.jpg")
+      ? dispatch(setReceivedImage("/images/dashboard/singleIdea2.jpg"))
       : idea === 3
-      ? setImage("/images/dashboard/singleIdea3.jpg")
-      : idea === 4 && setImage("/images/dashboard/singleIdea4.jpg");
+      ? dispatch(setReceivedImage("/images/dashboard/singleIdea3.jpg"))
+      : idea === 4 &&
+        dispatch(setReceivedImage("/images/dashboard/singleIdea4.jpg"));
   };
   return (
     <div className=" overflow-y-scroll w-full">
@@ -123,8 +123,8 @@ function View() {
         </div>
         <div className="h-[526px] bg-neutral-800 rounded-[16px] p-[16px] flex">
           <div className="w-full h-full relative content-center rounded-[8px] mr-[16px]">
-            {image ? (
-              <Image src={image} alt="img" fill={true} />
+            {settings.receivedImage ? (
+              <Image src={settings.receivedImage} alt="img" fill={true} />
             ) : (
               <DefaultView />
             )}
@@ -157,7 +157,7 @@ function View() {
             <button
               type="button"
               onClick={() => {
-                setImage("/images/dashboard/test_result.jpg");
+                dispatch(setReceivedImage("/images/dashboard/test_result.jpg"));
                 setActiveIdea(null);
               }}
               className="w-[135px] h-[120px]  mt-[70px] text-white content-center flex-col primary-border"

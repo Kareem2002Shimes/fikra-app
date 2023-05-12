@@ -60,7 +60,7 @@ function Companies() {
           {comps.map((comp: number) => (
             <SwiperSlide
               key={comp}
-              className="px-[12px] first-of-type:pl-0 last-of-type:pr-0 "
+              className="px-[12px] first-of-type:pl-0 last-of-type:pr-0 select-none "
             >
               <div className="h-[48px] content-center relative bg-neutral-800">
                 <Image

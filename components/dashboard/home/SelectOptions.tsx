@@ -1,5 +1,9 @@
 import Select, { components } from "react-select";
 import Image from "next/image";
+import {
+  setActiveIdea,
+  setSelectedTypeOfRoom,
+} from "@/redux/features/settings/settingsSlice";
 
 const qIcon = (
   <div className="mr-[8px]">
@@ -17,6 +21,7 @@ function SelectOptions({
   value,
   placeholder,
   instanceId,
+  dispatch,
   setSelected,
 }: any) {
   const customStyles = {
@@ -86,7 +91,7 @@ function SelectOptions({
   };
 
   const handleChange = (selected: any) => {
-    setSelected(selected);
+    dispatch(setSelected(selected));
   };
   const ValueContainer = ({ children, ...props }: any) => {
     return (

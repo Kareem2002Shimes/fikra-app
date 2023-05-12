@@ -3,17 +3,10 @@
     "id": 1,
     "images": [
       "/images/dashboard/styleIdeas/1.jpg",
-      "/images/dashboard/styleIdeas/1.jpg",
-      "/images/dashboard/styleIdeas/1.jpg",
-      "/images/dashboard/styleIdeas/1.jpg",
-      "/images/dashboard/styleIdeas/1.jpg",
-      "/images/dashboard/styleIdeas/1.jpg",
-      "/images/dashboard/styleIdeas/1.jpg",
-      "/images/dashboard/styleIdeas/1.jpg",
-      "/images/dashboard/styleIdeas/1.jpg",
-      "/images/dashboard/styleIdeas/1.jpg",
-      "/images/dashboard/styleIdeas/1.jpg",
-      "/images/dashboard/styleIdeas/1.jpg"
+      "/images/dashboard/singleIdea.jpg",
+      "/images/dashboard/singleIdea2.jpg",
+      "/images/dashboard/singleIdea3.jpg",
+      "/images/dashboard/singleIdea4.jpg"
     ],
     "category": {
       "name": "Modern",

@@ -9,7 +9,7 @@ function Navbar() {
         <Link href="/" className="flex items-center">
           <div className="relative w-[27.97px] h-[28px]">
             <Image
-              src="/images/auth/logo2.png"
+              src="/images/logo.svg"
               fill={true}
               alt="logo-img"
               style={{ objectFit: "contain" }}

@@ -22,7 +22,7 @@ function StyleSlider() {
       );
       dispatch(setSelectedChooseStyle(option));
     }
-  }, [settings.activeIdea]);
+  }, [settings.activeIdea, dispatch]);
   return (
     <div className="absolute top-0 left-0 w-full ">
       <Swiper

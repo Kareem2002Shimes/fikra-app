@@ -12,11 +12,11 @@ const baseQuery = fetchBaseQuery({
   baseUrl: `${process.env.BASE_URL}`,
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
-    const token: any = (getState() as RootState).auth.accessToken;
-    if (token) {
-      headers.set("authorization", `Bearer ${token}`);
-    }
-    return headers;
+    // const token: any = (getState() as RootState).auth.accessToken;
+    // if (token) {
+    //   headers.set("authorization", `Bearer ${token}`);
+    // }
+    // return headers;
   },
 });
 

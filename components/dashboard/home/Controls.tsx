@@ -106,6 +106,7 @@ function Controls() {
     settings.selectedTypeOfRoom,
     settings.uploadedImage,
     settings.selectedChooseStyle,
+    dispatch,
   ]);
   const handleChange = (e: any) => {
     const image = e.target.files[0];

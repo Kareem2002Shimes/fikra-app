@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(req: NextRequest) {
-  const token = req.cookies.get("next-auth.session-token")?.value;
+  const token = req.cookies.get(
+    process.env.NODE_ENV === "development"
+      ? "next-auth.session-token"
+      : "__Secure-next-auth.session-token"
+  )?.value;
   if (req.nextUrl.pathname.startsWith("/auth") && !token) {
     return;
   }

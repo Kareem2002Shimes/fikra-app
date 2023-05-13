@@ -18,6 +18,8 @@ import { setSelectedQuality } from "@/redux/features/settings/settingsSlice";
 import { setUploadedImage } from "@/redux/features/settings/settingsSlice";
 import { setSelectedResolution } from "@/redux/features/settings/settingsSlice";
 import { setSelectedStyle } from "@/redux/features/settings/settingsSlice";
+import InfoModal from "../InfoModal";
+import { handleImageCompression } from "@/services/uploadCompression";
 
 const spaceOptions = data.selects[0];
 const typeOfRoomOptions = data.selects[1];
@@ -30,6 +32,7 @@ const resolutionOptions = data.selects[6];
 function Controls() {
   const settings = useAppSelector((state) => state.settings);
   const dispatch = useAppDispatch();
+
   const [typeOfRoom, setTypeOfRoom] = useState(
     typeOfRoomOptions.groupedOptions &&
       typeOfRoomOptions.groupedOptions[0]?.options
@@ -108,6 +111,7 @@ function Controls() {
     settings.selectedChooseStyle,
     dispatch,
   ]);
+
   const handleChange = (e: any) => {
     const image = e.target.files[0];
     if (
@@ -118,8 +122,8 @@ function Controls() {
       toast.error(`Not an image , please select image`);
       return;
     } else {
-      dispatch(setUploadedImage(image));
-      setImageUrl(URL.createObjectURL(image));
+      dispatch(setUploadedImage(image)); // to send to backend api with compression
+      setImageUrl(URL.createObjectURL(image)); // only to show image when select it
     }
   };
   const handleSumbit = (e: any) => {
@@ -160,6 +164,8 @@ function Controls() {
         settings.selectedMode?.value !== "concept (no image needed)" &&
         settings.uploadedImage
       ) {
+        // call handleImageCompression to compress image and send to backend api
+        // handleImageCompression(settings.uploadedImage);
         const formData = new FormData();
         formData.append("file", settings.uploadedImage);
         formData.append("upload_preset", "mddbfkqa");
@@ -170,6 +176,7 @@ function Controls() {
           )
           .then((res) => {
             reset();
+            toast.success("Designed Successfully");
             dispatch(setReceivedImage("/images/dashboard/test_result.jpg"));
           })
           .catch((error) => toast.error(error.message));
@@ -197,24 +204,34 @@ function Controls() {
           Start over
         </button>
       </div>
-      <form onSubmit={handleSumbit} className="mx-auto pt-[48px] w-[268px]">
-        <Select
-          instanceId={spaceOptions.id}
-          options={spaceOptions.options}
-          setSelected={setSelectedSpace}
-          dispatch={dispatch}
-          value={settings.selectedSpace}
-          placeholder={spaceOptions.placeholder}
-        />
+      <form onSubmit={handleSumbit} className="mx-auto pt-[48px] w-[268px] ">
+        <div className="relative ">
+          <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
+            <InfoModal title="الفراغ هو نوع المساحة التي تود تصميمها سواء كانت سكنية او تجارية او ادارية" />
+          </div>
+          <Select
+            instanceId={spaceOptions.id}
+            options={spaceOptions.options}
+            setSelected={setSelectedSpace}
+            dispatch={dispatch}
+            value={settings.selectedSpace}
+            placeholder={spaceOptions.placeholder}
+          />
+        </div>
 
-        <Select
-          instanceId={typeOfRoomOptions.id}
-          options={typeOfRoom}
-          setSelected={setSelectedTypeOfRoom}
-          dispatch={dispatch}
-          value={settings.selectedTypeOfRoom}
-          placeholder={typeOfRoomOptions.placeholder}
-        />
+        <div className="relative ">
+          <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
+            <InfoModal title="اختار نوع غرفتك" />
+          </div>
+          <Select
+            instanceId={typeOfRoomOptions.id}
+            options={typeOfRoom}
+            setSelected={setSelectedTypeOfRoom}
+            dispatch={dispatch}
+            value={settings.selectedTypeOfRoom}
+            placeholder={typeOfRoomOptions.placeholder}
+          />
+        </div>
         <Select
           instanceId={chooseStyleOptions.id}
           options={chooseStyleOptions.options}
@@ -261,6 +278,7 @@ function Controls() {
                 style={{ filter: " alpha(opacity=0)" }}
                 type="file"
                 name="image"
+                accept="image/*"
                 onChange={handleChange}
                 className="absolute top-0 left-0 w-full h-full cursor-pointer opacity-0"
               />
@@ -282,33 +300,49 @@ function Controls() {
           ))}
         {settings.selectedMode?.value === "concept (no image needed)" && (
           <>
-            <Select
-              instanceId={qualityOptions.id}
-              options={qualityOptions.options}
-              setSelected={setSelectedQuality}
-              dispatch={dispatch}
-              value={settings.selectedQuality}
-              placeholder={qualityOptions.placeholder}
-            />
-            <Select
-              instanceId={styleOptions.id}
-              options={styleOptions.options}
-              setSelected={setSelectedStyle}
-              dispatch={dispatch}
-              value={settings.selectedStyle}
-              placeholder={styleOptions.placeholder}
-            />
+            <div className="relative ">
+              <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
+                <InfoModal title="اختار الجودة" />
+              </div>
+              <Select
+                instanceId={qualityOptions.id}
+                options={qualityOptions.options}
+                setSelected={setSelectedQuality}
+                dispatch={dispatch}
+                value={settings.selectedQuality}
+                placeholder={qualityOptions.placeholder}
+              />
+            </div>
+            <div className="relative ">
+              <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
+                <InfoModal title="اختار استايلك المفضل" />
+              </div>
+              <Select
+                instanceId={styleOptions.id}
+                options={styleOptions.options}
+                setSelected={setSelectedStyle}
+                dispatch={dispatch}
+                value={settings.selectedStyle}
+                placeholder={styleOptions.placeholder}
+              />
+            </div>
           </>
         )}
 
-        <Select
-          instanceId={resolutionOptions.id}
-          options={resolutionOptions.options}
-          setSelected={setSelectedResolution}
-          dispatch={dispatch}
-          value={settings.selectedResolution}
-          placeholder={resolutionOptions.placeholder}
-        />
+        <div className="relative  ">
+          <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible ">
+            <InfoModal title="اختار نوع العرض" />
+          </div>
+          <Select
+            instanceId={resolutionOptions.id}
+            options={resolutionOptions.options}
+            setSelected={setSelectedResolution}
+            dispatch={dispatch}
+            value={settings.selectedResolution}
+            placeholder={resolutionOptions.placeholder}
+          />
+        </div>
+
         <div className="border-t-[1px] border-auth-border pt-[16px]">
           <button
             type="submit"

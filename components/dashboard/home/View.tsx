@@ -1,10 +1,23 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Select, { components } from "react-select";
 import DefaultView from "./DefaultView";
 import StyleSlider from "./StyleSlider";
 import { useAppDispatch, useAppSelector } from "@/redux/app/store";
 import { setReceivedImage } from "@/redux/features/settings/settingsSlice";
+
+import {
+  FacebookShareButton,
+  FacebookIcon,
+  TwitterIcon,
+  TelegramIcon,
+  WhatsappIcon,
+  TelegramShareButton,
+  WhatsappShareButton,
+  TwitterShareButton,
+} from "react-share";
+import { toast } from "react-hot-toast";
+import imageCompression from "browser-image-compression";
 
 const options = [
   {
@@ -16,11 +29,15 @@ const options = [
   { value: "type img (jpg)", label: "Type img (jpg)" },
 ];
 function View() {
-  const [selected, setSelected] = useState(null);
+  const menuRef: any = useRef();
+  const btnRef: any = useRef();
+
   const [ideas, setIdeas] = useState([1, 2, 3, 4]);
   const [activeIdea, setActiveIdea] = useState(null);
   const settings = useAppSelector((state) => state.settings);
   const dispatch = useAppDispatch();
+  const [sharebox, setSharebox] = useState(false);
+
   const customStyles = {
     option: (defaultStyles: any, state: any) => ({
       ...defaultStyles,
@@ -29,6 +46,10 @@ function View() {
       "&:hover": {
         backgroundColor: "#0473FB",
       },
+      "&:hover:first-of-type": {
+        backgroundColor: "transparent",
+      },
+
       fontSize: "16px",
       lineHeight: "24px",
       cursor: "pointer",
@@ -59,8 +80,26 @@ function View() {
       alignItems: "center",
     }),
   };
+  const downloadFileURL = (url: string): void => {
+    const fileName: any = url.split("/").pop();
+    const aTag = document.createElement("a");
+    aTag.href = url;
+    aTag.setAttribute("download", fileName);
+    document.body.appendChild(aTag);
+    aTag.click();
+    aTag.remove();
+    return;
+  };
   const handleChange = (selected: any) => {
-    setSelected(selected);
+    // assume settings.receivedImage return imageObject
+    // we used uploaded image for testing
+    // any type accept
+    const image = settings.receivedImage;
+    if (selected && image && settings.uploadedImage) {
+      downloadFileURL(URL.createObjectURL(settings.uploadedImage));
+    } else {
+      toast.error("Please design an idea first!");
+    }
   };
 
   const ValueContainer = ({ children, ...props }: any) => {
@@ -93,10 +132,21 @@ function View() {
       : idea === 4 &&
         dispatch(setReceivedImage("/images/dashboard/singleIdea4.jpg"));
   };
+  useEffect(() => {
+    const closeMenu = (e: any) => {
+      if (e.target !== menuRef.current && e.target !== btnRef.current) {
+        setSharebox(false);
+      }
+    };
+    window.addEventListener("click", closeMenu);
+    return () => {
+      window.removeEventListener("click", closeMenu);
+    };
+  }, []);
   return (
     <div className=" overflow-y-scroll w-full">
-      <div className="px-[24px] pt-[16px]">
-        <div className="flex items-center relative mb-[8px]">
+      <div className="px-[24px] pt-[16px] ">
+        <div className="flex items-center mb-[8px] relative">
           <Select
             options={options}
             value={"Download" as any}
@@ -112,14 +162,63 @@ function View() {
             placeholder="Download"
             isOptionDisabled={(option) => option.disabled}
           />
-          <button type="button" className="ml-[16px]">
+          <button
+            type="button"
+            className="ml-[16px] relative z-50"
+            onClick={() => setSharebox(!sharebox)}
+            ref={btnRef}
+          >
             <Image
               src="images/dashboard/icons/home/share-icon.svg"
               alt="download-icon"
               width={24}
               height={24}
+              className="z-[-50] relative"
             />
           </button>
+
+          <div
+            ref={menuRef}
+            className={`text-white ${
+              sharebox
+                ? "opacity-1 visible   translate-y-0 "
+                : "invisible opacity-0  translate-y-[15px]"
+            } absolute  gap-[15px] content-center top-[47px] transition-all duration-300
+             bg-neutral-700 w-[250px] h-[80px] rounded-[16px] z-10`}
+          >
+            <FacebookShareButton
+              url="https://fikra-app.vercel.app"
+              quote="Hey this is My Profile!"
+              hashtag="#Fikra-app"
+            >
+              <FacebookIcon
+                iconFillColor="white"
+                round={true}
+                className="w-[40px] h-[40px]"
+              />
+            </FacebookShareButton>
+            <TwitterShareButton url="https://fikra-app.vercel.app">
+              <TwitterIcon
+                iconFillColor="white"
+                round={true}
+                className="w-[40px] h-[40px]"
+              />
+            </TwitterShareButton>
+            <TelegramShareButton url="https://fikra-app.vercel.app">
+              <TelegramIcon
+                iconFillColor="white"
+                round={true}
+                className="w-[40px] h-[40px]"
+              />
+            </TelegramShareButton>
+            <WhatsappShareButton url="https://fikra-app.vercel.app">
+              <WhatsappIcon
+                iconFillColor="white"
+                round={true}
+                className="w-[40px] h-[40px]"
+              />
+            </WhatsappShareButton>
+          </div>
         </div>
         <div className="h-[526px] bg-neutral-800 rounded-[16px] p-[16px] flex">
           <div className="w-full h-full relative content-center rounded-[8px] mr-[16px]">

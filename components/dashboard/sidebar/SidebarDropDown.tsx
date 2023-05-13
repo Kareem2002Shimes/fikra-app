@@ -10,7 +10,7 @@ import {
 import Image from "next/image";
 import React from "react";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 function UserCircleIcon() {
   return (
     <Image
@@ -57,6 +57,7 @@ const profileMenuItems = [
 ];
 function SidebarDropDown({ sidebar }: any) {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const session = useSession();
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
@@ -72,13 +73,15 @@ function SidebarDropDown({ sidebar }: any) {
             alt="account-img"
             src="/images/dashboard/account-img.png"
           />
-          <Typography
-            className={`text-neutral-50 pl-[16px] text-md font-[500] ${
-              !sidebar && "scale-0 absolute top-[50%] translate-y-[-50%]"
-            }`}
-          >
-            Ahmed
-          </Typography>
+          {session.data?.user && (
+            <Typography
+              className={`text-neutral-50 pl-[16px] text-md font-[500] ${
+                !sidebar && "scale-0 absolute top-[50%] translate-y-[-50%]"
+              }`}
+            >
+              {session.data?.user?.name}
+            </Typography>
+          )}
         </Button>
       </MenuHandler>
       <MenuList className="w-fit h-[176px] content-center flex-col bg-sidebar-bg2 border-[1px] border-input-border shadow-none outline-none rounded-[16px]">

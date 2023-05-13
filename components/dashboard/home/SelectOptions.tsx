@@ -1,19 +1,14 @@
 import Select, { components } from "react-select";
 import Image from "next/image";
-import {
-  setActiveIdea,
-  setSelectedTypeOfRoom,
-} from "@/redux/features/settings/settingsSlice";
+import InfoModal from "../InfoModal";
 
 const qIcon = (
-  <div className="mr-[8px]">
-    <Image
-      src="/images/dashboard/icons/sidebar/info.svg"
-      alt="info-icon"
-      width={24}
-      height={24}
-    />
-  </div>
+  <Image
+    src="/images/dashboard/icons/sidebar/info.svg"
+    alt="info-icon"
+    width={24}
+    height={24}
+  />
 );
 
 function SelectOptions({
@@ -23,6 +18,11 @@ function SelectOptions({
   instanceId,
   dispatch,
   setSelected,
+  setSpaceModal,
+  setStyleModal,
+  setRoomModal,
+  setQualityModal,
+  setResolutionModal,
 }: any) {
   const customStyles = {
     option: (defaultStyles: any, state: any) => ({
@@ -97,11 +97,12 @@ function SelectOptions({
     return (
       components.ValueContainer && (
         <components.ValueContainer {...props}>
-          <div className="flex items-center">
+          <div className="flex items-center  ">
             {!!children &&
               props.selectProps.placeholder !== "Choose the style" &&
-              props.selectProps.placeholder !== "Mode" &&
-              qIcon}
+              props.selectProps.placeholder !== "Mode" && (
+                <div className="mr-[8px]">{qIcon}</div>
+              )}
             {children}
           </div>
         </components.ValueContainer>

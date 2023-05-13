@@ -19,6 +19,7 @@ function HowWorks() {
             height={613}
             width={630}
             className="relative z-10"
+            unoptimized={true}
           />
         </div>
         <div className="">

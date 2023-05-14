@@ -1,6 +1,6 @@
 import { apiSlice } from "../../app/api/apiSlice";
 import { logOut, setCredentials } from "./authSlice";
-import { FormData } from "@/components/auth/Form";
+import { FormData } from "@/src/components/auth/Form";
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     login: builder.mutation<{ accessToken: string }, FormData>({

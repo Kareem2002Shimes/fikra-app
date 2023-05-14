@@ -55,6 +55,9 @@ button {
   outline: none;
 }
 /* Custom styles */
+.lang-box .css-1fdsijx-ValueContainer {
+  overflow: unset;
+}
 .coloredBtn {
   background: linear-gradient(139.41deg, #3c79fe 13.26%, #7b1ad2 106.32%);
 }
@@ -245,5 +248,21 @@ input[type="range"]::-webkit-slider-thumb:active {
 
 /* space slider  */
 .space-btn {
+  border: 1px solid #484984;
+}
+.space-btn:hover {
+  border-color: transparent;
   background: linear-gradient(139.41deg, #3c79fe 13.26%, #7b1ad2 106.32%);
+}
+.space-btn-active {
+  background: linear-gradient(139.41deg, #3c79fe 13.26%, #7b1ad2 106.32%);
+}
+.logo-text-color {
+  background: -webkit-linear-gradient(
+    139.41deg,
+    #3c79fe 13.26%,
+    #7b1ad2 106.32%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

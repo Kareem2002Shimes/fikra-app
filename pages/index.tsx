@@ -9,25 +9,40 @@ import ChoosePlace from "@/components/home/ChoosePlace";
 import HowWorks from "@/components/home/HowWorks";
 import GenerateIdeas from "@/components/home/GenerateIdeas";
 import Footer from "@/components/home/Footer";
+
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+import WhatNeed from "@/components/home/WhatNeed";
+
 function HomePage() {
+  const { t } = useTranslation();
   return (
     <Fragment>
       <Head>
         <title>home page</title>
       </Head>
-      <Header />
+      <Header t={t} />
       <main>
-        <Landing />
-        <Companies />
-        <Discover />
-        <TranslateIdeas />
-        <ChoosePlace />
-        <HowWorks />
-        <GenerateIdeas />
-        <Footer />
+        <Landing t={t} />
+        <Companies t={t} />
+        <Discover t={t} />
+        <TranslateIdeas t={t} />
+        <ChoosePlace t={t} />
+        <HowWorks t={t} />
+        <WhatNeed t={t} />
+        <GenerateIdeas t={t} />
+        <Footer t={t} />
       </main>
     </Fragment>
   );
 }
 
 export default HomePage;
+
+export async function getServerSideProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["home"])),
+    },
+  };
+}

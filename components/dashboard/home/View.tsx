@@ -146,80 +146,82 @@ function View() {
   return (
     <div className=" overflow-y-scroll w-full">
       <div className="px-[24px] pt-[16px] ">
-        <div className="flex items-center mb-[8px] relative">
-          <Select
-            options={options}
-            value={"Download" as any}
-            onChange={handleChange}
-            styles={customStyles}
-            instanceId={options.map((op) => op.value) as any}
-            components={{
-              IndicatorSeparator: () => null,
-              DropdownIndicator: () => null,
-              ValueContainer,
-            }}
-            isSearchable={false}
-            placeholder="Download"
-            isOptionDisabled={(option) => option.disabled}
-          />
-          <button
-            type="button"
-            className="ml-[16px] relative z-50"
-            onClick={() => setSharebox(!sharebox)}
-            ref={btnRef}
-          >
-            <Image
-              src="images/dashboard/icons/home/share-icon.svg"
-              alt="download-icon"
-              width={24}
-              height={24}
-              className="z-[-50] relative"
+        {settings.receivedImage && (
+          <div className="flex items-center mb-[8px] relative">
+            <Select
+              options={options}
+              value={"Download" as any}
+              onChange={handleChange}
+              styles={customStyles}
+              instanceId={options.map((op) => op.value) as any}
+              components={{
+                IndicatorSeparator: () => null,
+                DropdownIndicator: () => null,
+                ValueContainer,
+              }}
+              isSearchable={false}
+              placeholder="Download"
+              isOptionDisabled={(option) => option.disabled}
             />
-          </button>
-
-          <div
-            ref={menuRef}
-            className={`text-white ${
-              sharebox
-                ? "opacity-1 visible   translate-y-0 "
-                : "invisible opacity-0  translate-y-[15px]"
-            } absolute  gap-[15px] content-center top-[47px] transition-all duration-300
-             bg-neutral-700 w-[250px] h-[80px] rounded-[16px] z-10`}
-          >
-            <FacebookShareButton
-              url="https://fikra-app.vercel.app"
-              quote="Hey this is My Profile!"
-              hashtag="#Fikra-app"
+            <button
+              type="button"
+              className="ml-[16px] relative z-50"
+              onClick={() => setSharebox(!sharebox)}
+              ref={btnRef}
             >
-              <FacebookIcon
-                iconFillColor="white"
-                round={true}
-                className="w-[40px] h-[40px]"
+              <Image
+                src="images/dashboard/icons/home/share-icon.svg"
+                alt="download-icon"
+                width={24}
+                height={24}
+                className="z-[-50] relative"
               />
-            </FacebookShareButton>
-            <TwitterShareButton url="https://fikra-app.vercel.app">
-              <TwitterIcon
-                iconFillColor="white"
-                round={true}
-                className="w-[40px] h-[40px]"
-              />
-            </TwitterShareButton>
-            <TelegramShareButton url="https://fikra-app.vercel.app">
-              <TelegramIcon
-                iconFillColor="white"
-                round={true}
-                className="w-[40px] h-[40px]"
-              />
-            </TelegramShareButton>
-            <WhatsappShareButton url="https://fikra-app.vercel.app">
-              <WhatsappIcon
-                iconFillColor="white"
-                round={true}
-                className="w-[40px] h-[40px]"
-              />
-            </WhatsappShareButton>
+            </button>
+
+            <div
+              ref={menuRef}
+              className={`text-white ${
+                sharebox
+                  ? "opacity-1 visible   translate-y-0 "
+                  : "invisible opacity-0  translate-y-[15px]"
+              } absolute  gap-[15px] content-center top-[47px] transition-all duration-300
+             bg-neutral-700 w-[250px] h-[80px] rounded-[16px] z-10`}
+            >
+              <FacebookShareButton
+                url="https://fikra-app.vercel.app"
+                quote="Hey this is My Profile!"
+                hashtag="#Fikra-app"
+              >
+                <FacebookIcon
+                  iconFillColor="white"
+                  round={true}
+                  className="w-[40px] h-[40px]"
+                />
+              </FacebookShareButton>
+              <TwitterShareButton url="https://fikra-app.vercel.app">
+                <TwitterIcon
+                  iconFillColor="white"
+                  round={true}
+                  className="w-[40px] h-[40px]"
+                />
+              </TwitterShareButton>
+              <TelegramShareButton url="https://fikra-app.vercel.app">
+                <TelegramIcon
+                  iconFillColor="white"
+                  round={true}
+                  className="w-[40px] h-[40px]"
+                />
+              </TelegramShareButton>
+              <WhatsappShareButton url="https://fikra-app.vercel.app">
+                <WhatsappIcon
+                  iconFillColor="white"
+                  round={true}
+                  className="w-[40px] h-[40px]"
+                />
+              </WhatsappShareButton>
+            </div>
           </div>
-        </div>
+        )}
         <div className="h-[526px] bg-neutral-800 rounded-[16px] p-[16px] flex">
           <div className="w-full h-full relative content-center rounded-[8px] mr-[16px]">
             {settings.receivedImage ? (

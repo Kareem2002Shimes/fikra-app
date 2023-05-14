@@ -7,13 +7,13 @@ import { Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 
-function Companies() {
+function Companies({ t }: any) {
   const [comps, setComps] = useState([1, 2, 3, 4, 5, 6]);
   return (
     <section className="pt-[50px]">
       <div className="home-container">
         <h2 className="text-white text-md font-[400] text-center mb-[24px] tracking-[0.8px]">
-          Companies trust us
+          {t("home:company_section_title")}
         </h2>
 
         <Swiper

@@ -1,22 +1,36 @@
 import MainHeading from "./MainHeading";
 import Image from "next/image";
-function GenerateIdeas() {
+import { useRouter } from "next/router";
+
+function GenerateIdeas({ t }: any) {
+  const { locale } = useRouter();
+
   return (
-    <section className="pb-[80px]">
-      <div className="home-container  grid grid-cols-2 gap-[70px]">
+    <section className="pb-[80px] relative z-10">
+      <div className="home-container grid grid-cols-2 gap-[70px] relative">
+        <div
+          className={`absolute ${
+            locale === "ar" ? "left-0" : "right-0"
+          } top-0 w-[720px] h-[200px]`}
+          style={{
+            background: "rgba(117, 36, 215, 0.41)",
+            filter: "blur(162px)",
+          }}
+        ></div>
         <div>
           <MainHeading
-            title="Ready for the Next level of interior design?"
-            desc="Easier way to design, start now and save your time"
+            title={t("home:generate_ideas_title")}
+            desc={t("home:generate_ideas_desc")}
           />
           <button
             type="button"
             className="coloredBtn w-[240px] h-[60px] text-white font-[600] rounded-[8px]"
           >
-            Start generating ideas
+            {t("home:generate_ideas_btn")}
           </button>
         </div>
-        <div>
+
+        <div className="border-[6px] relative z-10 border-[rgba(255,255,255,0.06)] rounded-[16px]">
           <Image
             src="/images/dashboard/styleIdeas/1.jpg"
             alt="generate-img"

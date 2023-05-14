@@ -2,10 +2,22 @@ import Image from "next/image";
 import Select, { components } from "react-select";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
+import { useRouter } from "next/router";
 const KSAIcon = (
-  <div className="mr-[8px]">
+  <div className="mx-[8px]">
     <Image src="/images/home/KSA.svg" alt="arrow-icon" width={24} height={24} />
+  </div>
+);
+const AmericanIcon = (
+  <div className="mx-[8px] ">
+    <Image
+      src="/images/home/en-icon.svg"
+      alt="arrow-icon"
+      width={24}
+      height={24}
+      className="border-[2px] border-whit rounded-[50%]"
+    />
   </div>
 );
 const customStyles = {
@@ -61,9 +73,12 @@ const ValueContainer = ({ children, ...props }: any) => {
         <div className="flex items-center">
           {props
             .getValue()
-            .map(
-              (op: any) =>
-                op.value === "ar" && <div key={op.value}>{KSAIcon}</div>
+            .map((op: any) =>
+              op.value === "ar" ? (
+                <div key={op.value}>{KSAIcon}</div>
+              ) : (
+                op.value === "en" && <div key={op.value}>{AmericanIcon}</div>
+              )
             )}
           {children}
         </div>
@@ -76,8 +91,16 @@ const options = [
   { value: "ar", label: "عربي" },
   { value: "ger", label: "Ger" },
 ];
-function Header() {
+
+function Header({ t }: any) {
   const { data } = useSession();
+  const { push } = useRouter();
+
+  const changeLanguage = (selected: any) => {
+    const locale = selected.value;
+    push("/", "/", { locale });
+  };
+
   return (
     <header className="border-b-[1px] border-input-border relative z-50">
       <div className="home-container py-[8px] flex items-center justify-between">
@@ -87,7 +110,7 @@ function Header() {
             width={28}
             height={28}
             alt="logo-img"
-            className="mr-[8px]"
+            className="mx-[8px]"
           />
           <Image
             src="/images/logo-text.svg"
@@ -96,12 +119,13 @@ function Header() {
             alt="logo-img"
           />
         </Link>
-        <div className="flex items-center">
+        <div className="flex items-center lang-box">
           <Select
             options={options}
             isClearable={false}
             styles={customStyles}
             isSearchable={false}
+            onChange={changeLanguage}
             instanceId={options[0].value as string}
             components={{
               IndicatorSeparator: () => null,
@@ -115,21 +139,21 @@ function Header() {
               onClick={() => signOut({ callbackUrl: "/" })}
               className="text-neutral-50 text-md font-[500] mr-[8px] w-fit sm:w-[130px] h-[40px] content-center transition-all duration-200 ease-in-out hover:text-accent-color"
             >
-              Logout
+              {t("home:logout_btn")}
             </button>
           ) : (
             <Fragment>
               <Link
                 href="/auth/login"
-                className="text-neutral-50 text-md font-[500] mr-[8px] w-fit sm:w-[130px] h-[40px] content-center transition-all duration-200 ease-in-out hover:text-accent-color"
+                className="text-neutral-50 text-md font-[500] mx-[8px] w-fit sm:w-[130px] h-[40px] content-center transition-all duration-200 ease-in-out hover:text-accent-color"
               >
-                Login
+                {t("home:login_btn")}
               </Link>
               <Link
                 href="/auth/signup"
                 className="coloredBtn-home-header text-md font-[500] hidden sm:flex w-[195px] h-[40px] content-center text-neutral-50 rounded-[8px]"
               >
-                Create an account
+                {t("home:create_account")}
               </Link>
             </Fragment>
           )}

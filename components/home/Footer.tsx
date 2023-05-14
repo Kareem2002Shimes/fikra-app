@@ -1,41 +1,55 @@
 import { useState } from "react";
-import FooterNav from "./Navbar";
+
 import Image from "next/image";
-function Footer() {
-  const [links, setLinks] = useState(["contact us", "home"]);
-  const [socialLinks, setSocialLinks] = useState([
-    { icon: "facebook-icon", url: "facebook" },
-    { icon: "insta-icon", url: "insta" },
-    { icon: "twitter-icon", url: "twitter" },
-    { icon: "youtube-icon", url: "youtube" },
-  ]);
+import FooterShareBox from "./FooterShareBox";
+function Footer({ t }: any) {
+  const contact = [
+    "SU: +966 11232445",
+    "www.fikra.ai.com",
+    "mail@fikra.ai.com",
+    "Riyadh, Saudi Arabia",
+  ];
+  const map = [
+    t("home:footer_website_map_link_one"),
+    t("home:footer_website_map_link_two"),
+    t("home:footer_website_map_link_three"),
+  ];
+
   return (
-    <section className="bg-sidebar-bg2 h-[219px] relative">
-      <div className="home-container ">
-        <div className="flex justify-between items-center">
-          <div className="pt-[24px] ">
-            <FooterNav links={links} />
-            <p className="text-neutral-200 font-[400] mt-[30px] mb-[30px]">
-              Follow us on social media
-            </p>
-            <FooterNav socialLinks={socialLinks} />
-          </div>
-          <div className="flex items-center gap-[16px] h-[64px]">
-            <p className="text-neutral-50 font-[400] text-lg w-[450px] max-w-full">
-              An artificial intelligence tool that provides you with a
-              high-quality and accurate interior design
-            </p>
+    <section className="bg-[#141421]  relative z-10">
+      <div className="home-container grid grid-cols-3 py-[55px]">
+        <div className="pr-[15px]">
+          <div
+            onClick={() => {
+              window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+            }}
+            className="w-[88px] h-[88px] cursor-pointer mb-[24px] rounded-[50%] bg-neutral-800 content-center"
+          >
             <Image
               src="/images/logo.svg"
-              alt="logo-img"
+              alt="logo-icon"
               width={56}
               height={56}
             />
           </div>
+          <p className="text-md text-[#FEFEFE] font-[500]">
+            {t("home:footer_desc")}
+          </p>
         </div>
-        <p className="font-[400] text-neutral-200 text-center absolute left-0 w-full  bottom-[24px]">
-          All rights reserved to Fikra Company &copy; 2023
-        </p>
+        <div className="border-x-[1.5px] px-[48px] border-dashed border-auth-border">
+          <FooterShareBox
+            title={t("home:footer_title_one")}
+            content={map}
+            t={t}
+          />
+        </div>
+        <div className="px-[48px]">
+          <FooterShareBox
+            title={t("home:footer_title_two")}
+            content={contact}
+            t={t}
+          />
+        </div>
       </div>
     </section>
   );

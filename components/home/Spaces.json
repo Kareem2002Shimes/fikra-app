@@ -79,8 +79,7 @@
   {
     "id": 5,
     "category": {
-      "name": "Explore More",
-      "icon": "/images/home/spaces-arrow.svg"
+      "name": "Explore More"
     }
   }
 ]

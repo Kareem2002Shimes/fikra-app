@@ -7,8 +7,9 @@ import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
 import { EffectCoverflow, Navigation } from "swiper";
-
+import { useRouter } from "next/router";
 function PlaceSlider() {
+  const { locale } = useRouter();
   const [data, setData] = useState(Spaces[0].images);
   const sliderRef = useRef(null);
   const handlePrev = useCallback(() => {
@@ -65,6 +66,7 @@ function PlaceSlider() {
             width={15}
             height={15}
             alt="slider-img"
+            className={`${locale === "ar" && "rotate-[180deg]"}`}
           />
         </button>
         <button
@@ -76,6 +78,7 @@ function PlaceSlider() {
             width={15}
             height={15}
             alt="slider-img"
+            className={`${locale === "ar" && "rotate-[180deg]"}`}
           />
         </button>
       </div>

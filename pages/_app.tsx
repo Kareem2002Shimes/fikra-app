@@ -5,6 +5,8 @@ import { SessionProvider } from "next-auth/react";
 import ToasterProvider from "@/providers/ToasterProvider";
 import { Provider } from "react-redux";
 import { store } from "@/redux/app/store";
+import { appWithTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 const somar = localFont({
   src: [
     {
@@ -27,18 +29,22 @@ const somar = localFont({
   variable: "--font-somar",
 });
 
-export default function App({
-  Component,
-  pageProps: { session, ...pageProps },
-}: AppProps) {
+function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+  const { locale } = useRouter();
   return (
     <SessionProvider session={session}>
       <Provider store={store}>
         <ToasterProvider />
-        <main className={`${somar.variable} font-sans bg-neutral-900`}>
+        <main
+          style={{
+            direction: locale === "ar" ? "rtl" : "ltr",
+          }}
+          className={`${somar.variable} font-sans bg-neutral-900`}
+        >
           <Component {...pageProps} />
         </main>
       </Provider>
     </SessionProvider>
   );
 }
+export default appWithTranslation(App);

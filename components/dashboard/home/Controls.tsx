@@ -29,14 +29,24 @@ const qualityOptions = data.selects[4];
 const styleOptions = data.selects[5];
 const resolutionOptions = data.selects[6];
 
+const allRooms = typeOfRoomOptions.groupedOptions?.map(
+  (item: any) => item.options
+);
+const optionsRoomOne = allRooms && allRooms[0];
+const optionsRoomTwo = allRooms && allRooms[1];
+const optionsRoomThree = allRooms && allRooms[0];
+
+let allRoomsOptions = [
+  ...optionsRoomOne,
+  ...optionsRoomTwo,
+  ...optionsRoomThree,
+];
+
 function Controls() {
   const settings = useAppSelector((state) => state.settings);
   const dispatch = useAppDispatch();
 
-  const [typeOfRoom, setTypeOfRoom] = useState(
-    typeOfRoomOptions.groupedOptions &&
-      typeOfRoomOptions.groupedOptions[0]?.options
-  );
+  const [typeOfRoom, setTypeOfRoom] = useState(allRoomsOptions);
   const [imageUrl, setImageUrl] = useState("");
   const reset = () => {
     dispatch(setSelectedSpace(null));
@@ -48,6 +58,7 @@ function Controls() {
     dispatch(setSelectedStyle(null));
     dispatch(setUploadedImage(null));
     setImageUrl("");
+    setTypeOfRoom(allRoomsOptions);
   };
 
   useEffect(() => {
@@ -183,6 +194,7 @@ function Controls() {
       } else {
         reset();
         dispatch(setReceivedImage("/images/dashboard/test_result.jpg"));
+        toast.success("Designed Successfully");
       }
     }
   };

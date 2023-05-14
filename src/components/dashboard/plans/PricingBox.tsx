@@ -1,6 +1,6 @@
 import Image from "next/dist/client/image";
 import InputRangeSlider from "./InputRangeSlider";
-
+import arrowIcon from "@/src/assets/images/dashboard/icons/pricing/arrowIcon.svg";
 export default function PricingBox({
   box,
   yearly,
@@ -55,12 +55,7 @@ export default function PricingBox({
         {box.features.map((feature: string) => (
           <div key={box.id} className="flex items-start mb-[15px]">
             <div className="mr-[8px] p-[8px] bg-neutral-700 rounded-[50%] ">
-              <Image
-                src="/images/dashboard/icons/pricing/arrowIcon.svg"
-                alt="arrow-icon"
-                width={12}
-                height={12}
-              />
+              <Image src={arrowIcon} alt="arrow-icon" width={12} height={12} />
             </div>
             <span className="text-sm text-neutral-100 font-[400]">
               {feature}

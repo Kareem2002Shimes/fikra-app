@@ -10,7 +10,7 @@ import InfoAnimation from "@/src/assets/animations/icons_Animation/info.json";
 import Lottie from "lottie-react";
 import useSidebar from "@/src/hooks/useSidebar";
 import SidebarDropDown from "./SidebarDropDown";
-
+import leftArrowIcon from "@/src/assets/images/dashboard/icons/sidebar/leftArrow-icon.svg";
 function Sidebar() {
   const { pathname } = useRouter();
   const [sidebar, setSidebar] = useSidebar("sidebar", true);
@@ -20,7 +20,7 @@ function Sidebar() {
       url: "/dashboard",
       icon:
         pathname === "/dashboard" ? (
-          <Lottie className="w-full h-full" animationData={HomeAnimation} />
+          <Lottie className="w-[24px] h-[24px]" animationData={HomeAnimation} />
         ) : (
           <svg
             width="24"
@@ -47,7 +47,10 @@ function Sidebar() {
       url: "/dashboard/history",
       icon:
         pathname === "/dashboard/history" ? (
-          <Lottie className="w-full h-full" animationData={HistoryAnimation} />
+          <Lottie
+            className="w-[24px] h-[24px]"
+            animationData={HistoryAnimation}
+          />
         ) : (
           <svg
             width="24"
@@ -76,7 +79,10 @@ function Sidebar() {
       url: "/dashboard/plans",
       icon:
         pathname === "/dashboard/plans" ? (
-          <Lottie className="w-full h-full" animationData={PlansAnimation} />
+          <Lottie
+            className="w-[24px] h-[24px]"
+            animationData={PlansAnimation}
+          />
         ) : (
           <svg
             width="24"
@@ -127,7 +133,7 @@ function Sidebar() {
       url: "/dashboard/q&a",
       icon:
         pathname === "/dashboard/q&a" ? (
-          <Lottie className="w-full h-full" animationData={InfoAnimation} />
+          <Lottie className="w-[24px] h-[24px]" animationData={InfoAnimation} />
         ) : (
           <svg
             width="24"
@@ -163,12 +169,7 @@ function Sidebar() {
         className="content-center mb-[40px] hover:bg-accent-color transition-all duration-200 ease-in-out hover:border-transparent cursor-pointer mt-[24px] border-[1px] border-dashed rounded-[50%] border-accent-color w-[32px] h-[32px]"
         onClick={() => setSidebar(!sidebar)}
       >
-        <Image
-          src="/images/dashboard/icons/sidebar/leftArrow-icon.svg"
-          alt="arrow-icon"
-          width={7.4}
-          height={12}
-        />
+        <Image src={leftArrowIcon} alt="arrow-icon" width={7.4} height={12} />
       </div>
 
       <aside className={sidebar ? "w-[216px]" : "w-[92px]"}>
@@ -204,9 +205,7 @@ function Sidebar() {
                 </span>
                 {item.url === pathname && (
                   <Lottie
-                    className={`absolute ${
-                      !sidebar ? "right-[-99.5%]" : "right-[-73.5%]"
-                    } w-full  translate-y-[-50%] top-[50%] h-full`}
+                    className={`absolute right-0 w-fit translate-y-[-50%] top-[50%] h-full`}
                     animationData={LineAnimation}
                   />
                 )}

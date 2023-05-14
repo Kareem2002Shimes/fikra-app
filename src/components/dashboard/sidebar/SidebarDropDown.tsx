@@ -11,35 +11,18 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import userIcon from "@/src/assets/images/dashboard/icons/sidebar/userIcon.svg";
+import plansIcon from "@/src/assets/images/dashboard/icons/sidebar/plans.svg";
+import signoutIcon from "@/src/assets/images/dashboard/icons/sidebar/signOutIcon.svg";
+import accountImage from "@/src/assets/images/dashboard/account-img.png";
 function UserCircleIcon() {
-  return (
-    <Image
-      src="/images/dashboard/icons/sidebar/userIcon.svg"
-      alt="q&a-icon"
-      width={24}
-      height={24}
-    />
-  );
+  return <Image src={userIcon} alt="q&a-icon" width={24} height={24} />;
 }
 function PlansIcon() {
-  return (
-    <Image
-      src="/images/dashboard/icons/sidebar/plans.svg"
-      alt="q&a-icon"
-      width={24}
-      height={24}
-    />
-  );
+  return <Image src={plansIcon} alt="plans-icon" width={24} height={24} />;
 }
 function SignOutIcon() {
-  return (
-    <Image
-      src="/images/dashboard/icons/sidebar/signOutIcon.svg"
-      alt="q&a-icon"
-      width={24}
-      height={24}
-    />
-  );
+  return <Image src={signoutIcon} alt="signout-icon" width={24} height={24} />;
 }
 const profileMenuItems = [
   {
@@ -65,13 +48,13 @@ function SidebarDropDown({ sidebar }: any) {
       <MenuHandler>
         <Button
           ripple={false}
-          className="content-center justify-start pl-[24px] w-full mb-[16px]"
+          className="content-center justify-start px-[16px] w-full  mb-[16px]"
         >
           <Avatar
             variant="circular"
-            size="sm"
             alt="account-img"
-            src="/images/dashboard/account-img.png"
+            src={session.data?.user?.image as string}
+            className="rounded-[50%] w-[40px] h-[40px] mx-auto"
           />
           {session.data?.user && (
             <Typography

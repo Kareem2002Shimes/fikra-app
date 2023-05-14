@@ -1,25 +1,26 @@
-import { useState } from "react";
 import DiscoverCard from "./DiscoverCard";
 import MainHeading from "./MainHeading";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
-
+import commercialIcon from "@/src/assets/images/home/discover/commercial-sapce-icon.svg";
+import residentialIcon from "@/src/assets/images/home/discover/residential-space-icon.svg";
+import administrativeIcon from "@/src/assets/images/home/discover/administrative-space-icon.svg";
 function Discover({ t }: any) {
   const content = [
     {
       title: t("home:discover_section_grid_one_title"),
       desc: t("home:discover_section_grid_one_desc"),
-      icon: "commercial-sapce-icon",
+      icon: commercialIcon,
     },
     {
       title: t("home:discover_section_grid_two_title"),
       desc: t("home:discover_section_grid_two_desc"),
-      icon: "residential-space-icon",
+      icon: residentialIcon,
     },
     {
       title: t("home:discover_section_grid_three_desc"),
       desc: t("home:discover_section_grid_three_desc"),
-      icon: "administrative-space-icon",
+      icon: administrativeIcon,
     },
   ];
   const session = useSession();

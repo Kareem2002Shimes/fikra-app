@@ -4,15 +4,20 @@ import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { Fragment, useState } from "react";
 import { useRouter } from "next/router";
+import logo from "@/src/assets/images/logo.svg";
+import logoText from "@/src/assets/images/logo-text.svg";
+import americanIcon from "@/src/assets/images/home/en-icon.svg";
+import ksaIcon from "@/src/assets/images/home/KSA.svg";
+
 const KSAIcon = (
   <div className="mx-[8px]">
-    <Image src="/images/home/KSA.svg" alt="arrow-icon" width={24} height={24} />
+    <Image src={ksaIcon} alt="arrow-icon" width={24} height={24} />
   </div>
 );
 const AmericanIcon = (
   <div className="mx-[8px] ">
     <Image
-      src="/images/home/en-icon.svg"
+      src={americanIcon}
       alt="arrow-icon"
       width={24}
       height={24}
@@ -94,11 +99,11 @@ const options = [
 
 function Header({ t }: any) {
   const { data } = useSession();
-  const { push } = useRouter();
+  const { push, locale } = useRouter();
 
   const changeLanguage = (selected: any) => {
-    const locale = selected.value;
-    push("/", "/", { locale });
+    const localeValue = selected.value;
+    push("/", "/", { locale: localeValue });
   };
 
   return (
@@ -106,18 +111,13 @@ function Header({ t }: any) {
       <div className="home-container py-[8px] flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image
-            src="/images/logo.svg"
+            src={logo}
             width={28}
             height={28}
             alt="logo-img"
             className="mx-[8px]"
           />
-          <Image
-            src="/images/logo-text.svg"
-            width={45}
-            height={45}
-            alt="logo-img"
-          />
+          <Image src={logoText} width={45} height={45} alt="logo-img" />
         </Link>
         <div className="flex items-center lang-box">
           <Select
@@ -132,7 +132,7 @@ function Header({ t }: any) {
               ValueContainer,
               Placeholder: () => null,
             }}
-            defaultValue={options[1]}
+            defaultValue={options.find((option) => option.value === locale)}
           />
           {data?.user ? (
             <button

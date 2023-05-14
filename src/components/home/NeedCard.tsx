@@ -1,4 +1,5 @@
 import Image from "next/image";
+import docIcon from "@/src/assets/images/home/doc-icon.svg";
 function NeedCard({
   title,
   id,
@@ -24,7 +25,7 @@ function NeedCard({
         {text} {id}
       </span>
       <Image
-        src="/images/home/doc-icon.svg"
+        src={docIcon}
         alt="doc-icon"
         width={48}
         height={48}

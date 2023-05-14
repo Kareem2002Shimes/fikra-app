@@ -1,15 +1,9 @@
 import Select, { components } from "react-select";
 import Image from "next/image";
 import InfoModal from "../InfoModal";
+import infoIcon from "@/src/assets/images/dashboard/icons/sidebar/info.svg";
 
-const qIcon = (
-  <Image
-    src="/images/dashboard/icons/sidebar/info.svg"
-    alt="info-icon"
-    width={24}
-    height={24}
-  />
-);
+const qIcon = <Image src={infoIcon} alt="info-icon" width={24} height={24} />;
 
 function SelectOptions({
   options,

@@ -5,6 +5,14 @@ import DefaultView from "./DefaultView";
 import StyleSlider from "./StyleSlider";
 import { useAppDispatch, useAppSelector } from "@/src/redux/app/store";
 import { setReceivedImage } from "@/src/redux/features/settings/settingsSlice";
+import downloadIcon from "@/src/assets/images/dashboard/icons/home/download-icon.svg";
+import firstIdea from "@/src/assets/images/dashboard/singleIdea.jpg";
+import secondIdea from "@/src/assets/images/dashboard/singleIdea2.jpg";
+import thirdIdea from "@/src/assets/images/dashboard/singleIdea3.jpg";
+import fourthIdea from "@/src/assets/images/dashboard/singleIdea4.jpg";
+import testResult from "@/src/assets/images/dashboard/test_result.jpg";
+import shareIcon from "@/src/assets/images/dashboard/icons/home/share-icon.svg";
+import newIdea from "@/src/assets/images/dashboard/icons/home/new-idea-icon.svg";
 
 import {
   FacebookShareButton,
@@ -109,7 +117,7 @@ function View() {
           <div className="flex items-center">
             {!!children && (
               <Image
-                src="/images/dashboard/icons/home/download-icon.svg"
+                src={downloadIcon}
                 width={24}
                 height={24}
                 alt="download-icon"
@@ -124,13 +132,12 @@ function View() {
   };
   const handleIdeas = (idea: number) => {
     idea === 1
-      ? dispatch(setReceivedImage("/images/dashboard/singleIdea.jpg"))
+      ? dispatch(setReceivedImage(firstIdea))
       : idea === 2
-      ? dispatch(setReceivedImage("/images/dashboard/singleIdea2.jpg"))
+      ? dispatch(setReceivedImage(secondIdea))
       : idea === 3
-      ? dispatch(setReceivedImage("/images/dashboard/singleIdea3.jpg"))
-      : idea === 4 &&
-        dispatch(setReceivedImage("/images/dashboard/singleIdea4.jpg"));
+      ? dispatch(setReceivedImage(thirdIdea))
+      : idea === 4 && dispatch(setReceivedImage(fourthIdea));
   };
   useEffect(() => {
     const closeMenu = (e: any) => {
@@ -170,7 +177,7 @@ function View() {
               ref={btnRef}
             >
               <Image
-                src="images/dashboard/icons/home/share-icon.svg"
+                src={shareIcon}
                 alt="download-icon"
                 width={24}
                 height={24}
@@ -258,13 +265,13 @@ function View() {
             <button
               type="button"
               onClick={() => {
-                dispatch(setReceivedImage("/images/dashboard/test_result.jpg"));
+                dispatch(setReceivedImage(testResult));
                 setActiveIdea(null);
               }}
               className="w-[135px] h-[120px]  mt-[70px] text-white content-center flex-col primary-border"
             >
               <Image
-                src="images/dashboard/icons/home/new-idea-icon.svg"
+                src={newIdea}
                 alt="new-idea-icon"
                 width={24}
                 height={24}

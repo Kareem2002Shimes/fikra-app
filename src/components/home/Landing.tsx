@@ -1,6 +1,7 @@
 import Overlay from "./Overlay";
 import Image from "next/image";
 import Link from "next/link";
+import playIcon from "@/src/assets/images/home/play-icon.svg";
 function Landing({ t }: any) {
   return (
     <section className="overflow-hidden relative h-[calc(100vh-65px)] w-full ">
@@ -29,12 +30,7 @@ function Landing({ t }: any) {
             <span className="font-[600] text-white mx-[5px] text-sm">
               {t("home:watch_video")}
             </span>
-            <Image
-              src="/images/home/play-icon.svg"
-              width={24}
-              height={24}
-              alt="play-icon"
-            />
+            <Image src={playIcon} width={24} height={24} alt="play-icon" />
           </button>
         </div>
       </div>

@@ -6,9 +6,15 @@ import { Autoplay } from "swiper";
 
 import "swiper/css";
 import "swiper/css/effect-coverflow";
+import com1 from "@/src/assets/images/companies/1.svg";
+import com2 from "@/src/assets/images/companies/2.svg";
+import com3 from "@/src/assets/images/companies/3.svg";
+import com4 from "@/src/assets/images/companies/4.svg";
+import com5 from "@/src/assets/images/companies/5.svg";
+import com6 from "@/src/assets/images/companies/6.svg";
 
 function Companies({ t }: any) {
-  const [comps, setComps] = useState([1, 2, 3, 4, 5, 6]);
+  const [comps, setComps] = useState([com1, com2, com3, com4, com5, com6]);
   return (
     <section className="pt-[50px]">
       <div className="home-container">
@@ -64,7 +70,7 @@ function Companies({ t }: any) {
             >
               <div className="h-[48px] content-center relative bg-neutral-800">
                 <Image
-                  src={`/images/companies/${comp}.svg`}
+                  src={comp as any}
                   alt="company-img"
                   width={112}
                   height={48}

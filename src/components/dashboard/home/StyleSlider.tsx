@@ -3,10 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/scrollbar";
-import { selects } from "./Selects.json";
+import { selects } from "../../../data/Selects.json";
 import { Scrollbar } from "swiper";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/src/redux/app/store";
+import checkIcon from "@/src/assets/images/dashboard/icons/home/checkedArrow.svg";
 import {
   setActiveIdea,
   setSelectedChooseStyle,
@@ -63,7 +64,7 @@ function StyleSlider() {
             {settings.activeIdea === item.value && (
               <div className="bg-accent-color absolute top-[5px] left-[5px] z-10 border-[2px] border-neutral-900 rounded-[50%] w-[30px] h-[30px] content-center">
                 <Image
-                  src="/images/dashboard/icons/home/checkedArrow.svg"
+                  src={checkIcon}
                   alt="arrow-icon"
                   width={14}
                   height={14}

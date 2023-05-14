@@ -1,5 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import logo from "@/src/assets/images/logo.svg";
+import facebookIcon from "@/src/assets/images/social-icons/facebook-icon.svg";
+import instaIcon from "@/src/assets/images/social-icons/insta-icon.svg";
+import twitterIcon from "@/src/assets/images/social-icons/twitter-icon.svg";
+import youtubeIcon from "@/src/assets/images/social-icons/youtube-icon.svg";
 function FooterShareBox({
   title,
   content,
@@ -10,10 +15,10 @@ function FooterShareBox({
   t: any;
 }) {
   const socialLinks = [
-    { icon: "facebook-icon", url: "facebook" },
-    { icon: "insta-icon", url: "insta" },
-    { icon: "twitter-icon", url: "twitter" },
-    { icon: "youtube-icon", url: "youtube" },
+    { icon: facebookIcon, url: "facebook" },
+    { icon: instaIcon, url: "insta" },
+    { icon: twitterIcon, url: "twitter" },
+    { icon: youtubeIcon, url: "youtube" },
   ];
   return (
     <div>
@@ -34,7 +39,7 @@ function FooterShareBox({
       </nav>
       {title === t("home:footer_title_one") ? (
         <div className="flex items-center mt-[40px]">
-          <Image src="/images/logo.svg" alt="logo-img" width={32} height={32} />
+          <Image src={logo} alt="logo-img" width={32} height={32} />
           <p className="font-[400] text-sm text-[#FEFEFE] mx-[10px]">
             {t("home:footer_copy_right_span")}
             <span className="block">{t("home:footer_copy_right")}</span>
@@ -54,7 +59,7 @@ function FooterShareBox({
                 "
                 >
                   <Image
-                    src={`/images/social-icons/${item.icon}.svg`}
+                    src={item.icon}
                     alt="social-icon"
                     width={item.url === "facebook" ? 15 : 22}
                     height={item.url === "facebook" ? 15 : 22}

@@ -4,6 +4,9 @@ import Image from "next/image";
 import Form from "./Form";
 import { Fragment } from "react";
 import { signIn } from "next-auth/react";
+import logo from "@/src/assets/images/logo.svg";
+import logoText from "@/src/assets/images/logo-text.svg";
+import googleIcon from "@/src/assets/images/auth/icons/google.svg";
 
 function TextBox() {
   const page: string = useRouter().pathname;
@@ -16,7 +19,7 @@ function TextBox() {
             <div className="relative block mt-[43px] mx-auto w-[82px] h-[105.76px]">
               <Image
                 priority={true}
-                src="/images/logo.svg"
+                src={logo}
                 fill={true}
                 alt="logo-img"
                 style={{ objectFit: "contain" }}
@@ -40,7 +43,7 @@ function TextBox() {
             <div className="relative block mt-[80px] mx-auto w-[101.9px] h-[102px]">
               <Image
                 priority={true}
-                src="/images/logo.svg"
+                src={logo}
                 fill={true}
                 alt="logo-img"
                 style={{ objectFit: "contain" }}
@@ -62,19 +65,14 @@ function TextBox() {
           <Link href="/" className="">
             <div className="relative block mt-[43px] mx-auto w-[82px] h-[105.76px]">
               <Image
-                src="/images/logo.svg"
+                src={logo}
                 fill={true}
                 alt="logo-img"
                 style={{ objectFit: "contain" }}
               />
             </div>
             <div className="content-center mt-[15px]">
-              <Image
-                src="/images/logo-text.svg"
-                alt="logo-img"
-                width={100}
-                height={50}
-              />
+              <Image src={logoText} alt="logo-img" width={100} height={50} />
             </div>
           </Link>
           <div className="text-white mt-[20px] mb-[30px] font-[700] auth-box h-auto">
@@ -92,12 +90,7 @@ function TextBox() {
             data-purpose="google-login"
             onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
           >
-            <Image
-              src="/images/auth/icons/google.svg"
-              alt="google-img"
-              width={25}
-              height={25}
-            />
+            <Image src={googleIcon} alt="google-img" width={25} height={25} />
             <span className="text-white text-md font-[500] mx-[20px]">
               Continue with Google
             </span>

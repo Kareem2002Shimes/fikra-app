@@ -5,12 +5,12 @@ import {
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
-import Questions from "./Questions.json";
-
+import Questions from "@/src/data/Questions.json";
+import qIcon from "@/src/assets/images/dashboard/icons/qAndaIcon.svg";
 function Icon({ id, open }: any) {
   return (
     <Image
-      src="/images/dashboard/icons/qAndaIcon.svg"
+      src={qIcon}
       alt="q&a-icon"
       width={16}
       height={16}

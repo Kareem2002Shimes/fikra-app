@@ -2,13 +2,12 @@ import ImageCard from "@/src/components/dashboard/history/ImageCard";
 import Layout from "@/src/components/dashboard/Layout";
 import { useState } from "react";
 import Image from "next/image";
+import squareIcon from "@/src/assets/images/dashboard/icons/history/squareDownload-icon.svg";
+import fullScreenIcon from "@/src/assets/images/dashboard/icons/history/full-screen.svg";
+import shareIcon from "@/src/assets/images/dashboard/icons/history/share.svg";
 function History() {
   const [data, setData] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
-  const [icons, setIcons] = useState([
-    "squareDownload-icon",
-    "full-screen",
-    "share",
-  ]);
+  const [icons, setIcons] = useState([squareIcon, fullScreenIcon, shareIcon]);
   return (
     <Layout>
       <div
@@ -32,7 +31,7 @@ function History() {
                     className="bg-[#2C2C2C] hover:bg-accent-color transition-all duration-300 ease w-[48px] h-[48px] content-center rounded-[8px] mr-[8px] last-of-type:mr-0"
                   >
                     <Image
-                      src={`/images/dashboard/icons/history/${icon}.svg`}
+                      src={icon}
                       alt="download-icon"
                       width={24}
                       height={24}

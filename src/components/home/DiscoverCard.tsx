@@ -9,7 +9,7 @@ function DiscoverCard({ title, desc, icon }: DiscoverProps) {
     <div className="bg-neutral-800 rounded-[8px] h-[363px] text-center content-center flex-col">
       <div className="w-[120px] h-[120px] relative content-center mb-[30px]">
         <Image
-          src={`/images/home/discover/${icon}.svg`}
+          src={icon}
           alt="discover-icon"
           fill={true}
           className="object-contain mb-[30px]"

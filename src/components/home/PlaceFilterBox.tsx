@@ -2,85 +2,90 @@ import { useState } from "react";
 import Spaces from "./Spaces.json";
 import Image from "next/image";
 import { useRouter } from "next/router";
-
+import firstStyleIdeas from "@/src/assets/images/dashboard/styleIdeas/1.jpg";
+import secondStyleIdeas from "@/src/assets/images/dashboard/singleIdea.jpg";
+import thirdStyleIdeas from "@/src/assets/images/dashboard/singleIdea2.jpg";
+import fourthStyleIdeas from "@/src/assets/images/dashboard/singleIdea3.jpg";
+import fifthStyleIdeas from "@/src/assets/images/dashboard/singleIdea4.jpg";
+import spaceCatIcon from "@/src/assets/images/home/space-category-icon.svg";
 function PlaceFilterBox({ t }: any) {
   const { locale } = useRouter();
   const data = [
     {
       id: 1,
       images: [
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/singleIdea.jpg",
-        "/images/dashboard/singleIdea2.jpg",
-        "/images/dashboard/singleIdea3.jpg",
-        "/images/dashboard/singleIdea4.jpg",
+        firstStyleIdeas,
+        secondStyleIdeas,
+        thirdStyleIdeas,
+        fourthStyleIdeas,
+        fifthStyleIdeas,
       ],
       category: {
         name: t("home:choose_place_section_item_one"),
-        icon: "/images/home/space-category-icon.svg",
+        icon: spaceCatIcon,
       },
     },
     {
       id: 2,
       images: [
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
       ],
       category: {
         name: t("home:choose_place_section_item_two"),
-        icon: "/images/home/space-category-icon.svg",
+        icon: spaceCatIcon,
       },
     },
     {
       id: 3,
       images: [
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
       ],
       category: {
         name: t("home:choose_place_section_item_three"),
-        icon: "/images/home/space-category-icon.svg",
+        icon: spaceCatIcon,
       },
     },
     {
       id: 4,
       images: [
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
-        "/images/dashboard/styleIdeas/1.jpg",
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
+        firstStyleIdeas,
       ],
       category: {
         name: t("home:choose_place_section_item_four"),
-        icon: "/images/home/space-category-icon.svg",
+        icon: spaceCatIcon,
       },
     },
     {

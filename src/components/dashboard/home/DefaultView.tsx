@@ -2,21 +2,24 @@ import { useState } from "react";
 import Image from "next/image";
 import LogoAnimation from "../../home/LogoAnimation";
 import { toast } from "react-hot-toast";
+import dangerIcon from "@/src/assets/images/dashboard/icons/home/danger.svg";
+import sunIcon from "@/src/assets/images/dashboard/icons/home/sun.svg";
+import flashIcon from "@/src/assets/images/dashboard/icons/home/flash.svg";
 function DefaultView() {
   const [btns, setBtns] = useState([
     {
       name: "Determinants",
-      icon: "danger",
+      icon: dangerIcon,
       text: "This text is an example of text that can",
     },
     {
       name: "Examples",
-      icon: "sun",
+      icon: sunIcon,
       text: "This text is an example of text that can",
     },
     {
       name: "Capabilities",
-      icon: "flash",
+      icon: flashIcon,
       text: "This text is an example of text that can",
     },
   ]);
@@ -26,12 +29,7 @@ function DefaultView() {
         {btns.map((btn) => (
           <div key={btn.name} className="content-center flex-col w-[230px]">
             <button className="content-center w-full h-[64px] mb-[15px] bg-[rgba(255,255,255,0.04)] rounded-[8px]">
-              <Image
-                src={`/images/dashboard/icons/home/${btn.icon}.svg`}
-                alt="btn-icon"
-                width={24}
-                height={24}
-              />
+              <Image src={btn.icon} alt="btn-icon" width={24} height={24} />
               <span className="font-[600] text-white text-md mx-[8px]">
                 {btn.name}
               </span>

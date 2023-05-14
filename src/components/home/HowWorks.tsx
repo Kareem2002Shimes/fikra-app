@@ -1,6 +1,7 @@
 import MainHeading from "./MainHeading";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import videoAnimation from "@/src/assets/animations/3D Animation/1080.gif";
 function HowWorks({ t }: any) {
   const { locale } = useRouter();
   return (
@@ -16,7 +17,7 @@ function HowWorks({ t }: any) {
           }}
         ></div>
         <Image
-          src="/animations/3D Animation/1080.gif"
+          src={videoAnimation}
           alt="video-animation"
           height={613}
           width={630}

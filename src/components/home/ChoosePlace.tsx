@@ -1,6 +1,6 @@
 import MainHeading from "./MainHeading";
 import PlaceFilterBox from "./PlaceFilterBox";
-import PlaceSlider from "./PlaceSlider";
+import PlaceSlider from "./PlaceSlider/PlaceSlider";
 
 function ChoosePlace({ t }: any) {
   return (

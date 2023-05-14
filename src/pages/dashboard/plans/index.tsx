@@ -1,6 +1,6 @@
 import Layout from "@/src/components/dashboard/Layout";
 import PricingBox from "@/src/components/dashboard/plans/PricingBox";
-import PricingItems from "@/src/components/dashboard/plans/PricingContent.json";
+import PricingItems from "@/src/data/PricingContent.json";
 import { useState } from "react";
 import QandAProps from "@/src/components/dashboard/plans/QandA";
 

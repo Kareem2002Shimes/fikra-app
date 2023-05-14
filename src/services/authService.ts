@@ -1,4 +1,4 @@
-import { FormData } from "@/components/auth/Form";
+import { FormData } from "@/src/components/auth/Form";
 import { signIn } from "next-auth/react";
 
 export const signup = async (data: FormData) => {

@@ -22,7 +22,7 @@ export default function useSidebar(key: any, initialValue: any) {
     if (!isServer) {
       setStoredValue(initialize());
     }
-  }, []);
+  }, [initialize]);
 
   const setValue = (value: any) => {
     try {

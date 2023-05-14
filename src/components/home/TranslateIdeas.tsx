@@ -1,7 +1,10 @@
+import { useSession } from "next-auth/react";
 import LogoAnimation from "./LogoAnimation";
 import MainHeading from "./MainHeading";
+import Link from "next/link";
 
 function TranslateIdeas({ t }: any) {
+  const session = useSession();
   return (
     <section>
       <div className="home-container content-center flex-col">
@@ -13,14 +16,12 @@ function TranslateIdeas({ t }: any) {
           <MainHeading title={t("home:translate_ideas_section_title")} />
         </div>
 
-        <button
-          onClick={() => {
-            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-          }}
+        <Link
+          href={session.data?.user ? "/dashboard" : "/auth/login"}
           className="coloredBtn w-[273px] h-[48px] text-white rounded-[8px]"
         >
           {t("home:translate_ideas_section_btn")}
-        </button>
+        </Link>
       </div>
     </section>
   );

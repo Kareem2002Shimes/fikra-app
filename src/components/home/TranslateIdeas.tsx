@@ -18,7 +18,7 @@ function TranslateIdeas({ t }: any) {
 
         <Link
           href={session.data?.user ? "/dashboard" : "/auth/login"}
-          className="coloredBtn w-[273px] h-[48px] text-white rounded-[8px]"
+          className="coloredBtn content-center w-[273px] h-[48px] text-white rounded-[8px]"
         >
           {t("home:translate_ideas_section_btn")}
         </Link>

@@ -11,7 +11,7 @@ function HowWorks({ t }: any) {
             locale === "ar" ? "right-0" : "left-0"
           }  top-0 w-[720px] h-[478px]`}
           style={{
-            background: " rgba(117, 36, 215, 0.41)",
+            background: "rgba(117, 36, 215, 0.41)",
             filter: "blur(162px)",
           }}
         ></div>

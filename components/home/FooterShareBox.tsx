@@ -44,7 +44,10 @@ function FooterShareBox({
         <nav className="mt-[40px]">
           <ul className="flex items-center gap-[15px]">
             {socialLinks.map((item) => (
-              <li className="w-[56px] h-[56px]  border-[1px] border-neutral-700 hover:bg-accent-color transition-all duration-200 hover:border-transparent rounded-[12px]">
+              <li
+                key={item.url}
+                className="w-[56px] h-[56px]  border-[1px] border-neutral-700 hover:bg-accent-color transition-all duration-200 hover:border-transparent rounded-[12px]"
+              >
                 <Link
                   href={`/${item.url}`}
                   className="w-full h-full content-center 

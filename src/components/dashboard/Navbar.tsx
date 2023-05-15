@@ -1,9 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import RoadmapAnimation from "@/src/assets/animations/icons_Animation/roadmap/roadmap.json";
 import Lottie from "lottie-react";
-import logo from "@/src/assets/images/logo.svg";
-import logoText from "@/src/assets/images/logo-text.svg";
+import roadMapAnimation from "@/public/assets/animations/icons_Animation/roadmap/roadmap.json";
 function Navbar() {
   return (
     <div className="border-b-[1px] border-input-border ">
@@ -11,14 +9,18 @@ function Navbar() {
         <Link href="/" className="flex items-center">
           <div className="relative w-[27.97px] h-[28px]">
             <Image
-              src={logo}
+              src="/assets/images/logo.svg"
               fill={true}
               alt="logo-img"
               style={{ objectFit: "contain" }}
             />
           </div>
           <div className="relative w-[60px] h-[30px] mx-[8px]">
-            <Image src={logoText} alt="logo-img" fill={true} />
+            <Image
+              src="/assets/images/logo-text.svg"
+              alt="logo-img"
+              fill={true}
+            />
           </div>
         </Link>
 
@@ -29,7 +31,7 @@ function Navbar() {
           >
             <Lottie
               className="w-[24px] h-[24px] mx-[8px]"
-              animationData={RoadmapAnimation}
+              animationData={roadMapAnimation}
             />
             Roadmap
           </Link>

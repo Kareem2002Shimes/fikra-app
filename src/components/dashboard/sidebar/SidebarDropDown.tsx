@@ -11,18 +11,37 @@ import Image from "next/image";
 import React from "react";
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
-import userIcon from "@/src/assets/images/dashboard/icons/sidebar/userIcon.svg";
-import plansIcon from "@/src/assets/images/dashboard/icons/sidebar/plans.svg";
-import signoutIcon from "@/src/assets/images/dashboard/icons/sidebar/signOutIcon.svg";
-import accountImage from "@/src/assets/images/dashboard/account-img.png";
+
+import accountImage from "/assets/images/dashboard/account-img.png";
 function UserCircleIcon() {
-  return <Image src={userIcon} alt="q&a-icon" width={24} height={24} />;
+  return (
+    <Image
+      src="/assets/images/dashboard/icons/sidebar/userIcon.svg"
+      alt="q&a-icon"
+      width={24}
+      height={24}
+    />
+  );
 }
 function PlansIcon() {
-  return <Image src={plansIcon} alt="plans-icon" width={24} height={24} />;
+  return (
+    <Image
+      src="/assets/images/dashboard/icons/sidebar/plans.svg"
+      alt="plans-icon"
+      width={24}
+      height={24}
+    />
+  );
 }
 function SignOutIcon() {
-  return <Image src={signoutIcon} alt="signout-icon" width={24} height={24} />;
+  return (
+    <Image
+      src="/assets/images/dashboard/icons/sidebar/signOutIcon.svg"
+      alt="signout-icon"
+      width={24}
+      height={24}
+    />
+  );
 }
 const profileMenuItems = [
   {

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import FooterShareBox from "./FooterShareBox";
-import logo from "@/src/assets/images/logo.svg";
+
 function Footer({ t }: any) {
   const contact = [
     "SU: +966 11232445",
@@ -24,7 +24,12 @@ function Footer({ t }: any) {
             }}
             className="w-[88px] h-[88px] cursor-pointer mb-[24px] rounded-[50%] bg-neutral-800 content-center"
           >
-            <Image src={logo} alt="logo-icon" width={56} height={56} />
+            <Image
+              src="/assets/images/logo.svg"
+              alt="logo-icon"
+              width={56}
+              height={56}
+            />
           </div>
           <p className="text-md text-[#FEFEFE] font-[500]">
             {t("home:footer_desc")}

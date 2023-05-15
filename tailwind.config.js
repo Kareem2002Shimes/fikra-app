@@ -14,7 +14,7 @@ module.exports = {
         sans: ["var(--font-somar)"],
       },
       content: {
-        check: 'url("/@/src/assets/images/auth/icons/check.png")',
+        check: 'url("/assets/images/auth/icons/check.png")',
       },
       colors: {
         error: {

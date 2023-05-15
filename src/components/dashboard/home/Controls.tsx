@@ -4,9 +4,6 @@ import Select from "./SelectOptions";
 import data from "@/src/data/Selects.json";
 import { toast } from "react-hot-toast";
 import axios from "axios";
-import resetIcon from "@/src/assets/images/dashboard/icons/home/reset.svg";
-import testResult from "@/src/assets/images/dashboard/test_result.jpg";
-import uploadIcon from "@/src/assets/images/dashboard/icons/home/upload-icon.svg";
 import { useAppDispatch, useAppSelector } from "@/src/redux/app/store";
 import {
   setActiveIdea,
@@ -190,12 +187,14 @@ function Controls() {
           .then((res) => {
             reset();
             toast.success("Designed Successfully");
-            dispatch(setReceivedImage(testResult));
+            dispatch(
+              setReceivedImage("/assets/images/dashboard/test_result.jpg")
+            );
           })
           .catch((error) => toast.error(error.message));
       } else {
         reset();
-        dispatch(setReceivedImage(testResult));
+        dispatch(setReceivedImage("/assets/images/dashboard/test_result.jpg"));
         toast.success("Designed Successfully");
       }
     }
@@ -209,7 +208,7 @@ function Controls() {
           className="content-center rounded-[26px] w-[110px] h-[32px] border-[1px] border-neutral-600 items-center text-sm font-[400] text-neutral-400"
         >
           <Image
-            src={resetIcon}
+            src="/assets/images/dashboard/icons/home/reset.svg"
             alt="reset-icon"
             width={16}
             height={16}
@@ -297,7 +296,7 @@ function Controls() {
                 className="absolute top-0 left-0 w-full h-full cursor-pointer opacity-0"
               />
               <Image
-                src={uploadIcon}
+                src="/assets/images/dashboard/icons/home/upload-icon.svg"
                 alt="upload-icon"
                 width={40}
                 height={40}

@@ -2,15 +2,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import HomeAnimation from "@/src/assets/animations/icons_Animation/home.json";
-import HistoryAnimation from "@/src/assets/animations/icons_Animation/histo.json";
-import PlansAnimation from "@/src/assets/animations/icons_Animation/fav.json";
-import LineAnimation from "@/src/assets/animations/icons_Animation/blue line.json";
-import InfoAnimation from "@/src/assets/animations/icons_Animation/info.json";
+import HomeAnimation from "@/public/assets/animations/icons_Animation/home.json";
+import HistoryAnimation from "@/public/assets/animations/icons_Animation/histo.json";
+import PlansAnimation from "@/public/assets/animations/icons_Animation/fav.json";
+import LineAnimation from "@/public/assets/animations/icons_Animation/blue line.json";
+import InfoAnimation from "@/public/assets/animations/icons_Animation/info.json";
+
 import Lottie from "lottie-react";
 import useSidebar from "@/src/hooks/useSidebar";
 import SidebarDropDown from "./SidebarDropDown";
-import leftArrowIcon from "@/src/assets/images/dashboard/icons/sidebar/leftArrow-icon.svg";
+
 function Sidebar() {
   const { pathname } = useRouter();
   const [sidebar, setSidebar] = useSidebar("sidebar", true);
@@ -169,7 +170,12 @@ function Sidebar() {
         className="content-center mb-[40px] hover:bg-accent-color transition-all duration-200 ease-in-out hover:border-transparent cursor-pointer mt-[24px] border-[1px] border-dashed rounded-[50%] border-accent-color w-[32px] h-[32px]"
         onClick={() => setSidebar(!sidebar)}
       >
-        <Image src={leftArrowIcon} alt="arrow-icon" width={7.4} height={12} />
+        <Image
+          src="/assets/images/dashboard/icons/sidebar/leftArrow-icon.svg"
+          alt="arrow-icon"
+          width={7.4}
+          height={12}
+        />
       </div>
 
       <aside className={sidebar ? "w-[216px]" : "w-[92px]"}>

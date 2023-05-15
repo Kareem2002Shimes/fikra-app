@@ -8,8 +8,7 @@ module.exports = {
       "*": ["common"],
     },
     reloadOnPrerender: process.env.NODE_ENV === "development",
-
     localeDetection: false,
-    localePath: path.resolve("./src/assets/locales"),
+    localePath: path.resolve("./public/assets/locales"),
   },
 };

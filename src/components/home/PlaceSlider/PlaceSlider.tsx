@@ -1,78 +1,35 @@
-// /**
-//  * import Swiper and its styles
-//  */
-// import Swiper, { Pagination } from "swiper";
-// import "swiper/scss"; // eslint-disable-line
-// import "swiper/scss/pagination"; // eslint-disable-line
-// /**
-//  * import main Panorama effect plugin
-//  */
-// import EffectPanorama from "./effect-panorama.esm";
-// /**
-//  * import Panorama effect styles
-//  */
-// import "./effect-panorama.scss";
-// /**
-//  * Custom local styles
-//  */
-// import "./main.scss";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-// /**
-//  * Init Swiper with Panorama effect
-//  */
-// const swiper = new Swiper(".panorama-slider .swiper", {
-//   // pass Panorama module
-//   modules: [Pagination, EffectPanorama],
-//   // enable "panorama" effect
-//   effect: "panorama",
-//   slidesPerView: 1.5,
-//   loop: true,
-//   centeredSlides: true,
-//   grabCursor: true,
-//   pagination: {
-//     el: ".swiper-pagination",
-//     dynamicBullets: true,
-//     dynamicMainBullets: 3,
-//   },
-//   // panorama effect parameters
-//   panoramaEffect: {
-//     depth: 150,
-//     rotate: 45,
-//   },
-//   breakpoints: {
-//     480: {
-//       slidesPerView: 2,
-//       panoramaEffect: {
-//         rotate: 35,
-//         depth: 150,
-//       },
-//     },
-//     640: {
-//       slidesPerView: 3,
-//       panoramaEffect: {
-//         rotate: 30,
-//         depth: 150,
-//       },
-//     },
-//     1024: {
-//       slidesPerView: 4,
-//       panoramaEffect: {
-//         rotate: 30,
-//         depth: 200,
-//       },
-//     },
-//     1200: {
-//       slidesPerView: 4,
-//       panoramaEffect: {
-//         rotate: 25,
-//         depth: 250,
-//       },
-//     },
-//   },
-// });
+import { Pagination } from "swiper";
+import EffectPanorama from "./effect-panorama.esm";
+import "swiper/scss";
+import "swiper/scss/pagination";
+import "./effect-panorama.scss";
+import "./main.scss";
 
 function PlaceSlider() {
-  return <div>PlaceSlider</div>;
+  return (
+    <Swiper
+      modules={[Pagination, EffectPanorama]}
+      effect={"panorama" as any}
+      spaceBetween={50}
+      slidesPerView={3}
+    >
+      <SwiperSlide>
+        <img src="/assets/images/dashboard/styleIdeas/1.jpg" />
+      </SwiperSlide>
+      <SwiperSlide>
+        <img src="/assets/images/dashboard/styleIdeas/1.jpg" />
+      </SwiperSlide>
+      <SwiperSlide>
+        <img src="/assets/images/dashboard/styleIdeas/1.jpg" />
+      </SwiperSlide>
+      <SwiperSlide>
+        <img src="/assets/images/dashboard/styleIdeas/1.jpg" />
+      </SwiperSlide>
+      ...
+    </Swiper>
+  );
 }
 
 export default PlaceSlider;

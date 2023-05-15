@@ -1,7 +1,6 @@
 import MainHeading from "./MainHeading";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import styleIdea from "@/src/assets/images/dashboard/styleIdeas/1.jpg";
 function GenerateIdeas({ t }: any) {
   const { locale } = useRouter();
 
@@ -32,7 +31,7 @@ function GenerateIdeas({ t }: any) {
 
         <div className="border-[6px] relative z-10 border-[rgba(255,255,255,0.06)] rounded-[16px]">
           <Image
-            src={styleIdea}
+            src="/assets/images/dashboard/styleIdeas/1.jpg"
             alt="generate-img"
             width={730}
             height={450}

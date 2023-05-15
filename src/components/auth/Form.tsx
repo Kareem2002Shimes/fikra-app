@@ -10,7 +10,7 @@ import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { login, signup } from "@/src/services/authService";
-import eyeIcon from "@/src/assets/images/auth/icons/eyes.svg";
+
 type FormProps = {
   page: string;
 };
@@ -155,7 +155,7 @@ function Form({ page }: FormProps) {
               />
               <Image
                 className="absolute right-[20px] cursor-pointer top-[50%] translate-y-[-50%]"
-                src={eyeIcon}
+                src="/assets/images/auth/icons/eyes.svg"
                 alt="eye-img"
                 width={20}
                 height={20}

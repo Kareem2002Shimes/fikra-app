@@ -1,5 +1,4 @@
 import Image from "next/image";
-import authImage from "@/src/assets/images/auth/img.jpg";
 function ImageBox() {
   return (
     <div
@@ -24,7 +23,7 @@ function ImageBox() {
         className={`absolute bottom-0 xl:bottom-[-20%] mr-[30px] left-0 pr-[10px] pt-[10px] after:content-[""] after:absolute after:left-0 after:top-0 after:w-full after:h-full after:bg-[rgba(255,255,255,0.16)] after:backdrop-blur-[29px] after:rounded-tr-[24px] `}
       >
         <Image
-          src={authImage}
+          src="/assets/images/auth/img.jpg"
           alt="auth-img"
           width={860}
           height={530}

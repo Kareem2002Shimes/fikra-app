@@ -3,8 +3,6 @@ import { useGetUsersQuery } from "@/src/redux/features/users/usersApiSlice";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { useState } from "react";
-import eyeIcon from "@/src/assets/images/auth/icons/eyes.svg";
-import cameraIcon from "@/src/assets/images/dashboard/icons/camera.svg";
 function Profile() {
   const { data, status } = useSession();
   const [showPassword, setShowPassword] = useState(false);
@@ -31,7 +29,7 @@ function Profile() {
             />
             <div className="w-[40px] h-[40px] bg-white absolute right-0 bottom-0 content-center rounded-[50%]">
               <Image
-                src={cameraIcon}
+                src="/assets/images/dashboard/icons/camera.svg"
                 alt="camera-icon"
                 width={24}
                 height={24}
@@ -74,7 +72,7 @@ function Profile() {
               />
               <Image
                 className="absolute right-[20px] cursor-pointer top-[50%] translate-y-[-50%]"
-                src={eyeIcon}
+                src="/assets/images/auth/icons/eyes.svg"
                 alt="eye-img"
                 width={20}
                 height={20}
@@ -96,7 +94,7 @@ function Profile() {
               />
               <Image
                 className="absolute right-[20px] cursor-pointer top-[50%] translate-y-[-50%]"
-                src={eyeIcon}
+                src="/assets/images/auth/icons/eyes.svg"
                 alt="eye-img"
                 width={20}
                 height={20}

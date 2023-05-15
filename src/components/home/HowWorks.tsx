@@ -1,7 +1,7 @@
 import MainHeading from "./MainHeading";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import videoAnimation from "@/src/assets/animations/3D Animation/1080.gif";
+
 function HowWorks({ t }: any) {
   const { locale } = useRouter();
   return (
@@ -17,11 +17,11 @@ function HowWorks({ t }: any) {
           }}
         ></div>
         <Image
-          src={videoAnimation}
+          src="/assets/animations/3D Animation/1080.gif"
           alt="video-animation"
           height={613}
           width={630}
-          className="relative z-10"
+          className="relative z-10 select-none"
           unoptimized={true}
         />
 

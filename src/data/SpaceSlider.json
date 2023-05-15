@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "category": "Modern",
+    "items": [
+      "/assets/images/home/spaceSlider/modern/1.jpg",
+      "/assets/images/home/spaceSlider/modern/2.jpg",
+      "/assets/images/home/spaceSlider/modern/1.jpg",
+      "/assets/images/home/spaceSlider/modern/2.jpg",
+      "/assets/images/home/spaceSlider/modern/1.jpg",
+      "/assets/images/home/spaceSlider/modern/2.jpg",
+      "/assets/images/home/spaceSlider/modern/1.jpg",
+      "/assets/images/home/spaceSlider/modern/2.jpg",
+      "/assets/images/home/spaceSlider/modern/1.jpg",
+      "/assets/images/home/spaceSlider/modern/2.jpg"
+    ]
+  },
+  {
+    "id": 2,
+    "category": "Morocco",
+    "items": [
+      "/assets/images/home/spaceSlider/morocco/1.jpg",
+      "/assets/images/home/spaceSlider/morocco/2.jpg",
+      "/assets/images/home/spaceSlider/morocco/1.jpg",
+      "/assets/images/home/spaceSlider/morocco/2.jpg",
+      "/assets/images/home/spaceSlider/morocco/1.jpg",
+      "/assets/images/home/spaceSlider/morocco/2.jpg",
+      "/assets/images/home/spaceSlider/morocco/1.jpg",
+      "/assets/images/home/spaceSlider/morocco/2.jpg",
+      "/assets/images/home/spaceSlider/morocco/1.jpg",
+      "/assets/images/home/spaceSlider/morocco/2.jpg"
+    ]
+  },
+  {
+    "id": 3,
+    "category": "Galaxy",
+    "items": [
+      "/assets/images/home/spaceSlider/galaxy/1.jpg",
+      "/assets/images/home/spaceSlider/galaxy/2.jpg",
+      "/assets/images/home/spaceSlider/galaxy/1.jpg",
+      "/assets/images/home/spaceSlider/galaxy/2.jpg",
+      "/assets/images/home/spaceSlider/galaxy/1.jpg",
+      "/assets/images/home/spaceSlider/galaxy/2.jpg",
+      "/assets/images/home/spaceSlider/galaxy/1.jpg",
+      "/assets/images/home/spaceSlider/galaxy/2.jpg",
+      "/assets/images/home/spaceSlider/galaxy/1.jpg",
+      "/assets/images/home/spaceSlider/galaxy/2.jpg"
+    ]
+  },
+  {
+    "id": 4,
+    "category": "Islami",
+    "items": [
+      "/assets/images/home/spaceSlider/islami/1.jpg",
+      "/assets/images/home/spaceSlider/islami/2.jpg",
+      "/assets/images/home/spaceSlider/islami/1.jpg",
+      "/assets/images/home/spaceSlider/islami/2.jpg",
+      "/assets/images/home/spaceSlider/islami/1.jpg",
+      "/assets/images/home/spaceSlider/islami/2.jpg",
+      "/assets/images/home/spaceSlider/islami/1.jpg",
+      "/assets/images/home/spaceSlider/islami/2.jpg",
+      "/assets/images/home/spaceSlider/islami/1.jpg",
+      "/assets/images/home/spaceSlider/islami/2.jpg"
+    ]
+  }
+]

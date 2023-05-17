@@ -1,9 +1,13 @@
 import Layout from "@/src/components/dashboard/Layout";
 import { useGetUsersQuery } from "@/src/redux/features/users/usersApiSlice";
 import { useSession } from "next-auth/react";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 function Profile() {
+  const { t } = useTranslation();
+
   const { data, status } = useSession();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -13,7 +17,7 @@ function Profile() {
   }
 
   return (
-    <Layout>
+    <Layout t={t}>
       <div className="overflow-y-scroll">
         <div className="flex flex-col py-[40px] px-[30px] min-h-screen">
           <h5 className="text-white font-[400] mb-[24px]">Account Settings</h5>
@@ -115,3 +119,10 @@ function Profile() {
 }
 
 export default Profile;
+export async function getServerSideProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["dashboard", "home"])),
+    },
+  };
+}

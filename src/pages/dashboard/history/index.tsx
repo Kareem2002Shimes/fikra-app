@@ -2,6 +2,8 @@ import ImageCard from "@/src/components/dashboard/history/ImageCard";
 import Layout from "@/src/components/dashboard/Layout";
 import { useState } from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 function History() {
   const [data, setData] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
@@ -10,8 +12,10 @@ function History() {
     "full-screen",
     "share",
   ]);
+  const { t } = useTranslation();
+
   return (
-    <Layout>
+    <Layout t={t}>
       <div
         className={`grid overflow-y-scroll w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[24px] py-[24px] pl-[24px] pr-[30px]`}
       >
@@ -50,3 +54,10 @@ function History() {
 }
 
 export default History;
+export async function getServerSideProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["dashboard", "home"])),
+    },
+  };
+}

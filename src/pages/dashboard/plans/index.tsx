@@ -3,8 +3,12 @@ import PricingBox from "@/src/components/dashboard/plans/PricingBox";
 import PricingItems from "@/src/data/PricingContent.json";
 import { useState } from "react";
 import QandAProps from "@/src/components/dashboard/plans/QandA";
+import { useTranslation } from "react-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 function Plans() {
+  const { t } = useTranslation();
+
   const [yearly, setYearly] = useState<boolean>(false);
   const [primary, setPrimary] = useState<number>(PricingItems[0].price.month);
   const [pro, setPro] = useState<number>(PricingItems[1].price.month);
@@ -25,7 +29,7 @@ function Plans() {
     }
   };
   return (
-    <Layout>
+    <Layout t={t}>
       <div className="felx-col w-full overflow-y-scroll">
         <div className="text-center pt-[40px] mb-[26px] ">
           <h2 className="text-neutral-50 font-[700] ">Buy a subscription</h2>
@@ -91,3 +95,10 @@ function Plans() {
 }
 
 export default Plans;
+export async function getServerSideProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["dashboard", "home"])),
+    },
+  };
+}

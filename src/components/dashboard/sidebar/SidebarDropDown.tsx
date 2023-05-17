@@ -51,14 +51,17 @@ function SidebarDropDown({ sidebar, t }: any) {
   const closeMenu = () => setIsMenuOpen(false);
   const profileMenuItems = [
     {
+      id: 1,
       label: t("dashboard:profile_popup_my_profile_btn"),
       icon: UserCircleIcon,
     },
     {
+      id: 2,
       label: t("dashboard:profile_popup_plans_btn"),
       icon: PlansIcon,
     },
     {
+      id: 3,
       label: t("dashboard:profile_popup_signout_btn"),
       icon: SignOutIcon,
     },
@@ -115,11 +118,11 @@ function SidebarDropDown({ sidebar, t }: any) {
         </Button>
       </MenuHandler>
       <MenuList className="w-fit h-[176px] content-center flex-col bg-sidebar-bg2 border-[1px] border-input-border shadow-none outline-none rounded-[16px]">
-        {profileMenuItems.map(({ label, icon }, key) => {
+        {profileMenuItems.map(({ label, icon, id }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
           return (
             <MenuItem
-              key={label}
+              key={id}
               onClick={closeMenu}
               className={`flex items-center py-[4px] px-[16px] mb-[16px] first-of-type:mt-[16px] ${
                 isLastItem
@@ -132,15 +135,13 @@ function SidebarDropDown({ sidebar, t }: any) {
               })}
               <Link
                 href={
-                  label === "My Profile"
+                  id === 1
                     ? "/dashboard/profile"
-                    : label === "Plans Management"
-                    ? "/dashboard/plans-management"
+                    : id === 2
+                    ? "/dashboard/plans-mangement"
                     : ""
                 }
-                onClick={() =>
-                  label === "Sign Out" && signOut({ callbackUrl: "/" })
-                }
+                onClick={() => id === 3 && signOut({ callbackUrl: "/" })}
               >
                 <Typography
                   as="span"

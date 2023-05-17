@@ -8,6 +8,7 @@ function Landing({ t }: any) {
       <div className=" px-[16px] sm:px-0 absolute w-full text-center left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%] z-40 content-center flex-col">
         <h1 className="text-white  font-[700] w-full text-[30px] md:text-[40px] lg:text-[56px] leading-[52px] lg:leading-[72px] mb-[16px]">
           {t("home:h1_title")}
+          <span className="block">{t("home:h1_title_span")}</span>
         </h1>
         <p className="text-neutral-200 text-md lg:text-lg font-[500] mb-[50px] w-full sm:w-[467px] md:w-[539px] lg:w-[677px]">
           {t("home:under_h1")}

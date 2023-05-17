@@ -22,7 +22,7 @@ export default Dashboard;
 export async function getServerSideProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["dashboard"])),
+      ...(await serverSideTranslations(locale, ["dashboard", "common"])),
     },
   };
 }

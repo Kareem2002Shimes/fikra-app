@@ -281,7 +281,7 @@ function Sidebar({ t }: any) {
           <h6 className="text-neutral-100 font-[400] pt-[16px] px-[16px]">
             {t("dashboard:sidebar_discount_menu_title")} 20%
           </h6>
-          <span className="text-neutral-100 px-[16px] text-sm font-[400] text-center block mt-[8px] mb-[24px]">
+          <span className="text-neutral-100 px-[16px] text-sm font-[400] block mt-[8px] mb-[24px]">
             <span>{t("dashboard:sidebar_discount_menu_desc")}</span>
           </span>
           <Link

@@ -10,9 +10,9 @@ import HowWorks from "../components/home/HowWorks";
 import GenerateIdeas from "../components/home/GenerateIdeas";
 import Footer from "../components/home/Footer";
 
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
 import WhatNeed from "../components/home/WhatNeed";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 function HomePage() {
   const { t } = useTranslation();

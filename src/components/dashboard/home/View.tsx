@@ -5,7 +5,7 @@ import DefaultView from "./DefaultView";
 import StyleSlider from "./StyleSlider";
 import { useAppDispatch, useAppSelector } from "@/src/redux/app/store";
 import { setReceivedImage } from "@/src/redux/features/settings/settingsSlice";
-
+import { useRouter } from "next/router";
 import {
   FacebookShareButton,
   FacebookIcon,
@@ -19,16 +19,16 @@ import {
 import { toast } from "react-hot-toast";
 import imageCompression from "browser-image-compression";
 
-const options = [
-  {
-    value: "choose the type of image",
-    label: "Choose the type of image",
-    disabled: true,
-  },
-  { value: "type img (png)", label: "Type img (png)" },
-  { value: "type img (jpg)", label: "Type img (jpg)" },
-];
-function View() {
+function View({ t }: any) {
+  const options = [
+    {
+      value: "choose the type of image",
+      label: t("dashboard:download_btn_option_label"),
+      disabled: true,
+    },
+    { value: "type img (png)", label: t("dashboard:download_btn_option_one") },
+    { value: "type img (jpg)", label: t("dashboard:download_btn_option_two") },
+  ];
   const menuRef: any = useRef();
   const btnRef: any = useRef();
 
@@ -37,7 +37,7 @@ function View() {
   const settings = useAppSelector((state) => state.settings);
   const dispatch = useAppDispatch();
   const [sharebox, setSharebox] = useState(false);
-
+  const { locale } = useRouter();
   const customStyles = {
     option: (defaultStyles: any, state: any) => ({
       ...defaultStyles,
@@ -49,9 +49,9 @@ function View() {
       "&:hover:first-of-type": {
         backgroundColor: "transparent",
       },
-
       fontSize: "16px",
       lineHeight: "24px",
+      width: "228px",
       cursor: "pointer",
     }),
 
@@ -144,13 +144,13 @@ function View() {
     };
   }, []);
   return (
-    <div className=" overflow-y-scroll w-full">
+    <div className="w-full min-h-full">
       <div className="px-[24px] pt-[16px] ">
         {settings.receivedImage && (
-          <div className="flex items-center mb-[8px] relative">
+          <div className="flex items-center mb-[8px] relative download-box">
             <Select
               options={options}
-              value={"Download" as any}
+              value={t("dashboard:download_btn") as any}
               onChange={handleChange}
               styles={customStyles}
               instanceId={options.map((op) => op.value) as any}
@@ -160,7 +160,7 @@ function View() {
                 ValueContainer,
               }}
               isSearchable={false}
-              placeholder="Download"
+              placeholder={t("dashboard:download_btn")}
               isOptionDisabled={(option) => option.disabled}
             />
             <button
@@ -223,66 +223,77 @@ function View() {
           </div>
         )}
         <div className="h-[526px] bg-neutral-800 rounded-[16px] p-[16px] flex">
-          <div className="w-full h-full relative content-center rounded-[8px] mr-[16px]">
+          <div className="w-full h-full relative content-center rounded-[8px] ">
             {settings.receivedImage ? (
-              <Image src={settings.receivedImage} alt="img" fill={true} />
+              <Image
+                src={settings.receivedImage}
+                alt="img"
+                fill={true}
+                className="rounded-[8px]"
+              />
             ) : (
-              <DefaultView />
+              <DefaultView t={t} />
             )}
 
             {/* Test Image here */}
           </div>
-          <div className="w-[135px] h-full">
-            {ideas.map((idea) => (
+          {settings.receivedImage && (
+            <div
+              className={` h-full ${
+                locale === "ar" ? "pr-[16px]" : "pl-[16px]"
+              }`}
+            >
+              {ideas.map((idea) => (
+                <button
+                  type="button"
+                  key={idea}
+                  onClick={() => {
+                    setActiveIdea(idea as any);
+                    handleIdeas(idea);
+                  }}
+                  className={`content-center ${
+                    activeIdea === idea
+                      ? "bg-accent-color border-transparent"
+                      : " border-[1px] border-input-border"
+                  } hover:bg-accent-color transition-all duration-200 ease-in hover:border-transparent flex-col mb-[16px] w-[135px] h-[64px] rounded-[16px]`}
+                >
+                  <span className="text-neutral-200 text-xs font-[500] mb-[2px]">
+                    {t("dashboard:show_idea")}
+                  </span>
+                  <span className="text-md font-[500] text-white">
+                    {t("dashboard:idea_number")} {idea}
+                  </span>
+                </button>
+              ))}
               <button
                 type="button"
-                key={idea}
                 onClick={() => {
-                  setActiveIdea(idea as any);
-                  handleIdeas(idea);
+                  dispatch(
+                    setReceivedImage("/assets/images/dashboard/test_result.jpg")
+                  );
+                  setActiveIdea(null);
                 }}
-                className={`content-center ${
-                  activeIdea === idea
-                    ? "bg-accent-color border-transparent"
-                    : " border-[1px] border-input-border"
-                } hover:bg-accent-color transition-all duration-200 ease-in hover:border-transparent flex-col mb-[16px] w-[135px] h-[64px] rounded-[16px]`}
+                className="w-[135px] h-[120px]  mt-[70px] text-white content-center flex-col primary-border"
               >
-                <span className="text-neutral-200 text-xs font-[500] mb-[2px]">
-                  Show
-                </span>
-                <span className="text-md font-[500] text-white">
-                  Idea {idea}
-                </span>
+                <Image
+                  src="/assets/images/dashboard/icons/home/new-idea-icon.svg"
+                  alt="new-idea-icon"
+                  width={24}
+                  height={24}
+                  className="mb-[8px]"
+                />
+                {t("dashboard:new_idea_btn")}
               </button>
-            ))}
-            <button
-              type="button"
-              onClick={() => {
-                dispatch(
-                  setReceivedImage("/assets/images/dashboard/test_result.jpg")
-                );
-                setActiveIdea(null);
-              }}
-              className="w-[135px] h-[120px]  mt-[70px] text-white content-center flex-col primary-border"
-            >
-              <Image
-                src="/assets/images/dashboard/icons/home/new-idea-icon.svg"
-                alt="new-idea-icon"
-                width={24}
-                height={24}
-                className="mb-[8px]"
-              />
-              New Ideas
-            </button>
-          </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="px-[24px] mt-[16px] border-t-[1px] border-input-border">
         <span className="text-white text-lg font-[700] py-[15px] block">
-          Choose the style of ideas
+          {t("dashboard:select_style_placeholder")}
         </span>
 
-        <div className="relative">
+        <div className="relative h-[150px] ">
           <StyleSlider />
         </div>
       </div>

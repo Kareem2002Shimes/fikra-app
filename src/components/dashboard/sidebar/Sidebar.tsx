@@ -12,12 +12,12 @@ import Lottie from "lottie-react";
 import useSidebar from "@/src/hooks/useSidebar";
 import SidebarDropDown from "./SidebarDropDown";
 
-function Sidebar() {
-  const { pathname } = useRouter();
+function Sidebar({ t }: any) {
+  const { pathname, locale } = useRouter();
   const [sidebar, setSidebar] = useSidebar("sidebar", true);
   const [menuItems, setMenuItems] = useState([
     {
-      name: "Home",
+      name: t("dashboard:sidebar_link_home"),
       url: "/dashboard",
       icon:
         pathname === "/dashboard" ? (
@@ -44,7 +44,7 @@ function Sidebar() {
         ),
     },
     {
-      name: "History",
+      name: t("dashboard:sidebar_link_history"),
       url: "/dashboard/history",
       icon:
         pathname === "/dashboard/history" ? (
@@ -76,7 +76,7 @@ function Sidebar() {
         ),
     },
     {
-      name: "Plans",
+      name: t("dashboard:sidebar_link_plans"),
       url: "/dashboard/plans",
       icon:
         pathname === "/dashboard/plans" ? (
@@ -130,7 +130,33 @@ function Sidebar() {
         ),
     },
     {
-      name: "Q&A",
+      name: t("dashboard:sidebar_link_notifications"),
+      url: "/dashboard/notifications",
+      icon:
+        pathname === "/dashboard/notifications" ? (
+          <Lottie
+            className="w-[24px] h-[24px]"
+            animationData={PlansAnimation}
+          />
+        ) : (
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              fillRule="evenodd"
+              clipRule="evenodd"
+              d="M10.3242 20.106C10.8422 20.683 11.5072 21 12.1972 21H12.1982C12.8912 21 13.5592 20.683 14.0782 20.105C14.3562 19.798 14.8302 19.773 15.1372 20.05C15.4452 20.327 15.4702 20.802 15.1932 21.109C14.3852 22.006 13.3222 22.5 12.1982 22.5H12.1962C11.0752 22.499 10.0142 22.005 9.20923 21.108C8.93223 20.801 8.95723 20.326 9.26523 20.05C9.57323 19.772 10.0472 19.797 10.3242 20.106ZM12.247 1C16.692 1 19.678 4.462 19.678 7.695C19.678 9.358 20.101 10.063 20.55 10.811C20.994 11.549 21.497 12.387 21.497 13.971C21.148 18.018 16.923 18.348 12.247 18.348C7.57103 18.348 3.34503 18.018 3.00001 14.035C2.99703 12.387 3.50003 11.549 3.94403 10.811L4.10077 10.5472C4.4867 9.88386 4.81603 9.16235 4.81603 7.695C4.81603 4.462 7.80203 1 12.247 1ZM12.247 2.5C8.75203 2.5 6.31603 5.238 6.31603 7.695C6.31603 9.774 5.73903 10.735 5.22903 11.583C4.82003 12.264 4.49703 12.802 4.49703 13.971C4.66403 15.857 5.90903 16.848 12.247 16.848C18.55 16.848 19.834 15.813 20 13.906C19.997 12.802 19.674 12.264 19.265 11.583C18.755 10.735 18.178 9.774 18.178 7.695C18.178 5.238 15.742 2.5 12.247 2.5Z"
+              className="fill-[#CDD0FE] group-hover:fill-[#0473FB]  transition-all duration-200"
+            />
+          </svg>
+        ),
+    },
+    {
+      name: t("dashboard:sidebar_link_questions"),
       url: "/dashboard/q&a",
       icon:
         pathname === "/dashboard/q&a" ? (
@@ -161,82 +187,112 @@ function Sidebar() {
   ]);
 
   return (
-    <div
-      className={`${
-        sidebar ? "w-[216px]" : "w-[92px]"
-      } h-full bg-neutral-800 transition-all duration-300 ease-in-out items-center flex-col border-r-[1px] border-input-border hidden md:flex`}
+    <aside
+      className={` ${
+        sidebar ? "min-w-[247px]" : "w-[92px]"
+      } bg-neutral-800 transition-all  duration-300 ease-in-out items-center flex-col border-r-[1px] border-input-border hidden md:flex`}
     >
-      <div
-        className="content-center mb-[40px] hover:bg-accent-color transition-all duration-200 ease-in-out hover:border-transparent cursor-pointer mt-[24px] border-[1px] border-dashed rounded-[50%] border-accent-color w-[32px] h-[32px]"
+      <button
+        style={{ direction: "ltr" }}
+        className={`content-center mb-[40px] dashed-border-dashboard-sidebar ${
+          !sidebar ? "w-[72px]" : "w-[158px]"
+        }  h-[40px] border-input-border hover:border-transparent hover:bg-accent-color transition-all duration-200 cursor-pointer mt-[24px] `}
         onClick={() => setSidebar(!sidebar)}
       >
         <Image
-          src="/assets/images/dashboard/icons/sidebar/leftArrow-icon.svg"
+          src="/assets/images/dashboard/icons/sidebar/close_sidebar.svg"
           alt="arrow-icon"
-          width={7.4}
-          height={12}
+          width={24}
+          height={24}
+          className={`${locale === "ar" && !sidebar && "rotate-[180deg]"} ${
+            locale !== "ar" && sidebar && "rotate-[180deg]"
+          }`}
         />
-      </div>
-
-      <aside className={sidebar ? "w-[216px]" : "w-[92px]"}>
-        <SidebarDropDown sidebar={sidebar} />
-        <ul>
-          {menuItems.map((item) => (
-            <li
-              key={item.name}
-              className={`${
-                sidebar ? "pl-[24px]" : "justify-center pl-[0]"
-              } flex items-center h-[40px] ${
-                pathname === item.url && "bg-sidebar-bg2"
-              } w-full mb-[15px]`}
-            >
-              <Link
-                href={item.url}
-                className={`relative flex items-center ${
-                  !sidebar && "justify-center"
-                }  group w-full h-full group`}
-              >
-                {item.icon}
-
-                <span
-                  className={`pl-[16px] text-md ${
-                    pathname === item.url
-                      ? "text-accent-color"
-                      : "text-neutral-200 "
-                  } font-[500] transition-all duration-200 group-hover:text-accent-color ${
-                    !sidebar && "scale-0 absolute top-[50%] translate-y-[-50%]"
-                  }`}
-                >
-                  {item.name}
-                </span>
-                {item.url === pathname && (
-                  <Lottie
-                    className={`absolute right-0 w-fit translate-y-[-50%] top-[50%] h-full`}
-                    animationData={LineAnimation}
-                  />
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul>
         {sidebar && (
-          <div className="w-[184px] h-[152px] bg-accent-color mx-auto mt-[80px] rounded-[24px]">
-            <h5 className="text-neutral-100 font-[400] pt-[16px] pl-[23px]">
-              save 20%
-            </h5>
-            <span className="text-neutral-100 text-md font-[400] text-center block mt-[8px] mb-[24px]">
-              First 200 Joined
-            </span>
-            <Link
-              href="/dashboard/plans"
-              className="text-md font-[500] content-center mx-auto rounded-[16px] text-neutral-800 bg-neutral-100 w-[168px] h-[40px]"
-            >
-              Upgrade Now
-            </Link>
-          </div>
+          <span className={`text-white font-[500] text-sm mx-[8px]  `}>
+            {t("dashboard:sidebar_close_menu_btn")}
+          </span>
         )}
-      </aside>
-    </div>
+      </button>
+      <SidebarDropDown t={t} sidebar={sidebar} />
+      <ul className="w-full">
+        {menuItems.map((item) => (
+          <li
+            style={{
+              padding:
+                !sidebar && locale
+                  ? "0"
+                  : locale === "ar"
+                  ? "0 16px 0 0"
+                  : "0 0 0 16px",
+            }}
+            key={item.name}
+            className={`
+              flex items-center h-[40px] ${
+                pathname === item.url && "bg-sidebar-bg2"
+              } w-full mb-[15px] relative`}
+          >
+            <Link
+              href={item.url}
+              className={`relative flex items-center ${
+                !sidebar && "justify-center"
+              }  group w-full h-full group`}
+            >
+              {item.icon}
+
+              <span
+                className={`px-[16px] text-md ${
+                  pathname === item.url
+                    ? "text-accent-color"
+                    : "text-neutral-200 "
+                } font-[500] transition-all duration-200 group-hover:text-accent-color ${
+                  !sidebar && "scale-0 absolute top-[50%] translate-y-[-50%]"
+                }`}
+              >
+                {item.name}
+              </span>
+              {item.url === "/dashboard/notifications" && (
+                <span
+                  className={` ${
+                    sidebar ? "w-[24px] h-[24px]" : "w-[18px] h-[18px]"
+                  }  ${
+                    sidebar ? "top-[50%]" : "top-[35%]"
+                  } absolute  translate-y-[-50%]  ${
+                    locale === "ar" ? "left-[24px]" : "right-[24px]"
+                  }  bg-error-500 text-xs text-white font-[400] content-center rounded-[50%]`}
+                >
+                  8
+                </span>
+              )}
+              {item.url === pathname && (
+                <Lottie
+                  className={`absolute ${
+                    locale === "ar" ? "left-[-1.2px]" : "right-[-1.2px]"
+                  } w-fit translate-y-[-50%] top-[50%] h-full`}
+                  animationData={LineAnimation}
+                />
+              )}
+            </Link>
+          </li>
+        ))}
+      </ul>
+      {sidebar && (
+        <div className="w-[212px] h-[177px] bg-accent-color  mt-[80px]  rounded-[24px]">
+          <h6 className="text-neutral-100 font-[400] pt-[16px] px-[16px]">
+            {t("dashboard:sidebar_discount_menu_title")} 20%
+          </h6>
+          <span className="text-neutral-100 px-[16px] text-sm font-[400] text-center block mt-[8px] mb-[24px]">
+            <span>{t("dashboard:sidebar_discount_menu_desc")}</span>
+          </span>
+          <Link
+            href="/dashboard/plans"
+            className="text-sm font-[500] content-center mx-auto rounded-[16px] text-neutral-800 bg-neutral-100 w-[168px] h-[40px]"
+          >
+            {t("dashboard:sidebar_discount_menu_btn")}
+          </Link>
+        </div>
+      )}
+    </aside>
   );
 }
 

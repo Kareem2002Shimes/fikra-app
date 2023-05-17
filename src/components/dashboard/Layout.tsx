@@ -4,13 +4,14 @@ import Sidebar from "./sidebar/Sidebar";
 
 type LayoutProps = {
   children: React.ReactNode | React.ReactNode[];
+  t: any;
 };
-function Layout({ children }: LayoutProps) {
+function Layout({ children, t }: LayoutProps) {
   return (
     <Fragment>
-      <Navbar />
-      <main className="flex h-[calc(100vh-81px)]">
-        <Sidebar />
+      <Navbar t={t} />
+      <main className="flex">
+        <Sidebar t={t} />
         {children}
       </main>
     </Fragment>

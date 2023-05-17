@@ -24,42 +24,37 @@ function StyleSlider() {
     }
   }, [settings.activeIdea, dispatch, styleIdeas.options]);
   return (
-    <div className="absolute top-0 left-0 w-full ">
+    <div className="absolute top-0 left-0 w-full h-full">
       <Swiper
         scrollbar={{
           draggable: true,
           dragSize: 100,
         }}
-        slidesPerView={8}
+        direction={"horizontal"}
+        slidesPerView={"auto"}
+        spaceBetween={24}
         modules={[Scrollbar]}
-        className="slider-conatiner cursor-grab"
+        className="slider-conatiner cursor-grab "
       >
         {styleIdeas.options?.map((item: any) => (
           <SwiperSlide
             key={item.label}
-            className="hover:cursor-pointer group relative select-none"
+            className="hover:cursor-pointer group  select-none group "
             onClick={() => dispatch(setActiveIdea(item.value))}
           >
-            <Image
-              src={item.image}
-              alt="slider-img"
-              fill={true}
-              className={`object-cover rounded-[8px] pointer-events-none  ${
-                settings.activeIdea === item.value
-                  ? "opacity-[1]"
-                  : "opacity-[0.5]"
-              } group-hover:opacity-[1]  transition-opacity duration-200 ease-in-out`}
-            />
+            <div className="w-[120px] h-[88px] relative">
+              <Image
+                src={item.image}
+                alt="slider-img"
+                fill={true}
+                className={`object-cover ${
+                  settings.activeIdea === item.value
+                    ? "opacity-[1]"
+                    : "opacity-[0.5]"
+                } rounded-[8px] pointer-events-none opacity-[0.5] group-hover:opacity-[1]  transition-opacity duration-200 `}
+              />
+            </div>
 
-            <span
-              className={`text-md font-[600] ${
-                settings.activeIdea === item.value
-                  ? "opacity-[1]"
-                  : "opacity-[0.5]"
-              }  group-hover:opacity-[1]  transition-opacity duration-200 ease-in-out text-white absolute w-full text-center z-10 bottom-[-40px] left-[50%] translate-x-[-50%]`}
-            >
-              {item.label}
-            </span>
             {settings.activeIdea === item.value && (
               <div className="bg-accent-color absolute top-[5px] left-[5px] z-10 border-[2px] border-neutral-900 rounded-[50%] w-[30px] h-[30px] content-center">
                 <Image
@@ -70,6 +65,15 @@ function StyleSlider() {
                 />
               </div>
             )}
+            <span
+              className={` font-[600] ${
+                settings.activeIdea === item.value
+                  ? "opacity-[1]"
+                  : "opacity-[0.5]"
+              } group-hover:opacity-[1] absolute bottom-[-35px] text-center w-full left-0 z-10 transition-opacity duration-200  text-white text-md `}
+            >
+              {item.label}
+            </span>
           </SwiperSlide>
         ))}
       </Swiper>

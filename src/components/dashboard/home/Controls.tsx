@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import Select from "./SelectOptions";
-import data from "@/src/data/Selects.json";
 import { toast } from "react-hot-toast";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "@/src/redux/app/store";
@@ -19,32 +18,598 @@ import { setSelectedResolution } from "@/src/redux/features/settings/settingsSli
 import { setSelectedStyle } from "@/src/redux/features/settings/settingsSlice";
 import InfoModal from "../InfoModal";
 import { handleImageCompression } from "@/src/services/uploadCompression";
+import { useRouter } from "next/router";
 
-const spaceOptions = data.selects[0];
-const typeOfRoomOptions = data.selects[1];
-const chooseStyleOptions = data.selects[2];
-const modeOptions = data.selects[3];
-const qualityOptions = data.selects[4];
-const styleOptions = data.selects[5];
-const resolutionOptions = data.selects[6];
+function Controls({ t }: any) {
+  const data = {
+    selects: [
+      {
+        id: 1,
+        placeholder: t("dashboard:select_space_placeholder"),
+        options: [
+          {
+            value: "residential spaces",
+            label: t("dashboard:select_space_option_one_label"),
+          },
+          {
+            value: "commercial spaces",
+            label: t("dashboard:select_space_option_two_label"),
+          },
+          {
+            value: "administrative spaces",
+            label: t("dashboard:select_space_option_three_label"),
+          },
+        ],
+      },
+      {
+        id: 2,
+        placeholder: t("dashboard:select_room_placeholder"),
+        groupedOptions: [
+          {
+            value: "residential spaces",
+            options: [
+              {
+                value: "balcony",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_one_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "bathroom",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_two_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "bedroom",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_three_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "closet",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_four_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "corridor",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_five_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "dining room",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_six_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "dressing Room",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_seven_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "external laundries",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_eight_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "family cinema room",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_nine_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "gaming room",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_ten_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "gym room",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_eleven_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "hallway",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_twelve_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "home office",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_thirteen_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "kitchen",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_fourteen_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "laundry room",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_fifteen_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "living room",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_sixteen_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "master Bedroom",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_seventeen_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "men's majlis",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_eighteen_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "stairway",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_nineteen_label"
+                ),
+                ref: "residential spaces",
+              },
+              {
+                value: "women's majlis",
+                label: t(
+                  "dashboard:select_room_group_options_label_space_option_twenty_label"
+                ),
+                ref: "residential spaces",
+              },
+            ],
+          },
+          {
+            value: "commercial spaces",
+            options: [
+              {
+                value: "clothing store",
+                label: t(
+                  "dashboard:select_room_group_options_label_commercial_option_one_label"
+                ),
+                ref: "commercial spaces",
+              },
+              {
+                value: "coffee shop",
+                label: t(
+                  "dashboard:select_room_group_options_label_commercial_option_two_label"
+                ),
+                ref: "commercial spaces",
+              },
+              {
+                value: "hotel bathroom",
+                label: t(
+                  "dashboard:select_room_group_options_label_commercial_option_three_label"
+                ),
+                ref: "commercial spaces",
+              },
+              {
+                value: "hotel lobby",
+                label: t(
+                  "dashboard:select_room_group_options_label_commercial_option_four_label"
+                ),
+                ref: "commercial spaces",
+              },
+              {
+                value: "hotel room",
+                label: t(
+                  "dashboard:select_room_group_options_label_commercial_option_five_label"
+                ),
+                ref: "commercial spaces",
+              },
+              {
+                value: "men's barber shop",
+                label: t(
+                  "dashboard:select_room_group_options_label_commercial_option_six_label"
+                ),
+                ref: "commercial spaces",
+              },
+              {
+                value: "restaurant",
+                label: t(
+                  "dashboard:select_room_group_options_label_commercial_option_seven_label"
+                ),
+                ref: "commercial spaces",
+              },
+              {
+                value: "supermarket",
+                label: t(
+                  "dashboard:select_room_group_options_label_commercial_option_eight_label"
+                ),
+                ref: "commercial spaces",
+              },
+              {
+                value: "wedding Hall",
+                label: t(
+                  "dashboard:select_room_group_options_label_commercial_option_nine_label"
+                ),
+                ref: "commercial spaces",
+              },
+              {
+                value: "women's beauty salon",
+                label: t(
+                  "dashboard:select_room_group_options_label_commercial_option_ten_label"
+                ),
+                ref: "commercial spaces",
+              },
+            ],
+          },
+          {
+            value: "administrative spaces",
 
-const allRooms = typeOfRoomOptions.groupedOptions?.map(
-  (item: any) => item.options
-);
-const optionsRoomOne = allRooms && allRooms[0];
-const optionsRoomTwo = allRooms && allRooms[1];
-const optionsRoomThree = allRooms && allRooms[0];
+            options: [
+              {
+                value: "archive room",
+                label: t(
+                  "dashboard:select_room_group_options_label_administrative_option_one_label"
+                ),
+                ref: "administrative spaces",
+              },
+              {
+                value: "director Office",
+                label: t(
+                  "dashboard:select_room_group_options_label_administrative_option_two_label"
+                ),
+                ref: "administrative spaces",
+              },
+              {
+                value: "entertainment room",
+                label: t(
+                  "dashboard:select_room_group_options_label_administrative_option_three_label"
+                ),
+                ref: "administrative spaces",
+              },
+              {
+                value: "meeting room",
+                label: t(
+                  "dashboard:select_room_group_options_label_administrative_option_four_label"
+                ),
+                ref: "administrative spaces",
+              },
+              {
+                value: "office",
+                label: t(
+                  "dashboard:select_room_group_options_label_administrative_option_five_label"
+                ),
+                ref: "administrative spaces",
+              },
+              {
+                value: "reception",
+                label: t(
+                  "dashboard:select_room_group_options_label_administrative_option_six_label"
+                ),
+                ref: "administrative spaces",
+              },
+              {
+                value: "secretarial office",
+                label: t(
+                  "dashboard:select_room_group_options_label_administrative_option_seven_label"
+                ),
+                ref: "administrative spaces",
+              },
+              {
+                value: "servers room",
+                label: t(
+                  "dashboard:select_room_group_options_label_administrative_option_eight_label"
+                ),
+                ref: "administrative spaces",
+              },
+              {
+                value: "staff dining room",
+                label: t(
+                  "dashboard:select_room_group_options_label_administrative_option_nine_label"
+                ),
+                ref: "administrative spaces",
+              },
+              {
+                value: "workshop room",
+                label: t(
+                  "dashboard:select_room_group_options_label_administrative_option_ten_label"
+                ),
+                ref: "administrative spaces",
+              },
+            ],
+          },
+        ],
+      },
 
-let allRoomsOptions = [
-  ...optionsRoomOne,
-  ...optionsRoomTwo,
-  ...optionsRoomThree,
-];
+      {
+        id: 3,
+        placeholder: t("dashboard:select_style_idea_placeholder"),
+        options: [
+          {
+            value: "art Deco",
+            label: t("dashboard:select_style_idea_option_one_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "art nouveau",
+            label: t("dashboard:select_style_idea_option_two_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "asian Zen",
+            label: t("dashboard:select_style_idea_option_three_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "baroque",
+            label: t("dashboard:select_style_idea_option_four_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "biophilic",
+            label: t("dashboard:select_style_idea_option_five_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "bohemian",
+            label: t("dashboard:select_style_idea_option_six_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "coastal",
+            label: t("dashboard:select_style_idea_option_seven_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "contemporary",
+            label: t("dashboard:select_style_idea_option_eight_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "cottagecore",
+            label: t("dashboard:select_style_idea_option_nine_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "cyberpunk",
+            label: t("dashboard:select_style_idea_option_ten_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "easter",
+            label: t("dashboard:select_style_idea_option_eleven_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "eclectic",
+            label: t("dashboard:select_style_idea_option_twelve_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "french Country",
+            label: t("dashboard:select_style_idea_option_thirteen_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "hollywood Glam",
+            label: t("dashboard:select_style_idea_option_fourteen_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "industrial",
+            label: t("dashboard:select_style_idea_option_fifteen_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "interior AI",
+            label: t("dashboard:select_style_idea_option_sixteen_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "japanese",
+            label: t("dashboard:select_style_idea_option_seventeen_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "maximalist",
+            label: t("dashboard:select_style_idea_option_eighteen_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "mediterranean",
+            label: t("dashboard:select_style_idea_option_nineteen_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "mid Century Modern",
+            label: t("dashboard:select_style_idea_option_twenty_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "minimalist",
+            label: t("dashboard:select_style_idea_option_twentyOne_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "modern Farmhouse",
+            label: t("dashboard:select_style_idea_option_twentyTwo_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "modern",
+            label: t("dashboard:select_style_idea_option_twentyThree_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "rustic",
+            label: t("dashboard:select_style_idea_option_twentyFour_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "scandinavian",
+            label: t("dashboard:select_style_idea_option_twentyFive_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "shabby Chic",
+            label: t("dashboard:select_style_idea_option_twentySix_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "sketch",
+            label: t("dashboard:select_style_idea_option_twentySeven_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "southwestern",
+            label: t("dashboard:select_style_idea_option_twentyEight_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "traditional",
+            label: t("dashboard:select_style_idea_option_twentyNine_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "transitional",
+            label: t("dashboard:select_style_idea_option_Thirty_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "tropical",
+            label: t("dashboard:select_style_idea_option_ThirtyOne_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "vaporwave",
+            label: t("dashboard:select_style_idea_option_ThirtyTwo_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+          {
+            value: "vintage",
+            label: t("dashboard:select_style_idea_option_ThirtyThree_label"),
+            image: "/assets/images/dashboard/styleIdeas/1.jpg",
+          },
+        ],
+      },
+      {
+        id: 4,
+        placeholder: t("dashboard:select_mode_placeholder"),
+        options: [
+          {
+            value: "your Space (Image to Image)",
+            label: t("dashboard:select_mode_option_one_label"),
+          },
+          {
+            value: "concept (no image needed)",
+            label: t("dashboard:select_mode_option_two_label"),
+          },
+        ],
+      },
+      {
+        id: 5,
+        placeholder: t("dashboard:select_quality_placeholder"),
+        options: [
+          {
+            value: "half Quality",
+            label: t("dashboard:select_quality_option_one_label"),
+          },
+          {
+            value: "base Quality",
+            label: t("dashboard:select_quality_option_two_label"),
+          },
+          {
+            value: "high quality (2x cost)",
+            label: t("dashboard:select_quality_option_three_label"),
+          },
+        ],
+      },
+      {
+        id: 6,
+        placeholder: t("dashboard:select_style_placeholder"),
+        options: [
+          {
+            value: "style Low",
+            label: t("dashboard:select_style_option_one_label"),
+          },
+          {
+            value: "style Med",
+            label: t("dashboard:select_style_option_two_label"),
+          },
+          {
+            value: "style High",
+            label: t("dashboard:select_style_option_three_label"),
+          },
+          {
+            value: "style Very High",
+            label: t("dashboard:select_style_option_four_label"),
+          },
+        ],
+      },
+      {
+        id: 7,
+        placeholder: t("dashboard:select_resolution_placeholder"),
+        options: [
+          {
+            value: "high (slow)",
+            label: t("dashboard:select_resolution_option_one_label"),
+          },
+          {
+            value: "low (fast)",
+            label: t("dashboard:select_resolution_option_two_label"),
+          },
+        ],
+      },
+    ],
+  };
 
-function Controls() {
+  const spaceOptions = data.selects[0];
+  const typeOfRoomOptions = data.selects[1];
+  const chooseStyleOptions = data.selects[2];
+  const modeOptions = data.selects[3];
+  const qualityOptions = data.selects[4];
+  const styleOptions = data.selects[5];
+  const resolutionOptions = data.selects[6];
+
+  const allRooms = typeOfRoomOptions.groupedOptions?.map(
+    (item: any) => item.options
+  );
+  const optionsRoomOne = allRooms && allRooms[0];
+  const optionsRoomTwo = allRooms && allRooms[1];
+  const optionsRoomThree = allRooms && allRooms[0];
+
+  let allRoomsOptions = [
+    ...optionsRoomOne,
+    ...optionsRoomTwo,
+    ...optionsRoomThree,
+  ];
   const settings = useAppSelector((state) => state.settings);
-  const dispatch = useAppDispatch();
 
+  const dispatch = useAppDispatch();
+  const { locale } = useRouter();
   const [typeOfRoom, setTypeOfRoom] = useState(allRoomsOptions);
   const [imageUrl, setImageUrl] = useState("");
   const reset = () => {
@@ -64,18 +629,18 @@ function Controls() {
     // show rooms according to space
     if (settings.selectedSpace && typeOfRoomOptions.groupedOptions) {
       if (
-        settings.selectedSpace.label ===
-        typeOfRoomOptions.groupedOptions[0].label
+        settings.selectedSpace.value ===
+        typeOfRoomOptions.groupedOptions[0].value
       ) {
         setTypeOfRoom(typeOfRoomOptions.groupedOptions[0].options);
       } else if (
-        settings.selectedSpace.label ===
-        typeOfRoomOptions.groupedOptions[1].label
+        settings.selectedSpace.value ===
+        typeOfRoomOptions.groupedOptions[1].value
       ) {
         setTypeOfRoom(typeOfRoomOptions.groupedOptions[1].options);
       } else if (
-        settings.selectedSpace.label ===
-        typeOfRoomOptions.groupedOptions[2].label
+        settings.selectedSpace.value ===
+        typeOfRoomOptions.groupedOptions[2].value
       ) {
         setTypeOfRoom(typeOfRoomOptions.groupedOptions[2].options);
       }
@@ -83,12 +648,12 @@ function Controls() {
     // if room selected space selected also
 
     if (settings.selectedTypeOfRoom && !settings.selectedSpace) {
-      const lables = spaceOptions.options?.map((op) => op.label);
+      const lables = spaceOptions.options?.map((op) => op.value);
       if (lables?.includes(settings.selectedTypeOfRoom.ref as string)) {
         dispatch(
           setSelectedSpace(
             spaceOptions.options?.find(
-              (element) => element.label === settings.selectedTypeOfRoom?.ref
+              (element) => element.value === settings.selectedTypeOfRoom?.ref
             )
           )
         );
@@ -96,7 +661,7 @@ function Controls() {
     }
     // if room was selected and then change space
     if (
-      settings.selectedSpace?.label !== settings.selectedTypeOfRoom?.ref &&
+      settings.selectedSpace?.value !== settings.selectedTypeOfRoom?.ref &&
       settings.selectedTypeOfRoom &&
       settings.selectedSpace
     ) {
@@ -186,7 +751,7 @@ function Controls() {
           )
           .then((res) => {
             reset();
-            toast.success("Designed Successfully");
+            toast.success(t("dashboard:ideas_generated_successfully"));
             dispatch(
               setReceivedImage("/assets/images/dashboard/test_result.jpg")
             );
@@ -195,26 +760,26 @@ function Controls() {
       } else {
         reset();
         dispatch(setReceivedImage("/assets/images/dashboard/test_result.jpg"));
-        toast.success("Designed Successfully");
+        toast.success(t("dashboard:ideas_generated_successfully"));
       }
     }
   };
   return (
-    <div className=" min-w-[306px] px-[16px] pb-[16px] bg-neutral-800 overflow-y-scroll ">
+    <div className=" w-[300px] px-[16px] bg-neutral-800 ">
       <div className="border-b-[1px] border-auth-border py-[16px]">
         <button
           type="button"
           onClick={reset}
-          className="content-center rounded-[26px] w-[110px] h-[32px] border-[1px] border-neutral-600 items-center text-sm font-[400] text-neutral-400"
+          className="content-center rounded-[26px] w-[128px] h-[32px] border-[1px] border-neutral-600 items-center text-sm font-[400] text-neutral-400"
         >
           <Image
             src="/assets/images/dashboard/icons/home/reset.svg"
             alt="reset-icon"
             width={16}
             height={16}
-            className="mr-[4px]"
+            className="mx-[4px]"
           />
-          Start over
+          {t("dashboard:select_reset")}
         </button>
       </div>
       <form onSubmit={handleSumbit} className="mx-auto pt-[48px] w-[268px] ">
@@ -229,6 +794,7 @@ function Controls() {
             dispatch={dispatch}
             value={settings.selectedSpace}
             placeholder={spaceOptions.placeholder}
+            t={t}
           />
         </div>
 
@@ -243,6 +809,7 @@ function Controls() {
             dispatch={dispatch}
             value={settings.selectedTypeOfRoom}
             placeholder={typeOfRoomOptions.placeholder}
+            t={t}
           />
         </div>
         <Select
@@ -252,6 +819,7 @@ function Controls() {
           dispatch={dispatch}
           value={settings.selectedChooseStyle}
           placeholder={chooseStyleOptions.placeholder}
+          t={t}
         />
         <Select
           instanceId={modeOptions.id}
@@ -260,6 +828,7 @@ function Controls() {
           dispatch={dispatch}
           value={settings.selectedMode}
           placeholder={modeOptions.placeholder}
+          t={t}
         />
         {settings.selectedMode?.value !== "concept (no image needed)" &&
           (settings.uploadedImage && imageUrl ? (
@@ -286,7 +855,7 @@ function Controls() {
               />
             </div>
           ) : (
-            <div className="content-center relative flex-col w-full h-[152px] border-dashed border-[2px] border-accent-color rounded-[16px] mb-[40px]">
+            <div className="content-center relative flex-col w-full h-[152px] border-dashed border-[1.6px] border-accent-color rounded-[16px] mb-[40px]">
               <input
                 style={{ filter: " alpha(opacity=0)" }}
                 type="file"
@@ -303,11 +872,17 @@ function Controls() {
                 className="mb-[16px]"
               />
               <div className="text-sm text-neutral-50 mb-[8px]">
-                Drop your file here or{" "}
-                <span className="text-accent-color">Browse</span>
+                {locale === "ar"
+                  ? "قم بإسقاط ملفك هنا أو"
+                  : "Drop your file here or"}{" "}
+                <span className="text-accent-color">
+                  {locale === "ar" ? "تصفح" : "Browse"}
+                </span>
               </div>
               <span className="text-neutral-300 text-xs">
-                The maximum file size is 5MB
+                {locale === "ar"
+                  ? "أقصى حجم للملف 5 ميجا بايت"
+                  : "The maximum file size is 5MB"}
               </span>
             </div>
           ))}
@@ -324,6 +899,7 @@ function Controls() {
                 dispatch={dispatch}
                 value={settings.selectedQuality}
                 placeholder={qualityOptions.placeholder}
+                t={t}
               />
             </div>
             <div className="relative ">
@@ -337,6 +913,7 @@ function Controls() {
                 dispatch={dispatch}
                 value={settings.selectedStyle}
                 placeholder={styleOptions.placeholder}
+                t={t}
               />
             </div>
           </>
@@ -353,6 +930,7 @@ function Controls() {
             dispatch={dispatch}
             value={settings.selectedResolution}
             placeholder={resolutionOptions.placeholder}
+            t={t}
           />
         </div>
 
@@ -361,7 +939,7 @@ function Controls() {
             type="submit"
             className="coloredBtn w-full  text-md  h-[48px] rounded-[8px] text-white font-[500]"
           >
-            Design a new idea
+            {t("dashboard:select_desgin_btn")}
           </button>
         </div>
       </form>

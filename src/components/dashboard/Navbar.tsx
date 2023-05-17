@@ -1,11 +1,13 @@
 import Link from "next/link";
 import Image from "next/image";
 import Lottie from "lottie-react";
+import { useRouter } from "next/router";
 import roadMapAnimation from "@/public/assets/animations/icons_Animation/roadmap/roadmap.json";
-function Navbar() {
+function Navbar({ t }: any) {
+  const { locale } = useRouter();
   return (
     <div className="border-b-[1px] border-input-border ">
-      <div className="mx-[30px]  flex justify-between items-center h-[80px]">
+      <div className="mx-[30px]  flex justify-between items-center h-[72px]">
         <Link href="/" className="flex items-center">
           <div className="relative w-[27.97px] h-[28px]">
             <Image
@@ -36,18 +38,27 @@ function Navbar() {
             Roadmap
           </Link>
 
-          <div className="flex items-center ml-[0] sm:ml-[25px] md:ml-[50px]">
+          <div
+            style={{ direction: "ltr" }}
+            className={`flex items-center  ${
+              locale === "ar"
+                ? "mr-[0] sm:mr-[25px] md:mr-[50px]"
+                : "ml-[0] sm:ml-[25px] md:ml-[50px]"
+            }`}
+          >
             <Link
               href="/dashboard/plans"
               className="text-accent-color text-sm font-[500] mx-[8px] md:mx-[0]"
             >
-              Need more?
+              {t("dashboard:navbar_need_more")}
             </Link>
-            <span className="hidden md:block text-sm font-[500] text-neutral-100 mx-[8px]">
-              You only have two attempts.
+            <span className="hidden md:block text-sm font-[500] text-neutral-100 mx-[12px]">
+              <span>{t("dashboard:navbar_try_attempts")}</span>
+              <span className="mx-[3px]">5</span>
+              <span>{t("dashboard:navbar_try_attempts_span")}</span>
             </span>
-            <div className="content-center dashed-border-dashboard rounded-[50% w-[56px] h-[56px]">
-              <span className="content-center text-md font-[500] text-white">
+            <div className="content-center dashed-border-dashboard-navbar rounded-[50% w-[40px] h-[40px]">
+              <span className="content-center text-xs font-[500] text-white">
                 1/3
               </span>
             </div>

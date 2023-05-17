@@ -1,7 +1,7 @@
 import Select, { components } from "react-select";
 import Image from "next/image";
 import InfoModal from "../InfoModal";
-
+import { useRouter } from "next/router";
 const qIcon = (
   <Image
     src="/assets/images/dashboard/icons/sidebar/info.svg"
@@ -18,12 +18,8 @@ function SelectOptions({
   instanceId,
   dispatch,
   setSelected,
-  setSpaceModal,
-  setStyleModal,
-  setRoomModal,
-  setQualityModal,
-  setResolutionModal,
 }: any) {
+  const { locale } = useRouter();
   const customStyles = {
     option: (defaultStyles: any, state: any) => ({
       ...defaultStyles,
@@ -57,6 +53,8 @@ function SelectOptions({
     singleValue: (defaultStyles: any) => ({
       ...defaultStyles,
       color: "#0473FB",
+      marginLeft: locale !== "ar" && "8px",
+      marginRight: locale === "ar" && "8px",
     }),
     dropdownIndicator: (defaultStyles: any) => ({
       ...defaultStyles,
@@ -77,6 +75,8 @@ function SelectOptions({
       color: "#ACB0DC",
       fontSize: "14px",
       lineHeight: "16px",
+      marginLeft: locale !== "ar" && "8px",
+      marginRight: locale === "ar" && "8px",
     }),
     menu: (defaultStyles: any) => ({
       ...defaultStyles,
@@ -100,9 +100,7 @@ function SelectOptions({
           <div className="flex items-center  ">
             {!!children &&
               props.selectProps.placeholder !== "Choose the style" &&
-              props.selectProps.placeholder !== "Mode" && (
-                <div className="mr-[8px]">{qIcon}</div>
-              )}
+              props.selectProps.placeholder !== "Mode" && <div>{qIcon}</div>}
             {children}
           </div>
         </components.ValueContainer>

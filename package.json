@@ -34,7 +34,6 @@
     "react": "18.2.0",
     "react-auth-code-input": "^3.2.1",
     "react-dom": "18.2.0",
-    "react-flag-icon-css": "^1.0.25",
     "react-hook-form": "^7.43.9",
     "react-hot-toast": "^2.4.1",
     "react-i18next": "^12.2.2",

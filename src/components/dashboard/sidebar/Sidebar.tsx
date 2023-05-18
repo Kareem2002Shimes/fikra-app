@@ -190,7 +190,9 @@ function Sidebar({ t }: any) {
     <aside
       className={` ${
         sidebar ? "min-w-[247px]" : "w-[92px]"
-      } bg-neutral-800 transition-all  duration-300 ease-in-out items-center flex-col border-r-[1px] border-input-border hidden md:flex`}
+      } bg-neutral-800 transition-all  duration-300 ease-in-out items-center flex-col ${
+        locale === "ar" ? "border-l-[1px]" : " border-r-[1px]"
+      } border-input-border hidden md:flex`}
     >
       <button
         style={{ direction: "ltr" }}

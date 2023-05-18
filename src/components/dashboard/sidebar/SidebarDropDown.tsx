@@ -57,7 +57,7 @@ function SidebarDropDown({ sidebar, t }: any) {
     },
     {
       id: 2,
-      label: t("dashboard:profile_popup_plans_btn"),
+      label: t("common:profile_popup_plans_btn"),
       icon: PlansIcon,
     },
     {

@@ -98,7 +98,11 @@ export default Plans;
 export async function getServerSideProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["dashboard", "home"])),
+      ...(await serverSideTranslations(locale, [
+        "dashboard",
+        "common",
+        "home",
+      ])),
     },
   };
 }

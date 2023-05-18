@@ -29,6 +29,7 @@ function Navbar({ t }: any) {
         <div className="flex items-center">
           <Link
             href="#"
+            style={{ direction: "ltr" }}
             className="hidden sm:flex content-center border-[1px] rounded-[16px] border-accent-color text-white text-md w-[166px] h-[40px]"
           >
             <Lottie

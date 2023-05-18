@@ -13,9 +13,15 @@ import Footer from "../components/home/Footer";
 import { useTranslation } from "next-i18next";
 import WhatNeed from "../components/home/WhatNeed";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useSession } from "next-auth/react";
+import Loading from "../components/Loading";
 
 function HomePage() {
   const { t } = useTranslation();
+  const { status } = useSession();
+  if (status === "loading") {
+    return <Loading />;
+  }
   return (
     <Fragment>
       <Head>

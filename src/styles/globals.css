@@ -78,7 +78,9 @@ button {
 /* Custom styles */
 .lang-box .css-1fdsijx-ValueContainer,
 .lang-box .css-hlgwow,
-.download-box .css-1fdsijx-ValueContainer {
+.download-box .css-1fdsijx-ValueContainer,
+.select-country .css-1fdsijx-ValueContainer,
+.select-country .css-hlgwow {
   overflow: unset;
 }
 .coloredBtn {
@@ -163,13 +165,17 @@ button {
 }
 
 .slider-conatiner .swiper-scrollbar .swiper-scrollbar-drag {
-  background-color: white;
+  background-color: #666780;
   height: 6px;
+  transition: all 0.3s ease;
+}
+.slider-conatiner .swiper-scrollbar .swiper-scrollbar-drag:hover {
+  background-color: white;
 }
 
 .slider-conatiner div.swiper-scrollbar {
   height: 6px;
-  background-color: #22233f;
+  background-color: #1b1d33;
   width: 100%;
   left: 0;
   bottom: 0;
@@ -342,4 +348,33 @@ input[type="range"]::-webkit-slider-thumb:active {
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+/* phone input */
+.phone-box .react-tel-input .selected-flag {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 0;
+}
+.phone-box .react-tel-input .selected-flag:hover {
+  background-color: #0473fb;
+}
+.phone-box .arrow {
+  display: none;
+}
+
+.phone-box .react-tel-input .country-list .country .dial-code {
+  color: #acb0dc;
+}
+.phone-box .react-tel-input .country-list .country.highlight {
+  background-color: #0473fb;
+}
+.phone-box .react-tel-input .country-list .country:hover {
+  background-color: #0473fb;
+}
+.phone-box .react-tel-input {
+  font-family: var(--font-somar);
 }

@@ -32,7 +32,7 @@ function Profile() {
       value: "مصر",
     },
     {
-      label: t("profile:profile_form_password"),
+      label: t("profile:profile_form_password_label"),
       value: "*******",
     },
   ];

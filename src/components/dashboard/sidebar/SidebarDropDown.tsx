@@ -133,25 +133,39 @@ function SidebarDropDown({ sidebar, t }: any) {
               {React.createElement(icon, {
                 className: "h-[24px] w-[24px] ",
               })}
-              <Link
-                href={
-                  id === 1
-                    ? "/dashboard/profile"
-                    : id === 2
-                    ? "/dashboard/plans-mangement"
-                    : ""
-                }
-                onClick={() => id === 3 && signOut({ callbackUrl: "/" })}
-              >
-                <Typography
-                  as="span"
-                  className={`text-mdfont-[500] ml-[8px] ${
-                    isLastItem ? "text-error-500" : "text-neutral-200"
-                  }`}
+              {id === 1 || id === 2 ? (
+                <Link
+                  href={
+                    id === 1
+                      ? "/dashboard/profile"
+                      : id === 2
+                      ? "/dashboard/plans-mangement"
+                      : ""
+                  }
                 >
-                  {label}
-                </Typography>
-              </Link>
+                  <Typography
+                    as="span"
+                    className={`text-mdfont-[500] ml-[8px] ${
+                      isLastItem ? "text-error-500" : "text-neutral-200"
+                    }`}
+                  >
+                    {label}
+                  </Typography>
+                </Link>
+              ) : (
+                <button
+                  onClick={() => id === 3 && signOut({ callbackUrl: "/" })}
+                >
+                  <Typography
+                    as="span"
+                    className={`text-mdfont-[500] ml-[8px] ${
+                      isLastItem ? "text-error-500" : "text-neutral-200"
+                    }`}
+                  >
+                    {label}
+                  </Typography>
+                </button>
+              )}
             </MenuItem>
           );
         })}

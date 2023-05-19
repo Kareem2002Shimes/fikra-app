@@ -92,7 +92,7 @@ function Profile() {
             </div>
             <Link
               href="plans/management"
-              className="flex mt-[16px] mb-[40px] mx-[14px] items-center bg-neutral-700 w-fit px-[16px] content-center h-[40px] rounded-[8px]"
+              className="flex mt-[16px] transition-all duration-200 hover:bg-accent-color mb-[40px] mx-[14px] items-center bg-neutral-700 w-fit px-[16px] content-center h-[40px] rounded-[8px]"
             >
               <Image
                 src="/assets/images/dashboard/icons/sidebar/plans.svg"
@@ -288,6 +288,7 @@ function Profile() {
 }
 
 export default Profile;
+
 export async function getServerSideProps({ locale }: { locale: string }) {
   return {
     props: {

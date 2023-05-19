@@ -1,15 +1,44 @@
 import Image from "next/dist/client/image";
 import InputRangeSlider from "./InputRangeSlider";
+
+interface PricingBoxProps {
+  box: {
+    id: number;
+    plan: string;
+    desc: string;
+    price: {
+      month: number;
+      year: number;
+    };
+    quantity: {
+      month: {
+        min: number;
+        average: number;
+        max: number;
+      };
+      year: {
+        min: number;
+        average: number;
+        max: number;
+      };
+    };
+    features: { id: number; title: string }[];
+  };
+  yearly: boolean;
+  primary: number;
+  advanced: number;
+  pro: number;
+  t: any;
+}
+
 export default function PricingBox({
   box,
   yearly,
   primary,
   advanced,
   pro,
-  setAdvanced,
-  setPrimary,
-  setPro,
-}: any) {
+  t,
+}: PricingBoxProps) {
   return (
     <div
       className={`pricing-box relative border-t-[16px]  ${
@@ -38,22 +67,15 @@ export default function PricingBox({
             : box.id === 3 && advanced}
           .00 /
           <span className="text-md font-[400]">
-            per {yearly ? "yearly" : "month"}
+            {yearly ? t("plans:per_year") : t("plans:per_month")}
           </span>
         </h2>
-
-        <InputRangeSlider
-          box={box}
-          yearly={yearly}
-          setAdvanced={setAdvanced}
-          setPrimary={setPrimary}
-          setPro={setPro}
-        />
+        <InputRangeSlider box={box} yearly={yearly} />
       </div>
       <div className="mx-[24px] mt-[30px]">
-        {box.features.map((feature: string) => (
-          <div key={box.id} className="flex items-start mb-[15px]">
-            <div className="mr-[8px] p-[8px] bg-neutral-700 rounded-[50%] ">
+        {box.features?.map((feature) => (
+          <div key={feature.id} className="flex items-start mb-[15px]">
+            <div className=" p-[8px] bg-neutral-700 rounded-[50%] ">
               <Image
                 src="/assets/images/dashboard/icons/pricing/arrowIcon.svg"
                 alt="arrow-icon"
@@ -61,8 +83,8 @@ export default function PricingBox({
                 height={12}
               />
             </div>
-            <span className="text-sm text-neutral-100 font-[400]">
-              {feature}
+            <span className="text-sm mx-[8px] text-neutral-100 font-[400]">
+              {feature.title}
             </span>
           </div>
         ))}
@@ -71,7 +93,7 @@ export default function PricingBox({
         type="button"
         className=" absolute bottom-[16px] left-[50%] translate-x-[-50%] coloredBtn-pricing w-[calc(100%-32px)] h-[48px] text-white rounded-[8px]"
       >
-        Subscribe Now
+        {t("plans:subscribe_now")}
       </button>
     </div>
   );

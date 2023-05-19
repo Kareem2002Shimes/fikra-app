@@ -279,16 +279,16 @@ function Sidebar({ t }: any) {
         ))}
       </ul>
       {sidebar && (
-        <div className="w-[212px] h-[177px] bg-accent-color  mt-[80px]  rounded-[24px]">
-          <h6 className="text-neutral-100 font-[400] pt-[16px] px-[16px]">
+        <div className="w-[212px] overflow-hidden h-[177px] relative before:absolute before:content-[''] before:right-0 before:bottom-0 before:rounded-[50%] before:w-[115px] before:h-[100px] before:bg-[#127AFB] after:absolute after:content-[''] after:left-[-30px] after:top-[-30px] after:rounded-[50%] after:w-[115px] after:h-[100px] after:bg-[#127AFB] bg-accent-color  mt-[80px]  rounded-[24px]">
+          <h6 className="text-neutral-100 font-[400] pt-[16px] px-[16px]  relative z-[1]">
             {t("dashboard:sidebar_discount_menu_title")} 20%
           </h6>
-          <span className="text-neutral-100 px-[16px] text-sm font-[400] block mt-[8px] mb-[24px]">
+          <span className="text-neutral-100 relative z-[1]  px-[16px] text-sm font-[400] block mt-[8px] mb-[24px]">
             <span>{t("dashboard:sidebar_discount_menu_desc")}</span>
           </span>
           <Link
             href="/dashboard/plans"
-            className="text-sm font-[500] content-center mx-auto rounded-[16px] text-neutral-800 bg-neutral-100 w-[168px] h-[40px]"
+            className="text-sm font-[500] relative z-[1]  content-center mx-auto rounded-[16px] text-neutral-800 bg-neutral-100 w-[168px] h-[40px]"
           >
             {t("dashboard:sidebar_discount_menu_btn")}
           </Link>

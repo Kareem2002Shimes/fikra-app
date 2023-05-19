@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import Header from "../components/home/Header";
 import Landing from "../components/home/Landing";
 import Companies from "../components/home/Companies";
@@ -15,21 +15,25 @@ import WhatNeed from "../components/home/WhatNeed";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useSession } from "next-auth/react";
 import Loading from "../components/Loading";
+import Popup from "../components/Popup";
 
 function HomePage() {
   const { t } = useTranslation();
   const { status } = useSession();
+  const [popup, setPopup] = useState<boolean>(false);
   if (status === "loading") {
     return <Loading />;
   }
+
   return (
     <Fragment>
       <Head>
         <title>home page</title>
       </Head>
+      {popup && <Popup setPopup={setPopup} />}
       <Header t={t} />
       <main>
-        <Landing t={t} />
+        <Landing t={t} setPopup={setPopup} />
         <Companies t={t} />
         <Discover t={t} />
         <TranslateIdeas t={t} />

@@ -5,7 +5,7 @@ import {
   AccordionHeader,
   AccordionBody,
 } from "@material-tailwind/react";
-import Questions from "@/src/data/Questions.json";
+import { useRouter } from "next/router";
 function Icon({ id, open }: any) {
   return (
     <Image
@@ -20,7 +20,97 @@ function Icon({ id, open }: any) {
 
 export default function QandA() {
   const [open, setOpen] = useState(0);
-  const [data, setData] = useState(Questions);
+  const { locale } = useRouter();
+  const Questions = [
+    {
+      id: 1,
+      header:
+        locale === "ar"
+          ? "مكان السؤال سوف يكون هنا"
+          : "The place for the question will be here",
+      body:
+        locale === "ar"
+          ? "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق."
+          : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque voluptates inventore, unde, iusto nesciunt hic voluptatem aperiam consequuntur asperiores praesentium saepe at, aliquid labore blanditiis provident. Omnis architecto hic aut.",
+    },
+    {
+      id: 2,
+      header:
+        locale === "ar"
+          ? "مكان السؤال سوف يكون هنا"
+          : "The place for the question will be here",
+      body:
+        locale === "ar"
+          ? "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق."
+          : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque voluptates inventore, unde, iusto nesciunt hic voluptatem aperiam consequuntur asperiores praesentium saepe at, aliquid labore blanditiis provident. Omnis architecto hic aut.",
+    },
+    {
+      id: 3,
+      header:
+        locale === "ar"
+          ? "مكان السؤال سوف يكون هنا"
+          : "The place for the question will be here",
+      body:
+        locale === "ar"
+          ? "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق."
+          : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque voluptates inventore, unde, iusto nesciunt hic voluptatem aperiam consequuntur asperiores praesentium saepe at, aliquid labore blanditiis provident. Omnis architecto hic aut.",
+    },
+    {
+      id: 4,
+      header:
+        locale === "ar"
+          ? "مكان السؤال سوف يكون هنا"
+          : "The place for the question will be here",
+      body:
+        locale === "ar"
+          ? "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق."
+          : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque voluptates inventore, unde, iusto nesciunt hic voluptatem aperiam consequuntur asperiores praesentium saepe at, aliquid labore blanditiis provident. Omnis architecto hic aut.",
+    },
+    {
+      id: 5,
+      header:
+        locale === "ar"
+          ? "مكان السؤال سوف يكون هنا"
+          : "The place for the question will be here",
+      body:
+        locale === "ar"
+          ? "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق."
+          : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque voluptates inventore, unde, iusto nesciunt hic voluptatem aperiam consequuntur asperiores praesentium saepe at, aliquid labore blanditiis provident. Omnis architecto hic aut.",
+    },
+    {
+      id: 6,
+      header:
+        locale === "ar"
+          ? "مكان السؤال سوف يكون هنا"
+          : "The place for the question will be here",
+      body:
+        locale === "ar"
+          ? "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق."
+          : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque voluptates inventore, unde, iusto nesciunt hic voluptatem aperiam consequuntur asperiores praesentium saepe at, aliquid labore blanditiis provident. Omnis architecto hic aut.",
+    },
+    {
+      id: 7,
+      header:
+        locale === "ar"
+          ? "مكان السؤال سوف يكون هنا"
+          : "The place for the question will be here",
+      body:
+        locale === "ar"
+          ? "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق."
+          : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque voluptates inventore, unde, iusto nesciunt hic voluptatem aperiam consequuntur asperiores praesentium saepe at, aliquid labore blanditiis provident. Omnis architecto hic aut.",
+    },
+    {
+      id: 8,
+      header:
+        locale === "ar"
+          ? "مكان السؤال سوف يكون هنا"
+          : "The place for the question will be here",
+      body:
+        locale === "ar"
+          ? "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق."
+          : "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Doloremque voluptates inventore, unde, iusto nesciunt hic voluptatem aperiam consequuntur asperiores praesentium saepe at, aliquid labore blanditiis provident. Omnis architecto hic aut.",
+    },
+  ];
 
   const handleOpen = (value: any) => {
     setOpen(open === value ? 0 : value);
@@ -28,7 +118,7 @@ export default function QandA() {
 
   return (
     <Fragment>
-      {data.map((item) => (
+      {Questions.map((item) => (
         <Accordion
           key={item.id}
           open={open === item.id}

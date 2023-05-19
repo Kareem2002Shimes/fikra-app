@@ -4,10 +4,11 @@ import { apiSlice } from "./api/apiSlice";
 import authReducer from "../features/auth/authSlice";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import settingsReducer from "../features/settings/settingsSlice";
-
+import pricingReducer from "../features/pricing/pricingSlice";
 export const store = configureStore({
   reducer: {
     settings: settingsReducer,
+    pricing: pricingReducer,
   },
   devTools: process.env.NODE_ENV === "development",
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({}).concat(),

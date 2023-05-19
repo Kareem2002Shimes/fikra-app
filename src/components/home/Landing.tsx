@@ -1,7 +1,15 @@
 import Overlay from "./Overlay";
 import Image from "next/image";
 import Link from "next/link";
-function Landing({ t }: any) {
+import { Dispatch, SetStateAction } from "react";
+
+function Landing({
+  t,
+  setPopup,
+}: {
+  t: any;
+  setPopup: Dispatch<SetStateAction<boolean>>;
+}) {
   return (
     <section className="overflow-hidden relative h-[calc(100vh-65px)] w-full ">
       <Overlay />
@@ -24,6 +32,10 @@ function Landing({ t }: any) {
             {t("home:start_btn")}
           </Link>
           <button
+            onClick={() => {
+              setPopup(true);
+              document.body.style.overflow = "hidden";
+            }}
             type="button"
             className="nonFilledBtn w-full sm:w-[173px] h-[56.59px] content-center "
           >

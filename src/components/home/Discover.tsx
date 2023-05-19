@@ -43,7 +43,7 @@ function Discover({ t }: any) {
           ))}
         </div>
         <Link
-          href={session.data?.user ? "/dashboard" : "/auth/signup"}
+          href={session.data?.user ? "/dashboard" : "/auth/login"}
           className="coloredBtn content-center rounded-[8px] w-[208px] h-[56px] text-center text-lg text-white mx-auto "
         >
           {t("home:discover_section_btn")}

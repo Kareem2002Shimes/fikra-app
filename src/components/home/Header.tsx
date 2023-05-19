@@ -108,7 +108,7 @@ function Header({ t }: any) {
   };
 
   return (
-    <header className="border-b-[1px] border-input-border relative z-50">
+    <header className="border-b-[1px] border-input-border relative z-40">
       <div className="home-container py-[8px] flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image

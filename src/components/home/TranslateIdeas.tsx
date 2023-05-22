@@ -8,11 +8,11 @@ function TranslateIdeas({ t }: any) {
   return (
     <section>
       <div className="home-container content-center flex-col">
-        <div className="relative w-[400px] h-[400px]">
+        <div className="relative w-[400px] max-w-full h-[400px]">
           <LogoAnimation />
         </div>
 
-        <div className="w-[483px] mx-auto text-center mb-[50px]">
+        <div className="w-[483px] max-w-full mx-auto text-center mb-[50px]">
           <MainHeading title={t("home:translate_ideas_section_title")} />
         </div>
 

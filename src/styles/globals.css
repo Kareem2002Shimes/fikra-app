@@ -68,6 +68,11 @@ button {
   width: 100%;
   height: 527px;
 }
+@media (max-width: 767px) {
+  .place-slider .swiper {
+    height: 260px;
+  }
+}
 .place-slider .slide-image {
   width: 100%;
   height: 100%;

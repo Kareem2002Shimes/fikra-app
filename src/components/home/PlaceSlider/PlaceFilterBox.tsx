@@ -57,7 +57,7 @@ function PlaceFilterBox({ t, setItems }: any) {
               ? window.scrollTo({ top: 0, left: 0, behavior: "smooth" })
               : setActive(item.id);
           }}
-          className={`w-[165px] h-[64px] ${
+          className={`w-[165px] max-w-full h-[64px] ${
             active === item.id && active !== 5
               ? "space-btn-active"
               : "space-btn"

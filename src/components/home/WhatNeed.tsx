@@ -27,9 +27,9 @@ function WhatNeed({ t }: any) {
     },
   ];
   return (
-    <section className="pb-[150px] ">
+    <section className="pb-[150px] pt-[100px]">
       <div className="home-container">
-        <h2 className="font-[700] text-neutral-50 mb-[35px] text-center">
+        <h2 className="font-[700] text-[28px] sm:text-[36px] text-neutral-50 mb-[35px] text-center">
           {t("home:what_need_section_title")}
           <span className="logo-text-color mx-[5px]">
             {locale === "ar" ? (
@@ -44,7 +44,7 @@ function WhatNeed({ t }: any) {
             {t("home:what_need_section_title_span")}
           </span>
         </h2>
-        <div className="grid grid-cols-3 gap-[24px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[24px]">
           {cardContent.map((item: cardContentType) => (
             <NeedCard
               key={item.id}

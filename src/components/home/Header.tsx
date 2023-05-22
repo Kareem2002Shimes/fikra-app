@@ -127,6 +127,7 @@ function Header({ t }: any) {
         </Link>
         <div className="flex items-center lang-box">
           <Select
+            className={`${locale === "ar" && "md:basis-[auto] basis-[50%]"}`}
             options={options}
             isClearable={false}
             styles={customStyles}

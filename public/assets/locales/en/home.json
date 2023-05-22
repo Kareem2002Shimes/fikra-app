@@ -15,7 +15,7 @@
   "discover_section_grid_three_title": "Administrative spaces decorations",
   "discover_section_grid_one_desc": "Restaurants, cafes, shops, and more",
   "discover_section_grid_two_desc": "Bedrooms, living room, kitchen, and more",
-  "discover_section_grid_three_desc": "Meeting rooms, offices, reception, and more",
+  "discover_section_grid_three_desc": "Meeting rooms, offices, reception",
   "discover_section_btn": "Get stared",
   "translate_ideas_section_title": "With one click, chose what you want to design",
   "translate_ideas_section_btn": "Explore more",
@@ -46,6 +46,7 @@
   "footer_website_map_link_one": "Home",
   "footer_website_map_link_two": "Terms of Service",
   "footer_website_map_link_three": "Privacy Policy",
-  "footer_copy_right_span": "Fikra 2023",
-  "footer_copy_right": "© All Rights Reserved"
+  "footer_copy_right_span": "2023 Fikra",
+  "footer_copy_right": "All Rights Reserved",
+  "follow_on_social_media": "Follow Fikra on social media"
 }

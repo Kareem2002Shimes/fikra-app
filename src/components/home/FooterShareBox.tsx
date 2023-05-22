@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-
+import { useRouter } from "next/router";
 function FooterShareBox({
   title,
   content,
@@ -10,6 +10,7 @@ function FooterShareBox({
   content: string[];
   t: any;
 }) {
+  const { locale } = useRouter();
   const socialLinks = [
     { icon: "facebook-icon", url: "facebook" },
     { icon: "insta-icon", url: "insta" },
@@ -17,9 +18,11 @@ function FooterShareBox({
     { icon: "youtube-icon", url: "youtube" },
   ];
   return (
-    <div>
-      <h4 className="font-[700] text-white mb-[16px]">{title}</h4>
-      <nav>
+    <>
+      <h4 className="font-[700] text-white mb-[16px] hidden sm:block">
+        {title}
+      </h4>
+      <nav className="hidden sm:block">
         <ul className="grid grid-cols-2 gap-[16px]">
           {content.map((item: string) => (
             <li key={item}>
@@ -34,25 +37,37 @@ function FooterShareBox({
         </ul>
       </nav>
       {title === t("home:footer_title_one") ? (
-        <div className="flex items-center mt-[40px]">
+        <div className=" mt-[40px] items-center justify-center sm:justify-start hidden md:flex">
           <Image
             src="/assets/images/logo.svg"
             alt="logo-img"
             width={32}
             height={32}
           />
-          <p className="font-[400] text-sm text-[#FEFEFE] mx-[10px]">
-            {t("home:footer_copy_right_span")}
-            <span className="block">{t("home:footer_copy_right")}</span>
+          <p className="font-[400] text-sm text-[#FEFEFE] mx-[10px] content-center md:block">
+            <span className="order-2">
+              {locale !== "ar" && "©"}
+              {t("home:footer_copy_right_span")}
+            </span>
+            <span className="block">
+              {locale === "ar" && "©"} {t("home:footer_copy_right")}
+            </span>
           </p>
         </div>
       ) : (
         <nav className="mt-[40px]">
+          <span
+            className={`text-neutral-200 text-[14px] font-[400] mb-[16px] block text-center ${
+              locale === "ar" ? "sm:text-right" : "sm:text-left"
+            }`}
+          >
+            {t("home:follow_on_social_media")}
+          </span>
           <ul className="flex items-center gap-[15px]">
             {socialLinks.map((item) => (
               <li
                 key={item.url}
-                className="w-[56px] h-[56px]  border-[1px] border-neutral-700 hover:bg-accent-color transition-all duration-200 hover:border-transparent rounded-[12px]"
+                className="w-[56px] h-[56px] sm:border-[1px] border-none border-neutral-700 hover:bg-accent-color transition-all duration-200 hover:border-transparent rounded-[12px]"
               >
                 <Link
                   href={`/${item.url}`}
@@ -69,9 +84,23 @@ function FooterShareBox({
               </li>
             ))}
           </ul>
+          <div className="items-center justify-center sm:justify-start mt-[30px] flex md:hidden">
+            <Image
+              src="/assets/images/logo.svg"
+              alt="logo-img"
+              width={32}
+              height={32}
+            />
+            <p className="font-[400] text-sm text-[#FEFEFE] mx-[10px] content-center md:block">
+              <span className="order-2 mx-[5px] block">
+                © {t("home:footer_copy_right_span")}
+              </span>
+              <span className="block">{t("home:footer_copy_right")}</span>
+            </p>
+          </div>
         </nav>
       )}
-    </div>
+    </>
   );
 }
 

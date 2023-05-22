@@ -9,7 +9,7 @@ function ChoosePlace({ t }: any) {
   return (
     <section className="pt-[150px]">
       <div className="home-container content-center flex-col">
-        <div className="w-[635px] mx-auto text-center mb-[30px] ">
+        <div className="w-[635px] max-w-full mx-auto text-center mb-[30px] ">
           <MainHeading title={t("home:choose_place_section_title")} />
         </div>
         <PlaceFilterBox t={t} setItems={setItems} />

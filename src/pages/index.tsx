@@ -16,22 +16,19 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useSession } from "next-auth/react";
 import Loading from "../components/Loading";
 import Popup from "../components/Popup";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./api/auth/[...nextauth]";
 
-function HomePage() {
+function HomePage({ user }: any) {
   const { t } = useTranslation();
-  const { status } = useSession();
   const [popup, setPopup] = useState<boolean>(false);
-  if (status === "loading") {
-    return <Loading />;
-  }
-
   return (
     <Fragment>
       <Head>
         <title>home page</title>
       </Head>
       {popup && <Popup setPopup={setPopup} />}
-      <Header t={t} />
+      <Header t={t} user={user} />
       <main>
         <Landing t={t} setPopup={setPopup} />
         <Companies t={t} />
@@ -49,9 +46,19 @@ function HomePage() {
 
 export default HomePage;
 
-export async function getServerSideProps({ locale }: { locale: string }) {
+export async function getServerSideProps({
+  locale,
+  req,
+  res,
+}: {
+  locale: string;
+  req: any;
+  res: any;
+}) {
+  const session = await getServerSession(req, res, authOptions);
   return {
     props: {
+      user: session?.user || null,
       ...(await serverSideTranslations(locale, ["home"])),
     },
   };

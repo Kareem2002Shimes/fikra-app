@@ -13,7 +13,7 @@ function Landing({
   return (
     <section className="overflow-hidden relative h-[calc(100vh-65px)] w-full ">
       <Overlay />
-      <div className=" px-[16px] sm:px-0 absolute z-[10] w-full text-center left-[50%] translate-x-[-50%] top-[50%] translate-y-[-50%]  content-center flex-col">
+      <div className=" px-[16px] sm:px-0 absolute z-[10] w-full text-center left-[50%] translate-x-[-50%] top-[50%] md:top-[65%] translate-y-[-50%]  content-center flex-col">
         <h1 className="text-white  font-[700] w-full text-[30px] md:text-[40px] lg:text-[56px] leading-[52px] lg:leading-[72px] mb-[16px]">
           {t("home:h1_title")}
           <span className="block">{t("home:h1_title_span")}</span>

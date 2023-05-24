@@ -1,4 +1,3 @@
-import Loading from "@/src/components/Loading";
 import Layout from "@/src/components/dashboard/Layout";
 import { useGetUsersQuery } from "@/src/redux/features/users/usersApiSlice";
 import { useSession } from "next-auth/react";
@@ -14,10 +13,11 @@ function Profile() {
   const { t } = useTranslation();
   const [phone, setPhone] = useState("+201212160988");
   const { locale } = useRouter();
-  const { data, status } = useSession();
+  const { data } = useSession();
   const [showForm, setShowForm] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
   const showData = [
     {
       label: t("profile:profile_form_name"),
@@ -36,9 +36,6 @@ function Profile() {
       value: "*******",
     },
   ];
-  if (status === "loading") {
-    return <Loading />;
-  }
 
   return (
     <Layout t={t}>
@@ -150,7 +147,7 @@ function Profile() {
                     <input
                       type="text"
                       id="name"
-                      className={`auth-box w-full bg-transparent rounded-[8px] text-sm  text-neutral-200 border border-input-border px-[15px]  focus:border-accent-color`}
+                      className={`auth-box w-full tracking-[0.8px] bg-transparent rounded-[8px] text-sm  text-neutral-200 border border-input-border px-[15px]  focus:border-accent-color`}
                       defaultValue={data?.user?.name as any}
                     />
                   </div>

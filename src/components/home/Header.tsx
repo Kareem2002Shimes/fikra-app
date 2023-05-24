@@ -1,9 +1,11 @@
 import Image from "next/image";
 import Select, { components } from "react-select";
 import Link from "next/link";
-import { signOut, useSession } from "next-auth/react";
-import { Fragment, useState } from "react";
+import { signOut } from "next-auth/react";
+import { Fragment } from "react";
 import { useRouter } from "next/router";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/src/pages/api/auth/[...nextauth]";
 
 const KSAIcon = (
   <div className="mx-[8px]">
@@ -98,17 +100,15 @@ const options = [
   { value: "ger", label: "Ger" },
 ];
 
-function Header({ t }: any) {
-  const { data } = useSession();
+function Header({ t, user }: any) {
   const { push, locale } = useRouter();
-
   const changeLanguage = (selected: any) => {
     const localeValue = selected.value;
     push("/", "/", { locale: localeValue });
   };
 
   return (
-    <header className="border-b-[1px] border-input-border relative z-40">
+    <header className="border-b-[1px] h-[65px] border-input-border relative z-40">
       <div className="home-container py-[8px] flex items-center justify-between">
         <Link href="/" className="flex items-center">
           <Image
@@ -141,7 +141,7 @@ function Header({ t }: any) {
             }}
             defaultValue={options.find((option) => option.value === locale)}
           />
-          {data?.user ? (
+          {user ? (
             <button
               onClick={() => signOut({ callbackUrl: "/" })}
               className="text-neutral-50 text-md font-[500] mr-[8px] w-fit sm:w-[130px] h-[40px] content-center transition-all duration-200 ease-in-out hover:text-accent-color"

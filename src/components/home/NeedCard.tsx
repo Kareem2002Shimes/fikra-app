@@ -20,7 +20,7 @@ function NeedCard({
         borderRadius: " 16px",
         border: "2px solid transparent",
       }}
-      className={`rounded-[16px] p-[24px] text-center ${
+      className={`rounded-[16px] p-[24px]  ${
         locale === "ar" ? "text-right" : "text-left"
       }`}
     >
@@ -32,7 +32,7 @@ function NeedCard({
         alt="doc-icon"
         width={48}
         height={48}
-        className="mb-[15px] mx-auto sm:mx-0"
+        className="mb-[15px] "
       />
       <h6 className="text-neutral-100 font-[600] mb-[8px]">{title}</h6>
       <p className="text-neutral-300 font-[500]">{desc}</p>

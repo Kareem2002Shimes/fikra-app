@@ -6,6 +6,9 @@
   .home-container {
     @apply px-[16px] sm:px-[72px];
   }
+  .space-betwwen-sections {
+    @apply pt-[80px] md:pt-[150px];
+  }
   .form-label {
     @apply block mb-2 text-md font-[500] text-white;
   }

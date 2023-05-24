@@ -5,7 +5,7 @@ function GenerateIdeas({ t }: any) {
   const { locale } = useRouter();
 
   return (
-    <section className="pb-[80px] relative z-10">
+    <section className="space-betwwen-sections pb-[80px] md:pb-[150px] relative z-10">
       <div className="home-container grid grid-cols-1 md:grid-cols-2 gap-[70px] place-items-center relative">
         <div
           className={`absolute ${
@@ -38,7 +38,7 @@ function GenerateIdeas({ t }: any) {
             src="/assets/images/dashboard/styleIdeas/1.jpg"
             alt="generate-img"
             fill={true}
-            className="rounded-[16px] object-cover"
+            className="rounded-[8px] object-cover"
           />
         </div>
       </div>

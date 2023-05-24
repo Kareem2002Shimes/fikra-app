@@ -4,8 +4,6 @@ import { useEffect, useState } from "react";
 import QandAProps from "@/src/components/dashboard/plans/QandA";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useSession } from "next-auth/react";
-import Loading from "@/src/components/Loading";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "@/src/redux/app/store";
@@ -14,6 +12,7 @@ import {
   setPrimary,
   setPro,
 } from "@/src/redux/features/pricing/pricingSlice";
+import { useSession } from "next-auth/react";
 
 function Plans() {
   const { t } = useTranslation();
@@ -89,13 +88,12 @@ function Plans() {
             ],
     },
   ];
-  const { status } = useSession();
   const dispatch = useAppDispatch();
   const pricing = useAppSelector((state) => state.pricing);
   const [yearly, setYearly] = useState<boolean>(false);
   const [showInvitePopup, setInvitePopup] = useState<boolean>(true);
   const [btnType, setBtnType] = useState("month");
-
+  const { status } = useSession();
   useEffect(() => {
     if (btnType === "month") {
       setYearly(false);
@@ -109,13 +107,10 @@ function Plans() {
       dispatch(setAdvanced(PricingItems[2].price.year));
     }
   }, [btnType, setYearly, dispatch]);
-  if (status === "loading") {
-    return <Loading />;
-  }
 
   return (
     <div>
-      {showInvitePopup && (
+      {showInvitePopup && status === "authenticated" && (
         <div
           style={{
             background:

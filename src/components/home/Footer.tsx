@@ -16,7 +16,7 @@ function Footer({ t }: any) {
   ];
 
   return (
-    <section className="bg-[#141421]  relative z-10">
+    <section className="bg-[#141421]  relative z-10 ">
       <div className="home-container ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-[55px] relative">
           <div
@@ -51,7 +51,7 @@ function Footer({ t }: any) {
               locale === "ar"
                 ? "md:pr-[30px] pr-0 md:before:block"
                 : "md:pl-[30px] pr-0 md:after:block"
-            } mt-[30px] md:mt-0 before:hidden after:hidden  lg:before:block  before:absolute before:content-[''] before:right-0 before:top-0 before:w-[1px] before:h-full before:border-r-[2.2px] before:border-dashed before:border-auth-border  after:absolute after:content-[''] after:left-0 after:top-0 after:w-[1px] after:h-full after:border-l-[2.2px] after:border-dashed after:border-auth-border order-2 sm:order-none`}
+            } mt-[30px] md:mt-0 before:hidden md:after:hidden  lg:after:block lg:before:block  before:absolute before:content-[''] before:right-0 before:top-0 before:w-[1px] before:h-full before:border-r-[2.2px] before:border-dashed before:border-auth-border  after:absolute after:content-[''] after:left-0 after:top-0 after:w-[1px] after:h-full after:border-l-[2.2px] after:border-dashed after:border-auth-border order-2 sm:order-none`}
           >
             <FooterShareBox
               title={t("home:footer_title_one")}

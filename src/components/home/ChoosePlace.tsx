@@ -7,7 +7,7 @@ function ChoosePlace({ t }: any) {
   const [items, setItems] = useState(SpaceSlider[0].items);
 
   return (
-    <section className="pt-[150px]">
+    <section className="space-betwwen-sections">
       <div className="home-container content-center flex-col">
         <div className="w-[635px] max-w-full mx-auto text-center mb-[30px] ">
           <MainHeading title={t("home:choose_place_section_title")} />

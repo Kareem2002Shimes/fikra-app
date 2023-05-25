@@ -125,8 +125,8 @@ function Plans() {
               className="underline "
             >
               {locale === "ar"
-                ? "ادعو اصدقائك واحصل على محاولات اكثر"
-                : "Invite your friends and get more tries."}
+                ? " ادعو اصدقائك واحصل على محاولات اكثر"
+                : " Invite your friends and get more tries."}
             </Link>
           </p>
           <button
@@ -140,14 +140,20 @@ function Plans() {
         </div>
       )}
       <Layout t={t}>
-        <div className="felx-col w-full overflow-y-scroll">
+        <div
+          className={`felx-col w-full mb-[87px] md:mb-0 px-[30px] ${
+            locale === "ar"
+              ? "md:pr-[24px] md:pl-[30px]"
+              : "md:pl-[24px] md:pr-[30px]"
+          } `}
+        >
           <div className="text-center pt-[40px] mb-[26px] ">
             <h2 className="text-neutral-50 font-[700] ">
               {t("plans:plans_title")}
             </h2>
           </div>
-          <div className="content-center w-full ">
-            <div className="flex justify-between mx-[26px] px-[4px] items-center bg-neutral-700 w-[181px] h-[40px] rounded-[32px] ">
+          <div className="content-center w-full gap-[26px] ">
+            <div className="flex justify-between px-[4px] items-center bg-neutral-700 w-[181px] h-[40px] rounded-[32px] ">
               <button
                 type="button"
                 className={`pricing-btn text-sm text-neutral-50  transition-all duration-200  hover:bg-accent-color ${
@@ -180,7 +186,9 @@ function Plans() {
             </div>
           </div>
           {/* grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[24px] pl-[24px] pr-[30px] pt-[30px]">
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[24px] pt-[30px]`}
+          >
             {PricingItems.map((box) => (
               <PricingBox
                 key={box.id}

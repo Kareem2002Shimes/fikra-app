@@ -145,7 +145,13 @@ function View({ t, setShowControls }: any) {
   }, []);
   return (
     <div className="w-full min-h-full ">
-      <div className="p-[16px] ">
+      <div
+        className={`py-[24px] px-[30px] ${
+          locale === "ar"
+            ? "md:pr-[24px] md:pl-[30px]"
+            : "md:pl-[24px] md:pr-[30px]"
+        } `}
+      >
         {settings.receivedImage && (
           <div className="flex items-center mb-[8px] relative download-box">
             <Select
@@ -224,13 +230,13 @@ function View({ t, setShowControls }: any) {
               onClick={() => {
                 setShowControls(true);
               }}
-              className="text-md text-white mx-[16px] font-[500] w-[204px] h-[40px] nonFilledBtn"
+              className="text-md text-white mx-[16px] font-[500] w-[204px] max-w-full h-[40px] nonFilledBtn"
             >
               {t("dashboard:select_desgin_btn")}
             </button>
           </div>
         )}
-        <div className="md:min-h-[526px]  w-full relative content-center p-[16px] bg-neutral-800 rounded-[16px]  flex">
+        <div className="min-h-[526px]  w-full relative content-center p-[16px] bg-neutral-800 rounded-[16px]  flex">
           {settings.receivedImage ? (
             <Image
               src={settings.receivedImage}
@@ -294,7 +300,7 @@ function View({ t, setShowControls }: any) {
           )}
         </div>
       </div>
-      <div className="px-[24px] border-t-[1px] border-input-border ">
+      <div className="px-[30px] md:px-[24px] mb-[calc(87px+16px)] md:mb-0 border-t-[1px] border-input-border ">
         <span className="text-white text-lg font-[700] py-[15px] block">
           {t("dashboard:select_style_placeholder")}
         </span>

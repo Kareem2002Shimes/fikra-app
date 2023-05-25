@@ -50,16 +50,18 @@ function Profile() {
         </div>
         <div
           className={`${
-            locale === "ar" ? "pr-[24px] pl-[32px]" : "pl-[24px] pr-[32px]"
-          }  py-[24px]`}
+            locale === "ar"
+              ? "lg:pr-[24px] lg:pl-[32px] px-[24px]"
+              : "lg:pl-[24px] lg:pr-[32px] px-[24px]"
+          }  py-[24px] mb-[87px] md:mb-0`}
         >
           <h4 className="font-[500] text-white mb-[8px]">
             {t("profile:account_info")}
           </h4>
           <div
-            className={`bg-neutral-800  rounded-[16px] h-[96px] flex items-center justify-between`}
+            className={`bg-neutral-800  rounded-[16px] min-h-[96px] flex items-center gap-[16px] p-[15px] flex-wrap justify-center sm:justify-between`}
           >
-            <div className="p-[16px] flex items-center">
+            <div className="flex items-center">
               <button className="relative ">
                 <Image
                   src={data?.user?.image as any}
@@ -89,7 +91,7 @@ function Profile() {
             </div>
             <Link
               href="plans/management"
-              className="flex mt-[16px] transition-all duration-200 hover:bg-accent-color mb-[40px] mx-[14px] items-center bg-neutral-700 w-fit px-[16px] content-center h-[40px] rounded-[8px]"
+              className="flex transition-all duration-200 hover:bg-accent-color  items-center bg-neutral-700 w-fit  content-center h-[40px] rounded-[8px] px-[16px]"
             >
               <Image
                 src="/assets/images/dashboard/icons/sidebar/plans.svg"
@@ -139,7 +141,7 @@ function Profile() {
             )}
             {showForm && (
               <form>
-                <div className="mb-6 w-[552px]">
+                <div className="mb-6 lg:w-[552px]">
                   <label htmlFor="name" className="form-label">
                     {t("profile:profile_form_name")}
                   </label>
@@ -152,7 +154,7 @@ function Profile() {
                     />
                   </div>
                 </div>
-                <div className="mb-6 w-[552px]">
+                <div className="mb-6 lg:w-[552px]">
                   <label htmlFor="name" className="form-label">
                     {t("profile:profile_form_country")}
                   </label>
@@ -170,7 +172,7 @@ function Profile() {
                   <label htmlFor="name" className="form-label">
                     {t("profile:profile_form_phone")}
                   </label>
-                  <div className=" h-[56px] content-center phone-box relative select-country w-[552px] max-w-full rounded-[8px] border border-input-border   focus:border-accent-color">
+                  <div className=" h-[56px] content-center phone-box relative select-country lg:w-[552px] max-w-full rounded-[8px] border border-input-border   focus:border-accent-color">
                     <PhoneInput
                       country={"eg"}
                       value={phone}
@@ -214,7 +216,7 @@ function Profile() {
                     />
                   </div>
                 </div>
-                <div className="mb-[12px]  w-[552px]">
+                <div className="mb-[12px]  lg:w-[552px]">
                   <label htmlFor="password" className="form-label">
                     {t("profile:profile_form_password_label")}
                   </label>
@@ -239,7 +241,7 @@ function Profile() {
                     />
                   </div>
                 </div>
-                <div className=" w-[552px]">
+                <div className=" lg:w-[552px]">
                   <div className="flex relative w-full ">
                     <input
                       type={showPassword ? "text" : "password"}
@@ -261,7 +263,7 @@ function Profile() {
                     />
                   </div>
                 </div>
-                <div className="flex items-center mt-[50px]">
+                <div className="flex items-center gap-[16px] md:gap-0 mt-[50px]">
                   <button
                     type="submit"
                     className="w-[146px] h-[40px] text-neutral-50 text-md font-[500] rounded-[12px] bg-accent-color"
@@ -270,7 +272,7 @@ function Profile() {
                   </button>
                   <button
                     onClick={() => setShowForm(false)}
-                    className="w-[146px] mx-[15px] h-[40px] text-neutral-50 text-md font-[500] rounded-[12px] bg-[#1F1F36]"
+                    className="w-[146px] md:mx-[15px] h-[40px] text-neutral-50 text-md font-[500] rounded-[12px] bg-[#1F1F36]"
                   >
                     {t("profile:profile_form_cancel")}
                   </button>

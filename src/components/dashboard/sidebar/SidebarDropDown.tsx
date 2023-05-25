@@ -69,8 +69,18 @@ function SidebarDropDown({ sidebar, t }: any) {
     },
   ];
   useEffect(() => {
-    window.innerWidth < 768 && setMenuPosition("top");
-  }, [menuPosition]);
+    const positionListener = () => {
+      return window.innerWidth < 768
+        ? setMenuPosition("top")
+        : setMenuPosition("right-start");
+    };
+    positionListener();
+    window.addEventListener("resize", positionListener);
+    return () => {
+      window.removeEventListener("resize", positionListener);
+    };
+  }, []);
+
   return (
     <Menu
       open={isMenuOpen}

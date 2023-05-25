@@ -22,8 +22,8 @@ function DefaultView({ t, setShowControls }: any) {
     },
   ]);
   return (
-    <div className="w-full">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-[32px] ">
+    <div className="w-full h-full">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[32px] ">
         {btns.map((btn) => (
           <div key={btn.name} className="content-center flex-col ">
             <button className="content-center w-full h-[64px] mb-[15px] bg-[rgba(255,255,255,0.04)] rounded-[8px]">
@@ -57,9 +57,11 @@ function DefaultView({ t, setShowControls }: any) {
               color: "#fff",
             },
           });
+          window.innerWidth < 768 &&
+            window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
           setShowControls(true);
         }}
-        className="coloredBtn mx-auto block w-[293.94px] h-[43.29px] text-md rounded-[8px] text-white font-[500]"
+        className="coloredBtn mx-auto block w-[293.94px]  max-w-full h-[43.29px] text-md rounded-[8px] text-white font-[500]"
       >
         {t("dashboard:select_desgin_btn")}
       </button>

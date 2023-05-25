@@ -4,9 +4,10 @@ import { useState } from "react";
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-
+import { useRouter } from "next/router";
 function History() {
   const [data, setData] = useState([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+  const { locale } = useRouter();
   const [icons, setIcons] = useState([
     "squareDownload-icon",
     "full-screen",
@@ -17,7 +18,11 @@ function History() {
   return (
     <Layout t={t}>
       <div
-        className={`grid overflow-y-scroll w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[24px] py-[24px] pl-[24px] pr-[30px]`}
+        className={`grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[24px] py-[24px] px-[30px]  ${
+          locale === "ar"
+            ? "md:pr-[24px] md:pl-[30px]"
+            : "md:pl-[24px] md:pr-[30px]"
+        } mb-[87px] md:mb-0`}
       >
         {data.map((item: number) => (
           <div
@@ -27,14 +32,16 @@ function History() {
             <ImageCard />
             <div className="text-white absolute -z-20 group-hover:z-20 bottom-[30px] left-[50%] translate-x-[-50%]">
               <div className="w-[114px] h-[24px] rounded-[4px] bg-[#2C2C2C]  content-center mb-[8px]">
-                <span className="text-xs font-[400]">Download Image</span>
+                <span className="text-xs font-[400]">
+                  {t("history:download_image")}
+                </span>
               </div>
-              <div className="flex items-center">
+              <div className="flex items-center gap-[8px]">
                 {icons.map((icon) => (
                   <button
                     key={icon}
                     type="button"
-                    className="bg-[#2C2C2C] hover:bg-accent-color transition-all duration-300 ease w-[48px] h-[48px] content-center rounded-[8px] mr-[8px] last-of-type:mr-0"
+                    className="bg-[#2C2C2C] hover:bg-accent-color transition-all duration-300 ease w-[48px] h-[48px] content-center rounded-[8px] "
                   >
                     <Image
                       src={`/assets/images/dashboard/icons/history/${icon}.svg`}
@@ -57,7 +64,11 @@ export default History;
 export async function getServerSideProps({ locale }: { locale: string }) {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ["dashboard", "common"])),
+      ...(await serverSideTranslations(locale, [
+        "dashboard",
+        "history",
+        "common",
+      ])),
     },
   };
 }

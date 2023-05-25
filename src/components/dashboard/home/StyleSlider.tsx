@@ -11,7 +11,7 @@ import {
   setActiveIdea,
   setSelectedChooseStyle,
 } from "@/src/redux/features/settings/settingsSlice";
-function StyleSlider() {
+function StyleSlider({ setShowControls }: any) {
   const [styleIdeas, setStyleIdeas] = useState<any>(selects[2]);
   const dispatch = useAppDispatch();
   const settings = useAppSelector((state) => state.settings);

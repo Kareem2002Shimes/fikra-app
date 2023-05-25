@@ -224,19 +224,20 @@ function Sidebar({ t }: any) {
           <li
             key={item.name}
             className={`
+            w-[80px] md:w-auto
               flex items-center h-full md:h-[40px] ${
                 pathname === item.url && "bg-sidebar-bg2"
               } 
             ${
               locale === "ar"
                 ? sidebar
-                  ? "p-0"
-                  : "md:pr-[16px]"
+                  ? "p-0 md:pr-[16px]"
+                  : "p-0"
                 : sidebar
-                ? "md:pl-[16px]"
+                ? "md:pl-[16px] p-0"
                 : "p-0"
             }
-            w-full mb-[15px] relative`}
+            w-full md:mb-[15px] relative`}
           >
             <Link
               href={item.url}
@@ -267,12 +268,12 @@ function Sidebar({ t }: any) {
                   }  ${sidebar ? "md:top-[50%] " : "md:top-[27%]"} ${
                     locale === "ar"
                       ? sidebar
-                        ? "md:left-[24px]"
-                        : "md:left-[40px]"
+                        ? "md:right-[calc(100%-48px)] right-[38px]"
+                        : "md:right-[40px] right-[38px]"
                       : sidebar
-                      ? "md:right-[24px]"
-                      : "md:right-[40px]"
-                  } absolute top-[17px] right-[45px] w-[18px] h-[18px]  translate-y-[-50%] bg-error-500 text-xs text-white font-[400] content-center rounded-[50%]`}
+                      ? "md:right-[24px] right-[25px]"
+                      : "md:right-[25px] right-[25px]"
+                  } absolute top-[17px] w-[18px] h-[18px]  translate-y-[-50%] bg-error-500 text-xs text-white font-[400] content-center rounded-[50%]`}
                 >
                   8
                 </span>

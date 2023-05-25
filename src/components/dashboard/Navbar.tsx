@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import roadMapAnimation from "@/public/assets/animations/icons_Animation/roadmap/roadmap.json";
 function Navbar({ t }: any) {
   const { locale } = useRouter();
+
   return (
     <div className="border-b-[1px] border-input-border ">
       <div className="mx-[30px]  flex justify-between items-center h-[72px]">
@@ -28,9 +29,9 @@ function Navbar({ t }: any) {
 
         <div className="flex items-center">
           <Link
-            href="#"
+            href="/dashboard/roadmap"
             style={{ direction: "ltr" }}
-            className="hidden sm:flex content-center border-[1px] rounded-[16px] border-accent-color text-white text-md w-[166px] h-[40px]"
+            className="hidden sm:flex hover:bg-accent-color hover:border-none duration-200 content-center border-[1px] rounded-[16px] border-accent-color text-white text-md w-[166px] h-[40px]"
           >
             <Lottie
               className="w-[24px] h-[24px] mx-[8px]"

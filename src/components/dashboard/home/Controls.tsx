@@ -767,7 +767,7 @@ function Controls({ t, setShowControls }: any) {
     }
   };
   return (
-    <div className="absolute top-0 left-0 h-full z-50 w-full bg-[rgba(20,20,20,0.76);]">
+    <div className="absolute top-0 left-0 h-full z-50 w-full bg-[rgba(20,20,20,0.76)]">
       <div className="w-[300px] h-full px-[16px] bg-neutral-800 ">
         <div className="border-b-[1px] border-auth-border py-[16px] flex justify-between items-center">
           <button

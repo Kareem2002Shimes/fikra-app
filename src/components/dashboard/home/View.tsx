@@ -144,7 +144,7 @@ function View({ t, setShowControls }: any) {
     };
   }, []);
   return (
-    <div className="w-full min-h-full">
+    <div className="w-full min-h-full ">
       <div className="p-[16px] ">
         {settings.receivedImage && (
           <div className="flex items-center mb-[8px] relative download-box">
@@ -230,7 +230,7 @@ function View({ t, setShowControls }: any) {
             </button>
           </div>
         )}
-        <div className="min-h-[526px] w-full relative content-center p-[16px] bg-neutral-800 rounded-[16px]  flex">
+        <div className="md:min-h-[526px]  w-full relative content-center p-[16px] bg-neutral-800 rounded-[16px]  flex">
           {settings.receivedImage ? (
             <Image
               src={settings.receivedImage}
@@ -294,7 +294,7 @@ function View({ t, setShowControls }: any) {
           )}
         </div>
       </div>
-      <div className="px-[24px] border-t-[1px] border-input-border">
+      <div className="px-[24px] border-t-[1px] border-input-border ">
         <span className="text-white text-lg font-[700] py-[15px] block">
           {t("dashboard:select_style_placeholder")}
         </span>

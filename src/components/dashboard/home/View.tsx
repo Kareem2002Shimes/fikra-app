@@ -165,7 +165,7 @@ function View({ t, setShowControls }: any) {
             />
             <button
               type="button"
-              className="ml-[16px] relative z-50"
+              className="ml-[16px] relative z-30"
               onClick={() => setSharebox(!sharebox)}
               ref={btnRef}
             >
@@ -220,6 +220,14 @@ function View({ t, setShowControls }: any) {
                 />
               </WhatsappShareButton>
             </div>
+            <button
+              onClick={() => {
+                setShowControls(true);
+              }}
+              className="text-md text-white mx-[16px] font-[500] w-[204px] h-[40px] nonFilledBtn"
+            >
+              {t("dashboard:select_desgin_btn")}
+            </button>
           </div>
         )}
         <div className="min-h-[526px] w-full relative content-center p-[16px] bg-neutral-800 rounded-[16px]  flex">

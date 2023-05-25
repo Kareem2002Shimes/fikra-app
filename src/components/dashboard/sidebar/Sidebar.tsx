@@ -7,7 +7,7 @@ import HistoryAnimation from "@/public/assets/animations/icons_Animation/histo.j
 import PlansAnimation from "@/public/assets/animations/icons_Animation/fav.json";
 import LineAnimation from "@/public/assets/animations/icons_Animation/blue line.json";
 import InfoAnimation from "@/public/assets/animations/icons_Animation/info.json";
-
+import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import useSidebar from "@/src/hooks/useSidebar";
 import SidebarDropDown from "./SidebarDropDown";
@@ -189,14 +189,16 @@ function Sidebar({ t }: any) {
   return (
     <aside
       className={` ${
-        sidebar ? "min-w-[247px]" : "w-[92px]"
-      } bg-neutral-800 transition-all  duration-300 ease-in-out items-center flex-col ${
-        locale === "ar" ? "border-l-[1px]" : " border-r-[1px]"
-      } border-input-border hidden md:flex`}
+        sidebar ? "md:min-w-[247px]" : "md:w-[92px]"
+      } bg-neutral-800 transition-all duration-300 ease-in-out items-center flex-col ${
+        locale === "ar"
+          ? "md:border-l-[1px] md:border-t-0"
+          : " md:border-r-[1px] md:border-t-0"
+      } border-input-border border-t-[1px] md:flex sidebar-mobile`}
     >
       <button
         style={{ direction: "ltr" }}
-        className={`content-center mb-[40px] dashed-border-dashboard-sidebar ${
+        className={`content-center mb-[40px] hidden md:flex dashed-border-dashboard-sidebar ${
           !sidebar ? "w-[72px]" : "w-[158px]"
         }  h-[40px] border-input-border hover:border-transparent hover:bg-accent-color transition-all duration-200 cursor-pointer mt-[24px] `}
         onClick={() => setSidebar(!sidebar)}
@@ -217,38 +219,41 @@ function Sidebar({ t }: any) {
         )}
       </button>
       <SidebarDropDown t={t} sidebar={sidebar} />
-      <ul className="w-full">
+      <ul className="w-full flex h-full md:h-auto md:block">
         {menuItems.map((item) => (
           <li
-            style={{
-              padding:
-                !sidebar && locale
-                  ? "0"
-                  : locale === "ar"
-                  ? "0 16px 0 0"
-                  : "0 0 0 16px",
-            }}
             key={item.name}
             className={`
-              flex items-center h-[40px] ${
+              flex items-center h-full md:h-[40px] ${
                 pathname === item.url && "bg-sidebar-bg2"
-              } w-full mb-[15px] relative`}
+              } 
+            ${
+              locale === "ar"
+                ? sidebar
+                  ? "p-0"
+                  : "md:pr-[16px]"
+                : sidebar
+                ? "md:pl-[16px]"
+                : "p-0"
+            }
+            w-full mb-[15px] relative`}
           >
             <Link
               href={item.url}
-              className={`relative flex items-center ${
-                !sidebar && "justify-center"
+              className={`relative flex items-center flex-col md:flex-row justify-center  ${
+                sidebar ? "md:justify-start" : "md:justify-center"
               }  group w-full h-full group`}
             >
               {item.icon}
 
               <span
-                className={`px-[16px] text-md ${
+                className={`px-[16px] mt-[8px] md:mt-0 text-sm md:text-md ${
                   pathname === item.url
                     ? "text-accent-color"
                     : "text-neutral-200 "
                 } font-[500] transition-all duration-200 group-hover:text-accent-color ${
-                  !sidebar && "scale-0 absolute top-[50%] translate-y-[-50%]"
+                  !sidebar &&
+                  "md:scale-0 md:absolute  md:top-[50%] md:translate-y-[-50%]"
                 }`}
               >
                 {item.name}
@@ -256,12 +261,18 @@ function Sidebar({ t }: any) {
               {item.url === "/dashboard/notifications" && (
                 <span
                   className={` ${
-                    sidebar ? "w-[24px] h-[24px]" : "w-[18px] h-[18px]"
-                  }  ${
-                    sidebar ? "top-[50%]" : "top-[35%]"
-                  } absolute  translate-y-[-50%]  ${
-                    locale === "ar" ? "left-[24px]" : "right-[24px]"
-                  }  bg-error-500 text-xs text-white font-[400] content-center rounded-[50%]`}
+                    sidebar
+                      ? "md:w-[24px] md:h-[24px]"
+                      : "md:w-[18px] md:h-[18px]"
+                  }  ${sidebar ? "md:top-[50%] " : "md:top-[27%]"} ${
+                    locale === "ar"
+                      ? sidebar
+                        ? "md:left-[24px]"
+                        : "md:left-[40px]"
+                      : sidebar
+                      ? "md:right-[24px]"
+                      : "md:right-[40px]"
+                  } absolute top-[17px] right-[45px] w-[18px] h-[18px]  translate-y-[-50%] bg-error-500 text-xs text-white font-[400] content-center rounded-[50%]`}
                 >
                   8
                 </span>
@@ -269,8 +280,8 @@ function Sidebar({ t }: any) {
               {item.url === pathname && (
                 <Lottie
                   className={`absolute ${
-                    locale === "ar" ? "left-[-1.2px]" : "right-[-1.2px]"
-                  } w-fit translate-y-[-50%] top-[50%] h-full`}
+                    locale === "ar" ? "md:left-[-1.2px]" : "md:right-[-1.2px]"
+                  }  w-fit translate-y-[-50%] rotate-[270deg] md:rotate-0 top-0 md:top-[50%] h-full`}
                   animationData={LineAnimation}
                 />
               )}
@@ -279,7 +290,7 @@ function Sidebar({ t }: any) {
         ))}
       </ul>
       {sidebar && (
-        <div className="w-[212px] overflow-hidden h-[177px] relative before:absolute before:content-[''] before:right-0 before:bottom-0 before:rounded-[50%] before:w-[115px] before:h-[100px] before:bg-[#127AFB] after:absolute after:content-[''] after:left-[-30px] after:top-[-30px] after:rounded-[50%] after:w-[115px] after:h-[100px] after:bg-[#127AFB] bg-accent-color  mt-[80px]  rounded-[24px]">
+        <div className="w-[212px] hidden md:block overflow-hidden h-[177px] relative before:absolute before:content-[''] before:right-0 before:bottom-0 before:rounded-[50%] before:w-[115px] before:h-[100px] before:bg-[#127AFB] after:absolute after:content-[''] after:left-[-30px] after:top-[-30px] after:rounded-[50%] after:w-[115px] after:h-[100px] after:bg-[#127AFB] bg-accent-color  mt-[80px]  rounded-[24px]">
           <h6 className="text-neutral-100 font-[400] pt-[16px] px-[16px]  relative z-[1]">
             {t("dashboard:sidebar_discount_menu_title")} 20%
           </h6>

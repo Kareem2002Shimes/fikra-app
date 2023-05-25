@@ -3,15 +3,17 @@ import Layout from "@/src/components/dashboard/Layout";
 import View from "@/src/components/dashboard/home/View";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useState } from "react";
 
 function Dashboard() {
   const { t } = useTranslation();
+  const [showControls, setShowControls] = useState(false);
 
   return (
     <Layout t={t}>
-      <div className="flex w-full ">
-        <Controls t={t} />
-        <View t={t} />
+      <div className="flex w-full relative">
+        {showControls && <Controls t={t} setShowControls={setShowControls} />}
+        <View t={t} setShowControls={setShowControls} />
       </div>
     </Layout>
   );

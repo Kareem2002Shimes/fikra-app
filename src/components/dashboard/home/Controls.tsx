@@ -20,7 +20,7 @@ import InfoModal from "../InfoModal";
 import { handleImageCompression } from "@/src/services/uploadCompression";
 import { useRouter } from "next/router";
 
-function Controls({ t }: any) {
+function Controls({ t, setShowControls }: any) {
   const data = {
     selects: [
       {
@@ -755,194 +755,204 @@ function Controls({ t }: any) {
             dispatch(
               setReceivedImage("/assets/images/dashboard/test_result.jpg")
             );
+            setShowControls(false);
           })
           .catch((error) => toast.error(error.message));
       } else {
         reset();
         dispatch(setReceivedImage("/assets/images/dashboard/test_result.jpg"));
         toast.success(t("dashboard:ideas_generated_successfully"));
+        setShowControls(false);
       }
     }
   };
   return (
-    <div className=" w-[300px] px-[16px] bg-neutral-800 ">
-      <div className="border-b-[1px] border-auth-border py-[16px]">
-        <button
-          type="button"
-          onClick={reset}
-          className="content-center rounded-[26px] w-[128px] h-[32px] border-[1px] border-neutral-600 items-center text-sm font-[400] text-neutral-400"
-        >
-          <Image
-            src="/assets/images/dashboard/icons/home/reset.svg"
-            alt="reset-icon"
-            width={16}
-            height={16}
-            className="mx-[4px]"
-          />
-          {t("dashboard:select_reset")}
-        </button>
-      </div>
-      <form onSubmit={handleSumbit} className="mx-auto pt-[48px] w-[268px] ">
-        <div className="relative ">
-          <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
-            <InfoModal title="الفراغ هو نوع المساحة التي تود تصميمها سواء كانت سكنية او تجارية او ادارية" />
-          </div>
-          <Select
-            instanceId={spaceOptions.id}
-            options={spaceOptions.options}
-            setSelected={setSelectedSpace}
-            dispatch={dispatch}
-            value={settings.selectedSpace}
-            placeholder={spaceOptions.placeholder}
-            t={t}
-          />
-        </div>
-
-        <div className="relative ">
-          <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
-            <InfoModal title="اختار نوع غرفتك" />
-          </div>
-          <Select
-            instanceId={typeOfRoomOptions.id}
-            options={typeOfRoom}
-            setSelected={setSelectedTypeOfRoom}
-            dispatch={dispatch}
-            value={settings.selectedTypeOfRoom}
-            placeholder={typeOfRoomOptions.placeholder}
-            t={t}
-          />
-        </div>
-        <Select
-          instanceId={chooseStyleOptions.id}
-          options={chooseStyleOptions.options}
-          setSelected={setSelectedChooseStyle}
-          dispatch={dispatch}
-          value={settings.selectedChooseStyle}
-          placeholder={chooseStyleOptions.placeholder}
-          t={t}
-        />
-        <Select
-          instanceId={modeOptions.id}
-          options={modeOptions.options}
-          setSelected={setSelectedMode}
-          dispatch={dispatch}
-          value={settings.selectedMode}
-          placeholder={modeOptions.placeholder}
-          t={t}
-        />
-        {settings.selectedMode?.value !== "concept (no image needed)" &&
-          (settings.uploadedImage && imageUrl ? (
-            <div className="mb-[24px] relative">
-              <button
-                onClick={() => {
-                  setImageUrl("");
-                  dispatch(setUploadedImage(null));
-                  dispatch(setSelectedMode(null));
-                }}
-                className="w-[89px] h-[24px] group hover:bg-error-400 hover:text-white text-neutral-600 transition-all duration-100 ease-in absolute top-[8px] left-[8px] content-center bg-white rounded-[16px] font-[400] text-sm"
-              >
-                <span className="mx-[5px] group-hover:text-white text-neutral-600">
-                  X
-                </span>
-                Delete
-              </button>
-              <Image
-                src={imageUrl}
-                alt="uploaded-img"
-                width={268}
-                height={152}
-                className="rounded-[16px]"
-              />
-            </div>
-          ) : (
-            <div className="content-center relative flex-col w-full h-[152px] border-dashed border-[1.6px] border-accent-color rounded-[16px] mb-[40px]">
-              <input
-                style={{ filter: " alpha(opacity=0)" }}
-                type="file"
-                name="image"
-                accept="image/*"
-                onChange={handleChange}
-                className="absolute top-0 left-0 w-full h-full cursor-pointer opacity-0"
-              />
-              <Image
-                src="/assets/images/dashboard/icons/home/upload-icon.svg"
-                alt="upload-icon"
-                width={40}
-                height={40}
-                className="mb-[16px]"
-              />
-              <div className="text-sm text-neutral-50 mb-[8px]">
-                {locale === "ar"
-                  ? "قم بإسقاط ملفك هنا أو"
-                  : "Drop your file here or"}{" "}
-                <span className="text-accent-color">
-                  {locale === "ar" ? "تصفح" : "Browse"}
-                </span>
-              </div>
-              <span className="text-neutral-300 text-xs">
-                {locale === "ar"
-                  ? "أقصى حجم للملف 5 ميجا بايت"
-                  : "The maximum file size is 5MB"}
-              </span>
-            </div>
-          ))}
-        {settings.selectedMode?.value === "concept (no image needed)" && (
-          <>
-            <div className="relative ">
-              <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
-                <InfoModal title="اختار الجودة" />
-              </div>
-              <Select
-                instanceId={qualityOptions.id}
-                options={qualityOptions.options}
-                setSelected={setSelectedQuality}
-                dispatch={dispatch}
-                value={settings.selectedQuality}
-                placeholder={qualityOptions.placeholder}
-                t={t}
-              />
-            </div>
-            <div className="relative ">
-              <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
-                <InfoModal title="اختار استايلك المفضل" />
-              </div>
-              <Select
-                instanceId={styleOptions.id}
-                options={styleOptions.options}
-                setSelected={setSelectedStyle}
-                dispatch={dispatch}
-                value={settings.selectedStyle}
-                placeholder={styleOptions.placeholder}
-                t={t}
-              />
-            </div>
-          </>
-        )}
-
-        <div className="relative  ">
-          <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible ">
-            <InfoModal title="اختار نوع العرض" />
-          </div>
-          <Select
-            instanceId={resolutionOptions.id}
-            options={resolutionOptions.options}
-            setSelected={setSelectedResolution}
-            dispatch={dispatch}
-            value={settings.selectedResolution}
-            placeholder={resolutionOptions.placeholder}
-            t={t}
-          />
-        </div>
-
-        <div className="border-t-[1px] border-auth-border pt-[16px]">
+    <div className="absolute top-0 left-0 h-full z-30 w-full bg-[rgba(20,20,20,0.76);]">
+      <div className="w-[300px] h-full px-[16px] bg-neutral-800 ">
+        <div className="border-b-[1px] border-auth-border py-[16px] flex justify-between items-center">
           <button
-            type="submit"
-            className="coloredBtn w-full  text-md  h-[48px] rounded-[8px] text-white font-[500]"
+            type="button"
+            onClick={reset}
+            className="content-center rounded-[26px] w-[128px] h-[32px] border-[1px] border-neutral-600 items-center text-sm font-[400] text-neutral-400"
           >
-            {t("dashboard:select_desgin_btn")}
+            <Image
+              src="/assets/images/dashboard/icons/home/reset.svg"
+              alt="reset-icon"
+              width={16}
+              height={16}
+              className="mx-[4px]"
+            />
+            {t("dashboard:select_reset")}
+          </button>
+          <button
+            onClick={() => setShowControls(false)}
+            className="w-[40px] h-[40px] hover:bg-accent-color hover:border-none duration-200 text-neutral-50 rounded-[8px] border border-auth-border"
+          >
+            x
           </button>
         </div>
-      </form>
+        <form onSubmit={handleSumbit} className="mx-auto pt-[48px] w-[268px] ">
+          <div className="relative ">
+            <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
+              <InfoModal title="الفراغ هو نوع المساحة التي تود تصميمها سواء كانت سكنية او تجارية او ادارية" />
+            </div>
+            <Select
+              instanceId={spaceOptions.id}
+              options={spaceOptions.options}
+              setSelected={setSelectedSpace}
+              dispatch={dispatch}
+              value={settings.selectedSpace}
+              placeholder={spaceOptions.placeholder}
+              t={t}
+            />
+          </div>
+
+          <div className="relative ">
+            <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
+              <InfoModal title="اختار نوع غرفتك" />
+            </div>
+            <Select
+              instanceId={typeOfRoomOptions.id}
+              options={typeOfRoom}
+              setSelected={setSelectedTypeOfRoom}
+              dispatch={dispatch}
+              value={settings.selectedTypeOfRoom}
+              placeholder={typeOfRoomOptions.placeholder}
+              t={t}
+            />
+          </div>
+          <Select
+            instanceId={chooseStyleOptions.id}
+            options={chooseStyleOptions.options}
+            setSelected={setSelectedChooseStyle}
+            dispatch={dispatch}
+            value={settings.selectedChooseStyle}
+            placeholder={chooseStyleOptions.placeholder}
+            t={t}
+          />
+          <Select
+            instanceId={modeOptions.id}
+            options={modeOptions.options}
+            setSelected={setSelectedMode}
+            dispatch={dispatch}
+            value={settings.selectedMode}
+            placeholder={modeOptions.placeholder}
+            t={t}
+          />
+          {settings.selectedMode?.value !== "concept (no image needed)" &&
+            (settings.uploadedImage && imageUrl ? (
+              <div className="mb-[24px] relative">
+                <button
+                  onClick={() => {
+                    setImageUrl("");
+                    dispatch(setUploadedImage(null));
+                    dispatch(setSelectedMode(null));
+                  }}
+                  className="w-[89px] h-[24px] group hover:bg-error-400 hover:text-white text-neutral-600 transition-all duration-100 ease-in absolute top-[8px] left-[8px] content-center bg-white rounded-[16px] font-[400] text-sm"
+                >
+                  <span className="mx-[5px] group-hover:text-white text-neutral-600">
+                    X
+                  </span>
+                  Delete
+                </button>
+                <Image
+                  src={imageUrl}
+                  alt="uploaded-img"
+                  width={268}
+                  height={152}
+                  className="rounded-[16px]"
+                />
+              </div>
+            ) : (
+              <div className="content-center relative flex-col w-full h-[152px] border-dashed border-[1.6px] border-accent-color rounded-[16px] mb-[40px]">
+                <input
+                  style={{ filter: " alpha(opacity=0)" }}
+                  type="file"
+                  name="image"
+                  accept="image/*"
+                  onChange={handleChange}
+                  className="absolute top-0 left-0 w-full h-full cursor-pointer opacity-0"
+                />
+                <Image
+                  src="/assets/images/dashboard/icons/home/upload-icon.svg"
+                  alt="upload-icon"
+                  width={40}
+                  height={40}
+                  className="mb-[16px]"
+                />
+                <div className="text-sm text-neutral-50 mb-[8px]">
+                  {locale === "ar"
+                    ? "قم بإسقاط ملفك هنا أو"
+                    : "Drop your file here or"}{" "}
+                  <span className="text-accent-color">
+                    {locale === "ar" ? "تصفح" : "Browse"}
+                  </span>
+                </div>
+                <span className="text-neutral-300 text-xs">
+                  {locale === "ar"
+                    ? "أقصى حجم للملف 5 ميجا بايت"
+                    : "The maximum file size is 5MB"}
+                </span>
+              </div>
+            ))}
+          {settings.selectedMode?.value === "concept (no image needed)" && (
+            <>
+              <div className="relative ">
+                <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
+                  <InfoModal title="اختار الجودة" />
+                </div>
+                <Select
+                  instanceId={qualityOptions.id}
+                  options={qualityOptions.options}
+                  setSelected={setSelectedQuality}
+                  dispatch={dispatch}
+                  value={settings.selectedQuality}
+                  placeholder={qualityOptions.placeholder}
+                  t={t}
+                />
+              </div>
+              <div className="relative ">
+                <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible  ">
+                  <InfoModal title="اختار استايلك المفضل" />
+                </div>
+                <Select
+                  instanceId={styleOptions.id}
+                  options={styleOptions.options}
+                  setSelected={setSelectedStyle}
+                  dispatch={dispatch}
+                  value={settings.selectedStyle}
+                  placeholder={styleOptions.placeholder}
+                  t={t}
+                />
+              </div>
+            </>
+          )}
+
+          <div className="relative  ">
+            <div className="absolute top-[-48px] transition-all duration-200 ease-in-out invisible ">
+              <InfoModal title="اختار نوع العرض" />
+            </div>
+            <Select
+              instanceId={resolutionOptions.id}
+              options={resolutionOptions.options}
+              setSelected={setSelectedResolution}
+              dispatch={dispatch}
+              value={settings.selectedResolution}
+              placeholder={resolutionOptions.placeholder}
+              t={t}
+            />
+          </div>
+
+          <div className="border-t-[1px] border-auth-border pt-[16px]">
+            <button
+              type="submit"
+              className="coloredBtn w-full  text-md  h-[48px] rounded-[8px] text-white font-[500]"
+            >
+              {t("dashboard:select_desgin_btn")}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

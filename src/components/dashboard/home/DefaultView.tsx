@@ -3,7 +3,7 @@ import Image from "next/image";
 import LogoAnimation from "@/src/components/home/LogoAnimation";
 import { toast } from "react-hot-toast";
 
-function DefaultView({ t }: any) {
+function DefaultView({ t, setShowControls }: any) {
   const [btns, setBtns] = useState([
     {
       name: t("dashboard:dashboard_home_default_determinants"),
@@ -22,10 +22,10 @@ function DefaultView({ t }: any) {
     },
   ]);
   return (
-    <div className=" w-full">
-      <div className="grid grid-cols-3 gap-[32px] ">
+    <div className="w-full">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-[32px] ">
         {btns.map((btn) => (
-          <div key={btn.name} className="content-center flex-col">
+          <div key={btn.name} className="content-center flex-col ">
             <button className="content-center w-full h-[64px] mb-[15px] bg-[rgba(255,255,255,0.04)] rounded-[8px]">
               <Image
                 src={`/assets/images/dashboard/icons/home/${btn.icon}.svg`}
@@ -37,7 +37,7 @@ function DefaultView({ t }: any) {
                 {btn.name}
               </span>
             </button>
-            <span className="text-sm font-[500] text-neutral-300">
+            <span className="text-sm text-center font-[500] text-neutral-300">
               {btn.text}
             </span>
           </div>
@@ -57,6 +57,7 @@ function DefaultView({ t }: any) {
               color: "#fff",
             },
           });
+          setShowControls(true);
         }}
         className="coloredBtn mx-auto block w-[293.94px] h-[43.29px] text-md rounded-[8px] text-white font-[500]"
       >

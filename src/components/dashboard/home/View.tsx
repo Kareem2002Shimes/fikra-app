@@ -19,7 +19,7 @@ import {
 import { toast } from "react-hot-toast";
 import imageCompression from "browser-image-compression";
 
-function View({ t }: any) {
+function View({ t, setShowControls }: any) {
   const options = [
     {
       value: "choose the type of image",
@@ -145,7 +145,7 @@ function View({ t }: any) {
   }, []);
   return (
     <div className="w-full min-h-full">
-      <div className="px-[24px] pt-[16px] ">
+      <div className="p-[16px] ">
         {settings.receivedImage && (
           <div className="flex items-center mb-[8px] relative download-box">
             <Select
@@ -222,21 +222,19 @@ function View({ t }: any) {
             </div>
           </div>
         )}
-        <div className="h-[526px] bg-neutral-800 rounded-[16px] p-[16px] flex">
-          <div className="w-full h-full relative content-center rounded-[8px] ">
-            {settings.receivedImage ? (
-              <Image
-                src={settings.receivedImage}
-                alt="img"
-                fill={true}
-                className="rounded-[8px]"
-              />
-            ) : (
-              <DefaultView t={t} />
-            )}
+        <div className="min-h-[526px] w-full relative content-center p-[16px] bg-neutral-800 rounded-[16px]  flex">
+          {settings.receivedImage ? (
+            <Image
+              src={settings.receivedImage}
+              alt="img"
+              fill={true}
+              className="rounded-[8px]"
+            />
+          ) : (
+            /* Test Image here */
+            <DefaultView t={t} setShowControls={setShowControls} />
+          )}
 
-            {/* Test Image here */}
-          </div>
           {settings.receivedImage && (
             <div
               className={` h-full ${
@@ -288,7 +286,7 @@ function View({ t }: any) {
           )}
         </div>
       </div>
-      <div className="px-[24px] mt-[16px] border-t-[1px] border-input-border">
+      <div className="px-[24px] border-t-[1px] border-input-border">
         <span className="text-white text-lg font-[700] py-[15px] block">
           {t("dashboard:select_style_placeholder")}
         </span>

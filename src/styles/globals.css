@@ -9,6 +9,7 @@
   .space-betwwen-sections {
     @apply pt-[80px] md:pt-[150px];
   }
+
   .form-label {
     @apply block mb-2 text-md font-[500] text-white;
   }
@@ -385,4 +386,18 @@ input[type="range"]::-webkit-slider-thumb:active {
 }
 .phone-box .react-tel-input {
   font-family: var(--font-somar);
+}
+/* sidebar responsive */
+@media (max-width: 768px) {
+  .sidebar-mobile {
+    overflow-x: scroll;
+    position: absolute;
+    bottom: 0;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 87px;
+    z-index: 30;
+  }
 }

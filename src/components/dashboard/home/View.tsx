@@ -20,14 +20,53 @@ import { toast } from "react-hot-toast";
 import imageCompression from "browser-image-compression";
 
 function View({ t, setShowControls }: any) {
+  const { locale } = useRouter();
+
   const options = [
     {
       value: "choose the type of image",
-      label: t("dashboard:download_btn_option_label"),
+      label:
+        typeof window !== "undefined"
+          ? window.innerWidth < 768
+            ? locale !== "ar"
+              ? t("dashboard:download_btn_option_label")
+                  .split(" ")
+                  .find((word: string) => word === "Choose")
+              : t("dashboard:download_btn_option_label")
+            : t("dashboard:download_btn_option_label")
+          : "",
       disabled: true,
     },
-    { value: "type img (png)", label: t("dashboard:download_btn_option_one") },
-    { value: "type img (jpg)", label: t("dashboard:download_btn_option_two") },
+    {
+      value: "type img (png)",
+      label:
+        typeof window !== "undefined"
+          ? window.innerWidth < 768
+            ? locale !== "ar"
+              ? t("dashboard:download_btn_option_one")
+                  .split(" ")
+                  .find((word: string) => word === "(png)")
+              : t("dashboard:download_btn_option_one")
+                  .split(" ")
+                  .find((word: string) => word === "(png)")
+            : t("dashboard:download_btn_option_one")
+          : "",
+    },
+    {
+      value: "type img (jpg)",
+      label:
+        typeof window !== "undefined"
+          ? window.innerWidth < 768
+            ? locale !== "ar"
+              ? t("dashboard:download_btn_option_two")
+                  .split(" ")
+                  .find((word: string) => word === "(jpg)")
+              : t("dashboard:download_btn_option_two")
+                  .split(" ")
+                  .find((word: string) => word === "(jpg)")
+            : t("dashboard:download_btn_option_two")
+          : "",
+    },
   ];
   const menuRef: any = useRef();
   const btnRef: any = useRef();
@@ -37,7 +76,6 @@ function View({ t, setShowControls }: any) {
   const settings = useAppSelector((state) => state.settings);
   const dispatch = useAppDispatch();
   const [sharebox, setSharebox] = useState(false);
-  const { locale } = useRouter();
   const customStyles = {
     option: (defaultStyles: any, state: any) => ({
       ...defaultStyles,
@@ -51,7 +89,12 @@ function View({ t, setShowControls }: any) {
       },
       fontSize: "16px",
       lineHeight: "24px",
-      width: "228px",
+      width: "174px",
+
+      "@media(max-width:768px)": {
+        width: "150px",
+      },
+
       cursor: "pointer",
     }),
 
@@ -73,11 +116,17 @@ function View({ t, setShowControls }: any) {
       ...defaultStyles,
       background: "#1F2038",
       borderRadius: "16px",
-      width: "228px",
+      width: "174px",
+
+      "@media(max-width:768px)": {
+        width: "150px",
+      },
       height: "152px",
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
+
+      zIndex: "15",
     }),
   };
   const downloadFileURL = (url: string): void => {
@@ -152,7 +201,7 @@ function View({ t, setShowControls }: any) {
             : "md:pl-[24px] md:pr-[30px]"
         } `}
       >
-        {settings.receivedImage && (
+        {!settings.receivedImage && (
           <div className="flex items-center mb-[8px] relative download-box w-fit">
             <button
               onClick={() => {

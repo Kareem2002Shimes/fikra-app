@@ -18,7 +18,7 @@ function History() {
   return (
     <Layout t={t}>
       <div
-        className={`grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[24px] py-[24px] px-[30px]  ${
+        className={`grid w-full grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[24px] py-[24px] px-[16px]  ${
           locale === "ar"
             ? "md:pr-[24px] md:pl-[30px]"
             : "md:pl-[24px] md:pr-[30px]"

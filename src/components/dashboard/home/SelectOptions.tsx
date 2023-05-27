@@ -2,6 +2,7 @@ import Select, { components } from "react-select";
 import Image from "next/image";
 import InfoModal from "../InfoModal";
 import { useRouter } from "next/router";
+import { setActiveIdea } from "@/src/redux/features/settings/settingsSlice";
 const qIcon = (
   <Image
     src="/assets/images/dashboard/icons/sidebar/info.svg"
@@ -92,6 +93,13 @@ function SelectOptions({
 
   const handleChange = (selected: any) => {
     dispatch(setSelected(selected));
+    if (instanceId === 3) {
+      if (selected) {
+        dispatch(setActiveIdea(selected.value));
+      } else {
+        dispatch(setActiveIdea(null));
+      }
+    }
   };
   const ValueContainer = ({ children, ...props }: any) => {
     return (

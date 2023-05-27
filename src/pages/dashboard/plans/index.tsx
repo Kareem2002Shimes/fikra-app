@@ -141,7 +141,7 @@ function Plans() {
       )}
       <Layout t={t}>
         <div
-          className={`felx-col w-full mb-[87px] md:mb-0 px-[30px] ${
+          className={`felx-col w-full mb-[87px] md:mb-0 px-[16px] ${
             locale === "ar"
               ? "md:pr-[24px] md:pl-[30px]"
               : "md:pl-[24px] md:pr-[30px]"
@@ -201,7 +201,7 @@ function Plans() {
               />
             ))}
           </div>
-          <div className="content-center py-[40px] flex-col pl-[24px] pr-[30px] w-full">
+          <div className={`content-center py-[40px] flex-col w-full`}>
             <h3 className="font-[700] mb-[40px] text-[#ECECEC] text-center">
               {t("plans:plans_question_title")}
             </h3>

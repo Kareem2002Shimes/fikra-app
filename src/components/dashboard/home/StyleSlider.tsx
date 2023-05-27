@@ -22,7 +22,13 @@ function StyleSlider({ setShowControls }: any) {
       );
       dispatch(setSelectedChooseStyle(option));
     }
-  }, [settings.activeIdea, dispatch, styleIdeas.options]);
+  }, [
+    settings.activeIdea,
+    dispatch,
+    styleIdeas.options,
+    settings.selectedChooseStyle,
+  ]);
+
   return (
     <div className="absolute top-0 left-0 w-full h-full">
       <Swiper
@@ -40,7 +46,12 @@ function StyleSlider({ setShowControls }: any) {
           <SwiperSlide
             key={item.label}
             className="hover:cursor-pointer group  select-none group "
-            onClick={() => dispatch(setActiveIdea(item.value))}
+            onClick={() => {
+              window.innerWidth < 1200 &&
+                window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+              setShowControls(true);
+              dispatch(setActiveIdea(item.value));
+            }}
           >
             <div className="w-[120px] h-[88px] relative">
               <Image

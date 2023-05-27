@@ -8,7 +8,7 @@ function Navbar({ t }: any) {
 
   return (
     <div className="border-b-[1px] border-input-border ">
-      <div className="mx-[30px]  flex justify-between items-center h-[72px]">
+      <div className=" mx-[16px] md:mx-[30px]  flex justify-between items-center h-[72px]">
         <Link href="/" className="flex items-center">
           <div className="relative w-[27.97px] h-[28px]">
             <Image

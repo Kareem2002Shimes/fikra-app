@@ -237,13 +237,36 @@ function Sidebar({ t }: any) {
                 ? "md:pl-[16px] p-0"
                 : "p-0"
             }
-            w-full md:mb-[15px] relative`}
+            w-full md:mb-[15px] relative
+            
+            `}
           >
             <Link
               href={item.url}
               className={`relative flex items-center flex-col md:flex-row justify-center  ${
                 sidebar ? "md:justify-start" : "md:justify-center"
-              }  group w-full h-full group`}
+              }  group w-full h-full group
+              ${
+                item.url === "/dashboard/notifications" &&
+                "after:absolute after:content-['8'] after:grid after:place-content-center after:text-white after:font-[400]  after:translate-y-[-50%] after:text-sm  after:rounded-[50%] after:bg-error-500"
+              }
+              ${
+                item.url === "/dashboard/notifications"
+                  ? sidebar
+                    ? "md:after:w-[24px] md:after:h-[24px] after:w-[16px] after:h-[16px] after:text-xs md:after:top-[50%]"
+                    : "after:w-[16px] after:h-[16px] after:text-xs md:after:top-[30%]"
+                  : ""
+              }
+               ${
+                 item.url === "/dashboard/notifications"
+                   ? locale === "ar"
+                     ? "after:left-[45px] md:after:left-[27px] after:top-[18px]"
+                     : "after:right-[45px] md:after:right-[27px] after:top-[18px]"
+                   : ""
+               }
+              
+                
+               `}
             >
               {item.icon}
 
@@ -255,29 +278,12 @@ function Sidebar({ t }: any) {
                 } font-[500] transition-all duration-200 group-hover:text-accent-color ${
                   !sidebar &&
                   "md:scale-0 md:absolute  md:top-[50%] md:translate-y-[-50%]"
-                }`}
+                }
+                `}
               >
                 {item.name}
               </span>
-              {item.url === "/dashboard/notifications" && (
-                <span
-                  className={` ${
-                    sidebar
-                      ? "md:w-[24px] md:h-[24px]"
-                      : "md:w-[18px] md:h-[18px]"
-                  }  ${sidebar ? "md:top-[50%] " : "md:top-[27%]"} ${
-                    locale === "ar"
-                      ? sidebar
-                        ? "md:right-[calc(100%-48px)] right-[38px]"
-                        : "md:right-[40px] right-[38px]"
-                      : sidebar
-                      ? "md:right-[24px] right-[25px]"
-                      : "md:right-[25px] right-[25px]"
-                  } absolute top-[17px] w-[18px] h-[18px]  translate-y-[-50%] bg-error-500 text-xs text-white font-[400] content-center rounded-[50%]`}
-                >
-                  8
-                </span>
-              )}
+
               {item.url === pathname && (
                 <Lottie
                   className={`absolute ${

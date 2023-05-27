@@ -146,14 +146,22 @@ function View({ t, setShowControls }: any) {
   return (
     <div className="w-full min-h-full ">
       <div
-        className={`py-[24px] px-[30px] ${
+        className={`py-[24px] px-[16px] ${
           locale === "ar"
             ? "md:pr-[24px] md:pl-[30px]"
             : "md:pl-[24px] md:pr-[30px]"
         } `}
       >
         {settings.receivedImage && (
-          <div className="flex items-center mb-[8px] relative download-box">
+          <div className="flex items-center mb-[8px] relative download-box w-fit">
+            <button
+              onClick={() => {
+                setShowControls(true);
+              }}
+              className="text-md text-white font-[500] w-[167px] md:w-[204px] max-w-full h-[40px] nonFilledBtn"
+            >
+              {t("dashboard:select_desgin_btn")}
+            </button>
             <Select
               options={options}
               value={t("dashboard:download_btn") as any}
@@ -171,7 +179,7 @@ function View({ t, setShowControls }: any) {
             />
             <button
               type="button"
-              className="ml-[16px] relative z-30"
+              className="relative z-10"
               onClick={() => setSharebox(!sharebox)}
               ref={btnRef}
             >
@@ -190,7 +198,7 @@ function View({ t, setShowControls }: any) {
                 sharebox
                   ? "opacity-1 visible   translate-y-0 "
                   : "invisible opacity-0  translate-y-[15px]"
-              } absolute  gap-[15px] content-center top-[47px] transition-all duration-300
+              } absolute  gap-[15px] content-center top-[47px] left-[50%] translate-x-[-50%]  transition-all duration-300
              bg-neutral-700 w-[250px] h-[80px] rounded-[16px] z-10`}
             >
               <FacebookShareButton
@@ -226,57 +234,49 @@ function View({ t, setShowControls }: any) {
                 />
               </WhatsappShareButton>
             </div>
-            <button
-              onClick={() => {
-                setShowControls(true);
-              }}
-              className="text-md text-white mx-[16px] font-[500] w-[204px] max-w-full h-[40px] nonFilledBtn"
-            >
-              {t("dashboard:select_desgin_btn")}
-            </button>
           </div>
         )}
-        <div className="min-h-[526px]  w-full relative content-center p-[16px] bg-neutral-800 rounded-[16px]  flex">
+        <div className="min-h-fit md:min-h-[526px] w-full xl:w-[840px] mb-[87px] sm:mb-0 flex items-center flex-col xl:flex-row gap-[16px]  p-[16px] bg-neutral-800 rounded-[16px] ">
           {settings.receivedImage ? (
-            <Image
-              src={settings.receivedImage}
-              alt="img"
-              fill={true}
-              className="rounded-[8px]"
-            />
+            <div className="relative h-[279px] sm:h-[494px] w-full xl:w-[657px]">
+              <Image
+                src={settings.receivedImage}
+                alt="img"
+                fill={true}
+                className="rounded-[8px] object-cover "
+              />
+            </div>
           ) : (
             /* Test Image here */
             <DefaultView t={t} setShowControls={setShowControls} />
           )}
 
           {settings.receivedImage && (
-            <div
-              className={` h-full ${
-                locale === "ar" ? "pr-[16px]" : "pl-[16px]"
-              }`}
-            >
-              {ideas.map((idea) => (
-                <button
-                  type="button"
-                  key={idea}
-                  onClick={() => {
-                    setActiveIdea(idea as any);
-                    handleIdeas(idea);
-                  }}
-                  className={`content-center ${
-                    activeIdea === idea
-                      ? "bg-accent-color border-transparent"
-                      : " border-[1px] border-input-border"
-                  } hover:bg-accent-color transition-all duration-200 ease-in hover:border-transparent flex-col mb-[16px] w-[135px] h-[64px] rounded-[16px]`}
-                >
-                  <span className="text-neutral-200 text-xs font-[500] mb-[2px]">
-                    {t("dashboard:show_idea")}
-                  </span>
-                  <span className="text-md font-[500] text-white">
-                    {t("dashboard:idea_number")} {idea}
-                  </span>
-                </button>
-              ))}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-[16px] sm:gap-[24px] w-full xl:w-auto xl:block">
+              <div className="grid grid-cols-4 gap-[8px] xl:block">
+                {ideas.map((idea) => (
+                  <button
+                    type="button"
+                    key={idea}
+                    onClick={() => {
+                      setActiveIdea(idea as any);
+                      handleIdeas(idea);
+                    }}
+                    className={`content-center ${
+                      activeIdea === idea
+                        ? "bg-accent-color border-transparent"
+                        : " border-[1px] border-input-border"
+                    } hover:bg-accent-color transition-all duration-200 ease-in hover:border-transparent flex-col xl:mb-[16px] xl:w-[135px] h-[72px] xl:h-[64px] rounded-[16px]`}
+                  >
+                    <span className="text-neutral-200 text-xs font-[500] mb-[2px]">
+                      {t("dashboard:show_idea")}
+                    </span>
+                    <span className="text-md font-[500] text-white">
+                      {t("dashboard:idea_number")} {idea}
+                    </span>
+                  </button>
+                ))}
+              </div>
               <button
                 type="button"
                 onClick={() => {
@@ -285,7 +285,7 @@ function View({ t, setShowControls }: any) {
                   );
                   setActiveIdea(null);
                 }}
-                className="w-[135px] h-[120px]  mt-[70px] text-white content-center flex-col primary-border"
+                className={` xl:w-[135px] h-[72px] xl:h-[120px]  xl:mt-[70px] text-white content-center flex-col primary-border`}
               >
                 <Image
                   src="/assets/images/dashboard/icons/home/new-idea-icon.svg"
@@ -300,13 +300,13 @@ function View({ t, setShowControls }: any) {
           )}
         </div>
       </div>
-      <div className="px-[30px] md:px-[24px] mb-[calc(87px+16px)] md:mb-0 border-t-[1px] border-input-border ">
+      <div className="px-[30px] hidden sm:block md:px-[24px] mb-[calc(87px+16px)] md:mb-0 border-t-[1px] border-input-border ">
         <span className="text-white text-lg font-[700] py-[15px] block">
           {t("dashboard:select_style_placeholder")}
         </span>
 
         <div className="relative h-[150px] ">
-          <StyleSlider />
+          <StyleSlider setShowControls={setShowControls} />
         </div>
       </div>
     </div>

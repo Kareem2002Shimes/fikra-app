@@ -57,7 +57,7 @@ function DefaultView({ t, setShowControls }: any) {
               color: "#fff",
             },
           });
-          window.innerWidth < 768 &&
+          window.innerWidth < 1200 &&
             window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
           setShowControls(true);
         }}

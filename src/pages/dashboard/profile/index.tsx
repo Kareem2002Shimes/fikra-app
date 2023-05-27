@@ -51,8 +51,8 @@ function Profile() {
         <div
           className={`${
             locale === "ar"
-              ? "lg:pr-[24px] lg:pl-[32px] px-[24px]"
-              : "lg:pl-[24px] lg:pr-[32px] px-[24px]"
+              ? "lg:pr-[24px] lg:pl-[32px] px-[16px]"
+              : "lg:pl-[24px] lg:pr-[32px] px-[16px]"
           }  py-[24px] mb-[87px] md:mb-0`}
         >
           <h4 className="font-[500] text-white mb-[8px]">

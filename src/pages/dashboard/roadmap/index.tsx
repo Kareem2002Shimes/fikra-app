@@ -68,7 +68,7 @@ function Roadmap() {
   return (
     <Layout t={t}>
       <div
-        className={`h-fit w-full mt-[24px] mb-[calc(87px+24px)] md:mb-0 mx-[30px]  ${
+        className={`h-fit w-full mt-[24px] mb-[calc(87px+24px)] md:mb-0 mx-[16px]  ${
           locale === "ar"
             ? "md:mr-[24px] md:ml-[30px]"
             : "md:ml-[24px] md:mr-[30px]"

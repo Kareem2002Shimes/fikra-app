@@ -343,7 +343,6 @@ function Controls({ t, setShowControls }: any) {
           },
         ],
       },
-
       {
         id: 3,
         placeholder: t("dashboard:select_style_idea_placeholder"),
@@ -672,18 +671,11 @@ function Controls({ t, setShowControls }: any) {
     if (settings.uploadedImage && modeOptions.options) {
       dispatch(setSelectedMode(modeOptions.options[0]));
     }
-
-    if (settings.selectedChooseStyle) {
-      dispatch(setActiveIdea(settings.selectedChooseStyle.value));
-    }
-    if (!settings.selectedChooseStyle) {
-      dispatch(setActiveIdea(null));
-    }
   }, [
     settings.selectedSpace,
     settings.selectedTypeOfRoom,
+    settings.selectedMode,
     settings.uploadedImage,
-    settings.selectedChooseStyle,
     dispatch,
   ]);
 
@@ -766,8 +758,9 @@ function Controls({ t, setShowControls }: any) {
       }
     }
   };
+
   return (
-    <div className="absolute lg:static top-0 left-0 h-full z-30 lg:z-auto w-full lg:w-auto bg-[rgba(20,20,20,0.76)] lg:bg-none">
+    <div className="absolute xl:static top-0 left-0 h-full z-30 xl:z-auto w-full xl:w-auto bg-[rgba(20,20,20,0.76)] xl:bg-none">
       <div className="w-[300px] h-full px-[16px] bg-neutral-800 ">
         <div className="border-b-[1px] border-auth-border py-[16px] flex justify-between items-center">
           <button
@@ -786,7 +779,7 @@ function Controls({ t, setShowControls }: any) {
           </button>
           <button
             onClick={() => setShowControls(false)}
-            className="w-[40px] h-[40px] lg:hidden hover:bg-accent-color hover:border-none duration-200 text-neutral-50 rounded-[8px] border border-auth-border"
+            className="w-[40px] h-[40px] xl:hidden hover:bg-accent-color hover:border-none duration-200 text-neutral-50 rounded-[8px] border border-auth-border"
           >
             x
           </button>

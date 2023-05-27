@@ -201,7 +201,7 @@ function View({ t, setShowControls }: any) {
             : "md:pl-[24px] md:pr-[30px]"
         } `}
       >
-        {!settings.receivedImage && (
+        {settings.receivedImage && (
           <div className="flex items-center mb-[8px] relative download-box w-fit">
             <button
               onClick={() => {

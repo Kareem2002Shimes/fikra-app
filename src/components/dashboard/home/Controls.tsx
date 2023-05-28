@@ -667,16 +667,11 @@ function Controls({ t, setShowControls }: any) {
     ) {
       dispatch(setSelectedTypeOfRoom(null));
     }
-
-    // if image uploaded mode option will be selected
-    if (settings.uploadedImage && modeOptions.options) {
-      dispatch(setSelectedMode(modeOptions.options[0]));
-    }
   }, [
     settings.selectedSpace,
     settings.selectedTypeOfRoom,
     settings.selectedMode,
-    settings.uploadedImage,
+    typeOfRoom,
     dispatch,
   ]);
 
@@ -692,6 +687,7 @@ function Controls({ t, setShowControls }: any) {
     } else {
       dispatch(setUploadedImage(image)); // to send to backend api with compression
       setImageUrl(URL.createObjectURL(image)); // only to show image when select it
+      dispatch(setSelectedMode(modeOptions.options && modeOptions.options[0]));
     }
   };
   const handleSumbit = (e: any) => {
@@ -842,12 +838,15 @@ function Controls({ t, setShowControls }: any) {
                     dispatch(setUploadedImage(null));
                     dispatch(setSelectedMode(null));
                   }}
-                  className="w-[89px] h-[24px] group hover:bg-error-400 hover:text-white text-neutral-600 transition-all duration-100 ease-in absolute top-[8px] left-[8px] content-center bg-white rounded-[16px] font-[400] text-sm"
+                  className={`w-[89px] h-[24px] group hover:bg-error-400 hover:text-white text-neutral-600 transition-all duration-100 ease-in absolute top-[8px] ${
+                    locale === "ar" ? "right-[8px]" : "left-[8px]"
+                  } content-center bg-white rounded-[16px] font-[400] text-xs`}
                 >
                   <span className="mx-[5px] group-hover:text-white text-neutral-600">
-                    X
+                    x
                   </span>
-                  Delete
+
+                  {locale === "ar" ? "حذف الصورة" : "Delete"}
                 </button>
                 <Image
                   src={imageUrl}

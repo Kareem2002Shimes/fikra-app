@@ -14,7 +14,7 @@ function Dashboard() {
 
   return (
     <Layout t={t}>
-      <div className="flex w-full relative ">
+      <div className="flex w-full  relative ">
         {showControls && <Controls t={t} setShowControls={setShowControls} />}
         <View t={t} setShowControls={setShowControls} />
       </div>

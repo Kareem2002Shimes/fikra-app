@@ -285,7 +285,7 @@ function View({ t, setShowControls }: any) {
             </div>
           </div>
         )}
-        <div className="min-h-fit md:min-h-[526px] pb-[87px] md:pb-0 w-full xl:w-[840px] mb-[87px] sm:mb-0 flex items-center flex-col xl:flex-row gap-[16px]  p-[16px] bg-neutral-800 rounded-[16px] ">
+        <div className="min-h-screen md:min-h-[526px] pb-[87px] md:pb-0 w-full xl:w-[840px] mb-[87px] sm:mb-0 flex items-center flex-col xl:flex-row gap-[16px]  p-[16px] bg-neutral-800 rounded-[16px] ">
           {settings.receivedImage ? (
             <div className="relative h-[279px] sm:h-[494px] w-full xl:w-[657px]">
               <Image

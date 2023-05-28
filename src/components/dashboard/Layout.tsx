@@ -16,7 +16,7 @@ function Layout({ children, t }: LayoutProps) {
   return (
     <Fragment>
       <Navbar t={t} />
-      <main className="flex min-h-fit relative">
+      <main className="flex min-h-fit sm:min-h-screen relative">
         <Sidebar t={t} />
         {children}
       </main>

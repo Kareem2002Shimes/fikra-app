@@ -620,6 +620,7 @@ function Controls({ t, setShowControls }: any) {
     dispatch(setSelectedResolution(null));
     dispatch(setSelectedStyle(null));
     dispatch(setUploadedImage(null));
+    dispatch(setActiveIdea(null));
     setImageUrl("");
     setTypeOfRoom(allRoomsOptions);
   };

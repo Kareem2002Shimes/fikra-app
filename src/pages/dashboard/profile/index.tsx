@@ -59,9 +59,9 @@ function Profile() {
             {t("profile:account_info")}
           </h4>
           <div
-            className={`bg-neutral-800  rounded-[16px] min-h-[96px] flex items-center gap-[16px] p-[15px] flex-wrap justify-center sm:justify-between`}
+            className={`bg-neutral-800  rounded-[16px] min-h-[96px] flex items-center gap-[16px] p-[15px] justify-end flex-wrap sm:justify-between`}
           >
-            <div className="flex items-center">
+            <div className="flex items-center mx-auto sm:mx-0 order-2 sm:-order-none">
               <button className="relative ">
                 <Image
                   src={data?.user?.image as any}

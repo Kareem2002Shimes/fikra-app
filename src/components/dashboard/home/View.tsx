@@ -211,21 +211,23 @@ function View({ t, setShowControls }: any) {
             >
               {t("dashboard:select_desgin_btn")}
             </button>
-            <Select
-              options={options}
-              value={t("dashboard:download_btn") as any}
-              onChange={handleChange}
-              styles={customStyles}
-              instanceId={options.map((op) => op.value) as any}
-              components={{
-                IndicatorSeparator: () => null,
-                DropdownIndicator: () => null,
-                ValueContainer,
-              }}
-              isSearchable={false}
-              placeholder={t("dashboard:download_btn")}
-              isOptionDisabled={(option) => option.disabled}
-            />
+            <div className="download-img-box">
+              <Select
+                options={options}
+                value={t("dashboard:download_btn") as any}
+                onChange={handleChange}
+                styles={customStyles}
+                instanceId={options.map((op) => op.value) as any}
+                components={{
+                  IndicatorSeparator: () => null,
+                  DropdownIndicator: () => null,
+                  ValueContainer,
+                }}
+                isSearchable={false}
+                placeholder={t("dashboard:download_btn")}
+                isOptionDisabled={(option) => option.disabled}
+              />
+            </div>
             <button
               type="button"
               className="relative z-10"

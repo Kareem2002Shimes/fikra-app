@@ -89,7 +89,9 @@ button {
 .lang-box .css-hlgwow,
 .download-box .css-1fdsijx-ValueContainer,
 .select-country .css-1fdsijx-ValueContainer,
-.select-country .css-hlgwow {
+.select-country .css-hlgwow,
+.download-img-box .css-1fdsijx-ValueContainer,
+.download-img-box .css-hlgwow {
   overflow: unset;
 }
 .coloredBtn {

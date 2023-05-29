@@ -4,8 +4,6 @@ import Link from "next/link";
 import { signOut } from "next-auth/react";
 import { Fragment } from "react";
 import { useRouter } from "next/router";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/src/pages/api/auth/[...nextauth]";
 
 const KSAIcon = (
   <div className="mx-[8px]">

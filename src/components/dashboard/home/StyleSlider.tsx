@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
 import "swiper/css/scrollbar";
-import { selects } from "@/src/data/Selects.json";
+import Selects from "@/src/data/StyleSelects.json";
 import { Scrollbar } from "swiper";
 import Image from "next/image";
 import { useAppDispatch, useAppSelector } from "@/src/redux/app/store";
@@ -12,7 +12,7 @@ import {
   setSelectedChooseStyle,
 } from "@/src/redux/features/settings/settingsSlice";
 function StyleSlider({ setShowControls }: any) {
-  const [styleIdeas, setStyleIdeas] = useState<any>(selects[2]);
+  const [styleIdeas, setStyleIdeas] = useState<any>(Selects);
   const dispatch = useAppDispatch();
   const settings = useAppSelector((state) => state.settings);
   useEffect(() => {

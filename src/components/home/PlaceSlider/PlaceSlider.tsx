@@ -109,5 +109,4 @@ function PlaceSlider({ items }: any) {
     </div>
   );
 }
-
 export default PlaceSlider;

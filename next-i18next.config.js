@@ -5,5 +5,5 @@ module.exports = {
     defaultLocale: "en",
     locales: ["en", "ar"],
   },
-  localePath: path.resolve("./public/locales"),
+  localePath: typeof window === "undefined" && path.resolve("./public/locales"),
 };

@@ -3,8 +3,10 @@ import "swiper/scss";
 import "swiper/scss/pagination";
 import Image from "next/image";
 import EffectPanorama from "./effect-panorama.esm";
-import { useEffect } from "react";
+import { useCallback, useEffect, useRef } from "react";
 function PlaceSlider({ items }: any) {
+  const sliderRef: any = useRef(null);
+
   useEffect(() => {
     const swiper = new Swiper(".panorama-slider .swiper", {
       // pass Panorama module
@@ -53,10 +55,19 @@ function PlaceSlider({ items }: any) {
       },
     } as any);
   }, []);
+  const handlePrev = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slidePrev();
+  }, []);
+
+  const handleNext = useCallback(() => {
+    if (!sliderRef.current) return;
+    sliderRef.current.swiper.slideNext();
+  }, []);
   return (
     <div style={{ direction: "ltr" }} className="place-slider">
       <div className="panorama-slider select-none">
-        <div className="swiper">
+        <div className="swiper" ref={sliderRef}>
           <div className="swiper-wrapper">
             {items.map((slider: string) => (
               <div className="swiper-slide relative">
@@ -69,6 +80,30 @@ function PlaceSlider({ items }: any) {
               </div>
             ))}
           </div>
+        </div>
+        <div className="w-full content-center gap-[30px]">
+          <button
+            onClick={handlePrev}
+            className="rotate-[180deg] content-center hover:bg-accent-color transition-all duration-200 hover:border-none w-[40px] h-[40px] border border-input-border rounded-[50%]"
+          >
+            <Image
+              src="/assets/images/home/arrow-space.svg"
+              width={16}
+              height={16}
+              alt="arrow-img"
+            />
+          </button>
+          <button
+            onClick={handleNext}
+            className="w-[40px] h-[40px] content-center hover:bg-accent-color transition-all duration-200 hover:border-none border border-input-border rounded-[50%]"
+          >
+            <Image
+              src="/assets/images/home/arrow-space.svg"
+              width={16}
+              height={16}
+              alt="arrow-img"
+            />
+          </button>
         </div>
       </div>
     </div>

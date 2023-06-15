@@ -1,7 +1,19 @@
 import Auth from "@/src/components/auth/Auth";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "react-i18next";
 
 function ForgetPassword() {
-  return <Auth />;
+  const { t } = useTranslation();
+
+  return <Auth t={t} />;
 }
 
 export default ForgetPassword;
+
+export async function getServerSideProps({ locale }: { locale: string }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["auth", "common"])),
+    },
+  };
+}

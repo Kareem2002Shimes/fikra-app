@@ -1,5 +1,5 @@
 import Image from "next/image";
-function ImageBox() {
+function ImageBox({ t }: any) {
   return (
     <div
       className="pt-[90px] hidden md:block relative md:basis-[calc(100%-441px)] lg:basis-[calc(100%-503px)]"
@@ -10,12 +10,10 @@ function ImageBox() {
     >
       <div className="pl-[40px] mb-[30px]">
         <h3 className="font-[700] text-neutral-50 mb-[15px]">
-          Live your design experience <br /> With the help of artificial
-          intelligence
+          {t("common:start_design_auth_title")}
         </h3>
         <p className="font-[400] w-[65%] text-md text-neutral-100">
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry Lorem Ipsum has been the industry's standard dummy
+          {t("common:start_design_auth_desc")}
         </p>
       </div>
 

@@ -5,7 +5,7 @@ function GenerateIdeas({ t }: any) {
   const { locale } = useRouter();
 
   return (
-    <section className="space-betwwen-sections pb-[80px] md:pb-[150px] relative z-10">
+    <div className="space-betwwen-sections pb-[80px] md:pb-[150px] relative z-10">
       <div className="home-container grid grid-cols-1 md:grid-cols-2 gap-[70px] place-items-center relative">
         <div
           className={`absolute ${
@@ -42,7 +42,7 @@ function GenerateIdeas({ t }: any) {
           />
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

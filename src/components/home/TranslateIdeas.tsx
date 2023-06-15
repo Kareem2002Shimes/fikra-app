@@ -6,7 +6,7 @@ import Link from "next/link";
 function TranslateIdeas({ t }: any) {
   const session = useSession();
   return (
-    <section>
+    <div>
       <div className="home-container content-center flex-col">
         <div className="relative w-[400px] max-w-full h-[400px]">
           <LogoAnimation />
@@ -23,7 +23,7 @@ function TranslateIdeas({ t }: any) {
           {t("home:translate_ideas_section_btn")}
         </Link>
       </div>
-    </section>
+    </div>
   );
 }
 

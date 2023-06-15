@@ -1,12 +1,12 @@
 import ImageBox from "./ImageBox";
 import TextBox from "./TextBox";
 
-function Auth() {
+function Auth({ t }: any) {
   return (
-    <div className="flex min-h-screen w-full overflow-hidden">
-      <TextBox />
-      <ImageBox />
-    </div>
+    <section className="flex min-h-screen w-full overflow-hidden">
+      <TextBox t={t} />
+      <ImageBox t={t} />
+    </section>
   );
 }
 

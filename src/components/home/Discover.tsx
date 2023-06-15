@@ -24,7 +24,7 @@ function Discover({ t }: any) {
   const session = useSession();
 
   return (
-    <section className="space-betwwen-sections">
+    <div className="space-betwwen-sections">
       <div className="home-container">
         <div className="text-center mx-auto w-[485px] max-w-full">
           <MainHeading
@@ -49,7 +49,7 @@ function Discover({ t }: any) {
           {t("home:discover_section_btn")}
         </Link>
       </div>
-    </section>
+    </div>
   );
 }
 

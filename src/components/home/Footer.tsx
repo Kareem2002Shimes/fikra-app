@@ -16,7 +16,7 @@ function Footer({ t }: any) {
   ];
 
   return (
-    <section className="bg-[#141421]  relative z-10 ">
+    <div className="bg-[#141421]  relative z-10 ">
       <div className="home-container ">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 py-[55px] relative">
           <div
@@ -72,7 +72,7 @@ function Footer({ t }: any) {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

@@ -29,7 +29,7 @@ function HomePage({ user }: any) {
       </Head>
       {popup && <Popup setPopup={setPopup} />}
       <Header t={t} user={user} />
-      <main>
+      <section>
         <Landing t={t} setPopup={setPopup} />
         <Companies t={t} />
         <Discover t={t} />
@@ -39,7 +39,7 @@ function HomePage({ user }: any) {
         <WhatNeed t={t} />
         <GenerateIdeas t={t} />
         <Footer t={t} />
-      </main>
+      </section>
     </Fragment>
   );
 }

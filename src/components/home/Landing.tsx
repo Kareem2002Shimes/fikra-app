@@ -11,7 +11,7 @@ function Landing({
   setPopup: Dispatch<SetStateAction<boolean>>;
 }) {
   return (
-    <section className="overflow-hidden relative h-[calc(100vh-65px)] w-full ">
+    <div className="overflow-hidden relative h-[calc(100vh-65px)] w-full ">
       <Overlay />
       <div className=" px-[16px] sm:px-0 absolute z-[10] w-full text-center left-[50%] translate-x-[-50%] top-[50%] md:top-[65%] translate-y-[-50%]  content-center flex-col">
         <h1 className="text-white  font-[700] w-full text-[30px] md:text-[40px] lg:text-[56px] leading-[52px] lg:leading-[72px] mb-[16px]">
@@ -51,7 +51,7 @@ function Landing({
           </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

@@ -27,7 +27,7 @@ function WhatNeed({ t }: any) {
     },
   ];
   return (
-    <section className="space-betwwen-sections">
+    <div className="space-betwwen-sections">
       <div className="home-container">
         <h2 className="font-[700] text-[28px] sm:text-[36px] text-neutral-50 mb-[35px] text-center">
           {t("home:what_need_section_title")}
@@ -56,7 +56,7 @@ function WhatNeed({ t }: any) {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 }
 

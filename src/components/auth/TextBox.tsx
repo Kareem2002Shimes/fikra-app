@@ -5,7 +5,7 @@ import Form from "./Form";
 import { Fragment } from "react";
 import { signIn } from "next-auth/react";
 
-function TextBox() {
+function TextBox({ t }: any) {
   const page: string = useRouter().pathname;
 
   return (

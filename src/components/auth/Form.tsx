@@ -6,11 +6,11 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import AuthCode, { AuthCodeRef } from "react-auth-code-input";
 import { useEmailRef, usePersist } from "@/src/hooks/usePersist";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/router";
 import { login, signup } from "@/src/services/authService";
-
+import { ClipLoader } from "react-spinners";
 type FormProps = {
   page: string;
   t: any;
@@ -21,6 +21,7 @@ export type FormData = {
 };
 function Form({ page, t }: FormProps) {
   const { locale, replace } = useRouter();
+  const { status } = useSession();
   const inputRef = useRef<HTMLInputElement>(null);
   const [persist, setPersist] = usePersist();
   const [emailRef, setEmailRef] = useEmailRef();
@@ -53,27 +54,27 @@ function Form({ page, t }: FormProps) {
   const handleToggle = () => setPersist((prev: any) => !prev);
   const onSubmit: SubmitHandler<FormData> = async (data) => {
     if (page === "/auth/login") {
-      const status = await login(data);
-      if (status?.ok) {
+      const res = await login(data);
+      if (res?.ok) {
         setEmailRef(data.email);
         toast.success("Logged in");
-        replace(status.url as string);
+        replace(res.url as string);
         reset();
       }
-      if (status?.error) {
-        toast.error(status.error);
+      if (res?.error) {
+        toast.error(res.error);
       }
     }
     if (page === "/auth/signup") {
       const resData = await signup(data);
       if (resData) {
-        const status = await login(data);
-        if (status?.ok) {
+        const res = await login(data);
+        if (res?.ok) {
           toast.success(resData.message);
-          replace(status.url as string);
+          replace(res.url as string);
           reset();
         }
-        if (status?.error) {
+        if (res?.error) {
           toast.error(resData.message);
         }
       }
@@ -207,17 +208,23 @@ function Form({ page, t }: FormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className={`text-white mx-auto block coloredBtn ${
+        className={`text-white mx-auto content-center coloredBtn ${
           isSubmitting && "onSub"
         } text-md font-[500] mb-[30px] auth-box ${
           page === "/auth/verify-account" && "w-full md:w-[308px]"
         }
         ${page === "/auth/forget-password" && "w-full"} rounded-[8px]`}
       >
-        {page === "/auth/login" && t("auth:login_btn")}
-        {page === "/auth/signup" && t("auth:signup_btn")}
-        {page === "/auth/verify-account" && t("auth:confirm_btn")}
-        {page === "/auth/forget-password" && t("auth:send_btn")}
+        {isSubmitting || status === "loading" ? (
+          <ClipLoader color="#171727" size={25} />
+        ) : (
+          <>
+            {page === "/auth/login" && t("auth:login_btn")}
+            {page === "/auth/signup" && t("auth:signup_btn")}
+            {page === "/auth/verify-account" && t("auth:confirm_btn")}
+            {page === "/auth/forget-password" && t("auth:send_btn")}
+          </>
+        )}
       </button>
     </form>
   );

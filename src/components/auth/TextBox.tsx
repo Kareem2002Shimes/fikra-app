@@ -3,10 +3,11 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import Form from "./Form";
 import { Fragment } from "react";
-import { signIn } from "next-auth/react";
-
+import { signIn, useSession } from "next-auth/react";
+import { ClipLoader } from "react-spinners";
 function TextBox({ t }: any) {
   const page: string = useRouter().pathname;
+  const { status } = useSession();
 
   return (
     <div className="content-center flex-col relative z-50 w-full md:w-[calc(500px-80px)] md:px-[40px]">
@@ -83,20 +84,27 @@ function TextBox({ t }: any) {
             )}
           </div>
           <button
-            className="flex item-center justify-center auth-box p-[12px] rounded-[8px] bg-neutral-700"
+            className="flex items-center justify-center auth-box rounded-[8px] bg-neutral-700 hover:bg-neutral-800 duration-200 transition"
             type="button"
+            disabled={status === "loading"}
             data-purpose="google-login"
             onClick={() => signIn("google", { callbackUrl: "/dashboard" })}
           >
-            <Image
-              src="/assets/images/auth/icons/google.svg"
-              alt="google-img"
-              width={25}
-              height={25}
-            />
-            <span className="text-white text-md font-[500] mx-[20px]">
-              {t("auth:continue_with_google")}
-            </span>
+            {status === "loading" ? (
+              <ClipLoader color="#0473FB" size={25} />
+            ) : (
+              <>
+                <Image
+                  src="/assets/images/auth/icons/google.svg"
+                  alt="google-img"
+                  width={25}
+                  height={25}
+                />
+                <span className="text-white text-md font-[500] mx-[20px]">
+                  {t("auth:continue_with_google")}
+                </span>
+              </>
+            )}
           </button>
           <div className="text-center flex items-center justify-between auth-box text-md font-[500] text-neutral-200">
             <span className="w-[45%] h-[1px] bg-auth-border block"></span>

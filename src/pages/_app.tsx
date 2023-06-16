@@ -31,6 +31,7 @@ const somar = localFont({
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   const { locale } = useRouter();
+
   return (
     <SessionProvider session={session}>
       <Provider store={store}>

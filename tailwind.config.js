@@ -30,6 +30,7 @@ module.exports = {
           900: "#7F1D1D",
         },
         "accent-color": "#0473FB",
+        "accent-color-hover": "#0365dd",
         "neutral-50": "#F5F6FF",
         "neutral-100": "#EBECFF",
         "neutral-200": "#CDD0FE",

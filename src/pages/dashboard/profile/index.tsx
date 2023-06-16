@@ -4,7 +4,7 @@ import { useSession } from "next-auth/react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Image from "next/image";
 import { useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import PhoneInput from "react-phone-input-2";
@@ -91,7 +91,7 @@ function Profile() {
             </div>
             <Link
               href="plans/management"
-              className="flex transition-all duration-200 hover:bg-accent-color  items-center bg-neutral-700 w-fit  content-center h-[40px] rounded-[8px] px-[16px]"
+              className="flex hover:bg-[#171729] transition-all duration-200  items-center bg-neutral-700 w-fit  content-center h-[40px] rounded-[8px] px-[16px]"
             >
               <Image
                 src="/assets/images/dashboard/icons/sidebar/plans.svg"
@@ -112,7 +112,7 @@ function Profile() {
               {!showForm && (
                 <button
                   onClick={() => setShowForm(true)}
-                  className="text-white font-[500] content-center border-[1px] border-input-border rounded-[12px] transition-all duration-200 hover:bg-accent-color hover:border-transparent px-[8px] w-fit h-[40px]"
+                  className="text-white font-[500] content-center border-[1px] border-input-border rounded-[12px] hover:bg-[#171729] transition-all duration-200 hover:border-transparent px-[8px] w-fit h-[40px]"
                 >
                   <span className="mx-[8px] text-xs">
                     {t("profile:modify_info_btn")}
@@ -266,13 +266,13 @@ function Profile() {
                 <div className="flex items-center gap-[16px] md:gap-0 mt-[50px]">
                   <button
                     type="submit"
-                    className="w-[146px] h-[40px] text-neutral-50 text-md font-[500] rounded-[12px] bg-accent-color"
+                    className="w-[146px] h-[40px] hover:bg-accent-color-hover transition-all duration-200 text-neutral-50 text-md font-[500] rounded-[12px] bg-accent-color"
                   >
                     {t("profile:profile_form_save")}
                   </button>
                   <button
                     onClick={() => setShowForm(false)}
-                    className="w-[146px] md:mx-[15px] h-[40px] text-neutral-50 text-md font-[500] rounded-[12px] bg-[#1F1F36]"
+                    className="w-[146px] md:mx-[15px] h-[40px] text-neutral-50 text-md font-[500] rounded-[12px] bg-[#1F1F36] hover:bg-[#171729] transition-all duration-200"
                   >
                     {t("profile:profile_form_cancel")}
                   </button>

@@ -9,7 +9,7 @@ function TextBox({ t }: any) {
   const page: string = useRouter().pathname;
 
   return (
-    <div className="px-[40px] content-center justify-start flex-col relative z-50 basis-[100%] md:basis-[441px] lg:basis-[503px]">
+    <div className="content-center flex-col relative z-50 w-full md:w-[calc(500px-80px)] md:px-[40px]">
       {page === "/auth/forget-password" ? (
         <Fragment>
           <Link href="/">
@@ -25,12 +25,10 @@ function TextBox({ t }: any) {
           </Link>
           <div className="mb-[85px] mt-[70px] w-full">
             <h4 className="text-neutral-100 font-[700] mb-[8px] text-[24px] leading-[32px] sm:text-[28px] sm:leading-[36px]">
-              Forgot your password?
+              {t("auth:forget_password_title")}
             </h4>
             <p className="text-neutral-200 font-[500] text-sm sm:text-md">
-              Please enter your email address
-              <br />
-              You message reset
+              {t("auth:forget_password_desc")}
             </p>
           </div>
         </Fragment>
@@ -49,10 +47,10 @@ function TextBox({ t }: any) {
           </Link>
           <div className="pt-[80px] mb-[40px] w-full md:w-[308px]">
             <h6 className="text-neutral-100 font-[600] mb-[20px]">
-              Enter the verification code
+              {t("auth:enter_verification_code")}
             </h6>
             <p className="text-md md:text-sm font-[400] text-neutral-200">
-              A verification code has been sent to this email{" "}
+              {t("auth:sent_to")}{" "}
               <span className="text-accent-color">ahmed@gmail.com</span>
             </p>
           </div>
@@ -79,11 +77,9 @@ function TextBox({ t }: any) {
           </Link>
           <div className="text-white mt-[20px] mb-[30px] font-[700] auth-box h-auto">
             {page === "/auth/login" ? (
-              <h4>
-                Welcome to Fikra <br /> Sign in
-              </h4>
+              <h4>{t("auth:login_title")}</h4>
             ) : (
-              page === "/auth/signup" && <h4>Create your account with Fikra</h4>
+              page === "/auth/signup" && <h4> {t("auth:signup_title")}</h4>
             )}
           </div>
           <button
@@ -99,30 +95,30 @@ function TextBox({ t }: any) {
               height={25}
             />
             <span className="text-white text-md font-[500] mx-[20px]">
-              Continue with Google
+              {t("auth:continue_with_google")}
             </span>
           </button>
           <div className="text-center flex items-center justify-between auth-box text-md font-[500] text-neutral-200">
             <span className="w-[45%] h-[1px] bg-auth-border block"></span>
-            <span>or</span>
+            <span>{t("auth:or")}</span>
             <span className="w-[45%] h-[1px] bg-auth-border block"></span>
           </div>
         </div>
       )}
 
-      <Form page={page} />
+      <Form page={page} t={t} />
       <div className="content-center font-[500] text-sm pb-[30px] auth-box">
         <Fragment>
           <span className="text-white pr-[8px] sm:px-[10px]">
-            {page === "/auth/login" && "Don't have an account?"}
-            {page === "/auth/signup" && "Already have an account?"}
+            {page === "/auth/login" && t("auth:dont_have_account")}
+            {page === "/auth/signup" && t("auth:have_account")}
           </span>
           <Link
             href={page === "/auth/login" ? "/auth/signup" : "/auth/login"}
             className="text-accent-color hover:underline"
           >
-            {page === "/auth/login" && "Create account"}
-            {page === "/auth/signup" && "Log in"}
+            {page === "/auth/login" && t("auth:create_account")}
+            {page === "/auth/signup" && t("auth:login_btn")}
           </Link>
         </Fragment>
       </div>

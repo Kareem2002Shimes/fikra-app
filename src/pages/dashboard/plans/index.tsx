@@ -2,7 +2,7 @@ import Layout from "@/src/components/dashboard/Layout";
 import PricingBox from "@/src/components/dashboard/plans/PricingBox";
 import { useEffect, useState } from "react";
 import QandAProps from "@/src/components/dashboard/plans/QandA";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Link from "next/link";
 import { useRouter } from "next/router";

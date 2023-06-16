@@ -76,7 +76,7 @@ const ValueContainer = ({ children, ...props }: any) => {
   return (
     components.ValueContainer && (
       <components.ValueContainer {...props}>
-        <div className="flex items-center">
+        <div className="flex items-center ">
           {props
             .getValue()
             .map((op: any) =>
@@ -125,7 +125,9 @@ function Header({ t, user }: any) {
         </Link>
         <div className="flex items-center lang-box">
           <Select
-            className={`${locale === "ar" && "md:basis-[auto] basis-[50%]"}`}
+            className={`${
+              locale === "ar" && "md:basis-[auto] basis-[50%]"
+            } flex justify-center`}
             options={options}
             isClearable={false}
             styles={customStyles}

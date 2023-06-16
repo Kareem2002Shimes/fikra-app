@@ -14,7 +14,7 @@ import { useTranslation } from "next-i18next";
 import WhatNeed from "../components/home/WhatNeed";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useSession } from "next-auth/react";
-import Loading from "../components/Loading";
+import Loading from "../components/Loader";
 import Popup from "../components/Popup";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./api/auth/[...nextauth]";

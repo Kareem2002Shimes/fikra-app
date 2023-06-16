@@ -306,7 +306,7 @@ function Sidebar({ t }: any) {
           </span>
           <Link
             href="/dashboard/plans"
-            className="text-sm font-[500] relative z-[1]  content-center mx-auto rounded-[16px] text-neutral-800 bg-neutral-100 w-[168px] h-[40px]"
+            className="text-sm font-[500] relative z-[1]  content-center mx-auto rounded-[16px] text-neutral-800 bg-neutral-100 hover:bg-neutral-200 transition-all duration-200 w-[168px] h-[40px]"
           >
             {t("dashboard:sidebar_discount_menu_btn")}
           </Link>

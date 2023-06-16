@@ -3,9 +3,11 @@ import TextBox from "./TextBox";
 
 function Auth({ t }: any) {
   return (
-    <section className="flex min-h-screen w-full overflow-hidden">
-      <TextBox t={t} />
-      <ImageBox t={t} />
+    <section>
+      <div className="px-[16px] md:px-0 flex justify-center min-h-screen overflow-hidden ">
+        <TextBox t={t} />
+        <ImageBox t={t} />
+      </div>
     </section>
   );
 }

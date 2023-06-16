@@ -1,6 +1,6 @@
 import Layout from "@/src/components/dashboard/Layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 function QandA() {
   const { t } = useTranslation();

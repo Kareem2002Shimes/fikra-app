@@ -81,7 +81,7 @@ function PlaceSlider({ items }: any) {
             ))}
           </div>
         </div>
-        <div className="w-full content-center gap-[30px]">
+        <div className="w-full content-center gap-[30px] mt-[30px] md:mt-0 ">
           <button
             onClick={handlePrev}
             className="rotate-[180deg] content-center hover:bg-accent-color transition-all duration-200 hover:border-none w-[40px] h-[40px] border border-input-border rounded-[50%]"

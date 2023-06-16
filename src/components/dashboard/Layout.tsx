@@ -2,7 +2,7 @@ import React, { FC, Fragment } from "react";
 import Navbar from "./Navbar";
 import Sidebar from "./sidebar/Sidebar";
 import { useSession } from "next-auth/react";
-import Loading from "../Loading";
+import Loader from "../Loader";
 
 type LayoutProps = {
   children: React.ReactNode | React.ReactNode[];
@@ -11,7 +11,7 @@ type LayoutProps = {
 function Layout({ children, t }: LayoutProps) {
   const { status } = useSession();
   if (status === "loading") {
-    return <Loading />;
+    return <Loader />;
   }
   return (
     <Fragment>

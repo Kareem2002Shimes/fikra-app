@@ -1,6 +1,6 @@
 import Layout from "@/src/components/dashboard/Layout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import Image from "next/image";
 import { useRouter } from "next/router";
 function Roadmap() {
@@ -79,7 +79,7 @@ function Roadmap() {
         >
           {roadmapContent.map((item) => (
             <div key={item.id}>
-              <div className="flex items-center justify-center sm:justify-start pb-[24px] px-[30px] border-b-[1px] border-auth-border">
+              <div className="flex items-center pb-[24px] px-[30px] border-b-[1px] border-auth-border">
                 <span
                   className={`text-sm md:text-md font-[500] ${
                     item.id === 1

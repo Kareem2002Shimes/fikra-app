@@ -2,7 +2,7 @@ import ImageCard from "@/src/components/dashboard/history/ImageCard";
 import Layout from "@/src/components/dashboard/Layout";
 import { useState } from "react";
 import Image from "next/image";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useRouter } from "next/router";
 function History() {

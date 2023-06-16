@@ -1,6 +1,6 @@
 import Auth from "@/src/components/auth/Auth";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 function VerifyAccount() {
   const { t } = useTranslation();

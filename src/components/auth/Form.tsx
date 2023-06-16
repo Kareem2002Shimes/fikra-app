@@ -8,18 +8,19 @@ import AuthCode, { AuthCodeRef } from "react-auth-code-input";
 import { useEmailRef, usePersist } from "@/src/hooks/usePersist";
 import { signIn } from "next-auth/react";
 import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 import { login, signup } from "@/src/services/authService";
 
 type FormProps = {
   page: string;
+  t: any;
 };
 export type FormData = {
   email: string;
   password: string;
 };
-function Form({ page }: FormProps) {
-  const router = useRouter();
+function Form({ page, t }: FormProps) {
+  const { locale, replace } = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const [persist, setPersist] = usePersist();
   const [emailRef, setEmailRef] = useEmailRef();
@@ -56,7 +57,7 @@ function Form({ page }: FormProps) {
       if (status?.ok) {
         setEmailRef(data.email);
         toast.success("Logged in");
-        router.replace(status.url as string);
+        replace(status.url as string);
         reset();
       }
       if (status?.error) {
@@ -69,7 +70,7 @@ function Form({ page }: FormProps) {
         const status = await login(data);
         if (status?.ok) {
           toast.success(resData.message);
-          router.replace(status.url as string);
+          replace(status.url as string);
           reset();
         }
         if (status?.error) {
@@ -78,7 +79,7 @@ function Form({ page }: FormProps) {
       }
     }
     if (page === "/auth/forget-password") {
-      router.replace("/auth/verify-account");
+      replace("/auth/verify-account");
     }
   };
   return (
@@ -96,16 +97,16 @@ function Form({ page }: FormProps) {
             />
           </div>
           <div className="text-md md:text-sm font-[500] text-white mb-[48px] mx-auto w-full md:w-[308px]">
-            Didn't receive the verification code?{" "}
+            {t("auth:didn't_receive")}{" "}
             <button type="button" className="text-accent-color hover:underline">
-              Resend
+              {t("auth:resend")}
             </button>
           </div>
         </Fragment>
       ) : page === "/auth/forget-password" ? (
         <div className="mb-[76px]">
           <label htmlFor="email" className="form-label">
-            Email
+            {t("auth:email")}
           </label>
           <input
             type="email"
@@ -113,7 +114,7 @@ function Form({ page }: FormProps) {
             className={`auth-box bg-transparent rounded-[8px] text-sm text-white border ${
               errors.email ? "border-error-500" : "border-input-border"
             } py-[12px] px-[16px] focus:border-accent-color`}
-            placeholder="Please enter your email"
+            placeholder={t("auth:email_placeholder")}
             {...register("email", { required: true })}
           />
         </div>
@@ -121,7 +122,7 @@ function Form({ page }: FormProps) {
         <Fragment>
           <div className="mb-6">
             <label htmlFor="email" className="form-label">
-              Email
+              {t("auth:email")}
             </label>
             <input
               type="email"
@@ -130,7 +131,7 @@ function Form({ page }: FormProps) {
               className={`auth-box bg-transparent rounded-[8px] text-sm text-white border ${
                 errors.email ? "border-error-500" : "border-input-border"
               } py-[12px] px-[16px] focus:border-accent-color`}
-              placeholder="Please enter your email"
+              placeholder={t("auth:email_placeholder")}
               {...register("email", { required: true })}
             />
             {errors.email && (
@@ -141,7 +142,7 @@ function Form({ page }: FormProps) {
           </div>
           <div className="mb-6">
             <label htmlFor="password" className="form-label">
-              Password
+              {t("auth:password")}
             </label>
             <div className="flex relative">
               <input
@@ -149,12 +150,18 @@ function Form({ page }: FormProps) {
                 id="password"
                 className={`auth-box bg-transparent rounded-[8px] text-sm  text-white border ${
                   errors.password ? "border-error-500" : "border-input-border"
-                } py-[12px] pl-[16px] pr-[50px] focus:border-accent-color`}
-                placeholder="At least 6 characters"
+                } py-[12px] ${
+                  locale === "ar"
+                    ? "pl-[50px] pr-[16px] "
+                    : "pr-[50px] pl-[16px] "
+                } focus:border-accent-color`}
+                placeholder={t("auth:password_placeholder")}
                 {...register("password", { required: true })}
               />
               <Image
-                className="absolute right-[20px] cursor-pointer top-[50%] translate-y-[-50%]"
+                className={`absolute ${
+                  locale === "ar" ? "left-[20px]" : "right-[20px]"
+                } cursor-pointer top-[50%] translate-y-[-50%]`}
                 src="/assets/images/auth/icons/eyes.svg"
                 alt="eye-img"
                 width={20}
@@ -181,9 +188,9 @@ function Form({ page }: FormProps) {
                 />
                 <label
                   htmlFor="remember"
-                  className="pl-[10px] cursor-pointer text-sm font-[500] text-white"
+                  className="px-[10px] cursor-pointer text-sm font-[500] text-white"
                 >
-                  Remember me
+                  {t("auth:remember_me")}
                 </label>
               </div>
 
@@ -191,7 +198,7 @@ function Form({ page }: FormProps) {
                 href="/auth/forget-password"
                 className="text-accent-color text-sm font-[500] hover:underline"
               >
-                Forget Password
+                {t("auth:forget_password")}
               </Link>
             </div>
           )}
@@ -207,10 +214,10 @@ function Form({ page }: FormProps) {
         }
         ${page === "/auth/forget-password" && "w-full"} rounded-[8px]`}
       >
-        {page === "/auth/login" && "Login"}
-        {page === "/auth/signup" && "Signup"}
-        {page === "/auth/verify-account" && "Confirm"}
-        {page === "/auth/forget-password" && "Send"}
+        {page === "/auth/login" && t("auth:login_btn")}
+        {page === "/auth/signup" && t("auth:signup_btn")}
+        {page === "/auth/verify-account" && t("auth:confirm_btn")}
+        {page === "/auth/forget-password" && t("auth:send_btn")}
       </button>
     </form>
   );

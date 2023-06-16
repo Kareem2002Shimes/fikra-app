@@ -2,13 +2,13 @@ import Image from "next/image";
 function ImageBox({ t }: any) {
   return (
     <div
-      className="pt-[90px] hidden md:block relative md:basis-[calc(100%-441px)] lg:basis-[calc(100%-503px)]"
+      className="pt-[90px] hidden md:block relative w-full "
       style={{
         backgroundImage:
           "linear-gradient(139.41deg, #3C79FE 13.26%, #7B1AD2 106.32%)",
       }}
     >
-      <div className="pl-[40px] mb-[30px]">
+      <div className="px-[40px] mb-[30px]">
         <h3 className="font-[700] text-neutral-50 mb-[15px]">
           {t("common:start_design_auth_title")}
         </h3>

@@ -1,17 +1,17 @@
-import Layout from "@/src/components/dashboard/Layout";
-import { useGetUsersQuery } from "@/src/redux/features/users/usersApiSlice";
-import { useSession } from "next-auth/react";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import Image from "next/image";
-import { useState } from "react";
-import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/style.css";
+import Layout from '@/src/components/dashboard/Layout';
+import { useGetUsersQuery } from '@/src/redux/features/users/usersApiSlice';
+import { useSession } from 'next-auth/react';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import Image from 'next/image';
+import { useState } from 'react';
+import { useTranslation } from 'next-i18next';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/style.css';
 function Profile() {
   const { t } = useTranslation();
-  const [phone, setPhone] = useState("+201212160988");
+  const [phone, setPhone] = useState('+201212160988');
   const { locale } = useRouter();
   const { data } = useSession();
   const [showForm, setShowForm] = useState(false);
@@ -20,119 +20,122 @@ function Profile() {
 
   const showData = [
     {
-      label: t("profile:profile_form_name"),
+      label: t('profile:profile_form_name'),
       value: data?.user?.name,
     },
     {
-      label: t("profile:profile_form_phone"),
-      value: "077123456",
+      label: t('profile:profile_form_phone'),
+      value: '077123456',
     },
     {
-      label: t("profile:profile_form_country"),
-      value: "مصر",
+      label: t('profile:profile_form_country'),
+      value: 'مصر',
     },
     {
-      label: t("profile:profile_form_password_label"),
-      value: "*******",
+      label: t('profile:profile_form_password_label'),
+      value: '*******',
     },
   ];
 
   return (
     <Layout t={t}>
-      <div className="w-full">
-        <div className="w-full h-[164px] relative">
+      <div className='w-full'>
+        <div className='w-full h-[164px] relative'>
           <Image
-            src="/assets/images/dashboard/singleIdea4.jpg"
-            alt="profile-landing-img"
+            src='/assets/images/dashboard/singleIdea4.jpg'
+            alt='profile-landing-img'
             fill={true}
-            className="object-cover"
+            className='object-cover'
           />
         </div>
         <div
           className={`${
-            locale === "ar"
-              ? "lg:pr-[24px] lg:pl-[32px] px-[16px]"
-              : "lg:pl-[24px] lg:pr-[32px] px-[16px]"
+            locale === 'ar'
+              ? 'lg:pr-[24px] lg:pl-[32px] px-[16px]'
+              : 'lg:pl-[24px] lg:pr-[32px] px-[16px]'
           }  py-[24px] mb-[87px] md:mb-0`}
         >
-          <h4 className="font-[500] text-white mb-[8px]">
-            {t("profile:account_info")}
+          <h4 className='font-[500] text-white mb-[8px]'>
+            {t('profile:account_info')}
           </h4>
           <div
             className={`bg-neutral-800  rounded-[16px] min-h-[96px] flex items-center gap-[16px] p-[15px] justify-end flex-wrap sm:justify-between`}
           >
-            <div className="flex items-center mx-auto sm:mx-0 order-2 sm:-order-none">
-              <button className="relative ">
+            <div className='flex items-center mx-auto sm:mx-0 order-2 sm:-order-none'>
+              <button className='relative '>
                 <Image
-                  src={data?.user?.image as any}
-                  alt="account-img"
+                  src={'/assets/images/dashboard/account-img.png'}
+                  alt='account-img'
                   width={64}
                   height={64}
-                  className="rounded-[50%]"
+                  className='rounded-[50%]'
                 />
-                <div className="absolute rounded-[50%] content-center bottom-0 right-0 w-[25px] h-[25px] bg-white">
+                <div className='absolute rounded-[50%] content-center bottom-0 right-0 w-[25px] h-[25px] bg-white'>
                   <Image
-                    src="/assets/images/dashboard/icons/profile/camera.svg"
-                    alt="account-img"
+                    src='/assets/images/dashboard/icons/profile/camera.svg'
+                    alt='account-img'
                     width={15}
                     height={15}
-                    className="rounded-[50%]"
+                    className='rounded-[50%]'
                   />
                 </div>
               </button>
-              <div className="flex-col mx-[8px]">
-                <span className="text-md text-neutral-100 font-[500] block ">
-                  {t("profile:my_account")}
+              <div className='flex-col mx-[8px]'>
+                <span className='text-md text-neutral-100 font-[500] block '>
+                  {t('profile:my_account')}
                 </span>
-                <span className="text-sm text-neutral-200 font-[500]">
+                <span className='text-sm text-neutral-200 font-[500]'>
                   {data?.user?.email}
                 </span>
               </div>
             </div>
             <Link
-              href="plans/management"
-              className="flex hover:bg-[#171729] transition-all duration-200  items-center bg-neutral-700 w-fit  content-center h-[40px] rounded-[8px] px-[16px]"
+              href='plans/management'
+              className='flex hover:bg-[#171729] transition-all duration-200  items-center bg-neutral-700 w-fit  content-center h-[40px] rounded-[8px] px-[16px]'
             >
               <Image
-                src="/assets/images/dashboard/icons/sidebar/plans.svg"
-                alt="plans-icon"
+                src='/assets/images/dashboard/icons/sidebar/plans.svg'
+                alt='plans-icon'
                 width={24}
                 height={24}
               />
-              <span className="mx-[8px] text-sm font-[500] text-white">
-                {t("common:profile_popup_plans_btn")}
+              <span className='mx-[8px] text-sm font-[500] text-white'>
+                {t('common:profile_popup_plans_btn')}
               </span>
             </Link>
           </div>
-          <div className="px-[16px] py-[16px] bg-neutral-800 rounded-[16px] mt-[8px]">
-            <div className="flex items-center justify-between mb-[20px]">
-              <h6 className="text-white font-[600]">
-                {t("profile:private_info")}
+          <div className='px-[16px] py-[16px] bg-neutral-800 rounded-[16px] mt-[8px]'>
+            <div className='flex items-center justify-between mb-[20px]'>
+              <h6 className='text-white font-[600]'>
+                {t('profile:private_info')}
               </h6>
               {!showForm && (
                 <button
                   onClick={() => setShowForm(true)}
-                  className="text-white font-[500] content-center border-[1px] border-input-border rounded-[12px] hover:bg-[#171729] transition-all duration-200 hover:border-transparent px-[8px] w-fit h-[40px]"
+                  className='text-white font-[500] content-center border-[1px] border-input-border rounded-[12px] hover:bg-[#171729] transition-all duration-200 hover:border-transparent px-[8px] w-fit h-[40px]'
                 >
-                  <span className="mx-[8px] text-xs">
-                    {t("profile:modify_info_btn")}
+                  <span className='mx-[8px] text-xs'>
+                    {t('profile:modify_info_btn')}
                   </span>
                   <Image
-                    src="/assets/images/dashboard/icons/profile/edit-icon.svg"
-                    alt="account-img"
+                    src='/assets/images/dashboard/icons/profile/edit-icon.svg'
+                    alt='account-img'
                     width={24}
                     height={24}
-                    className="rounded-[50%]"
+                    className='rounded-[50%]'
                   />
                 </button>
               )}
             </div>
             {!showForm && (
               <div>
-                {showData.map((item) => (
-                  <div className="mb-[15px] last-of-type:mb-0 border-b-[1px] border-auth-border last-of-type:border-none pb-[8px]">
-                    <span className="form-label">{item.label}</span>
-                    <span className="text-neutral-200 bg-transparent tex-sm">
+                {showData.map((item, i) => (
+                  <div
+                    key={i}
+                    className='mb-[15px] last-of-type:mb-0 border-b-[1px] border-auth-border last-of-type:border-none pb-[8px]'
+                  >
+                    <span className='form-label'>{item.label}</span>
+                    <span className='text-neutral-200 bg-transparent tex-sm'>
                       {item.value}
                     </span>
                   </div>
@@ -141,140 +144,140 @@ function Profile() {
             )}
             {showForm && (
               <form>
-                <div className="mb-6 lg:w-[552px]">
-                  <label htmlFor="name" className="form-label">
-                    {t("profile:profile_form_name")}
+                <div className='mb-6 lg:w-[552px]'>
+                  <label htmlFor='name' className='form-label'>
+                    {t('profile:profile_form_name')}
                   </label>
-                  <div className="flex relative">
+                  <div className='flex relative'>
                     <input
-                      type="text"
-                      id="name"
+                      type='text'
+                      id='name'
                       className={`auth-box w-full tracking-[0.8px] bg-transparent rounded-[8px] text-sm  text-neutral-200 border border-input-border px-[15px]  focus:border-accent-color`}
                       defaultValue={data?.user?.name as any}
                     />
                   </div>
                 </div>
-                <div className="mb-6 lg:w-[552px]">
-                  <label htmlFor="name" className="form-label">
-                    {t("profile:profile_form_country")}
+                <div className='mb-6 lg:w-[552px]'>
+                  <label htmlFor='name' className='form-label'>
+                    {t('profile:profile_form_country')}
                   </label>
-                  <div className="flex relative">
+                  <div className='flex relative'>
                     <input
-                      type="text"
-                      id="name"
+                      type='text'
+                      id='name'
                       className={`auth-box w-full bg-transparent rounded-[8px] text-sm  text-neutral-200 border border-input-border px-[15px]  focus:border-accent-color`}
-                      defaultValue="مصر"
+                      defaultValue='مصر'
                       // {...register("password", { required: true })}
                     />
                   </div>
                 </div>
-                <div className="mb-6 ">
-                  <label htmlFor="name" className="form-label">
-                    {t("profile:profile_form_phone")}
+                <div className='mb-6 '>
+                  <label htmlFor='name' className='form-label'>
+                    {t('profile:profile_form_phone')}
                   </label>
-                  <div className=" h-[56px] content-center phone-box relative select-country lg:w-[552px] max-w-full rounded-[8px] border border-input-border   focus:border-accent-color">
+                  <div className=' h-[56px] content-center phone-box relative select-country lg:w-[552px] max-w-full rounded-[8px] border border-input-border   focus:border-accent-color'>
                     <PhoneInput
-                      country={"eg"}
+                      country={'eg'}
                       value={phone}
-                      placeholder=""
+                      placeholder=''
                       inputProps={{
-                        name: "phone",
+                        name: 'phone',
                         required: true,
                       }}
                       onChange={(phone) => setPhone(phone as any)}
-                      specialLabel=""
+                      specialLabel=''
                       buttonStyle={{
-                        width: "40px",
-                        height: "48px",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        background: "#1F2038",
-                        border: "none",
-                        borderRadius: "8px",
-                        margin: "0 4px",
+                        width: '40px',
+                        height: '48px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        background: '#1F2038',
+                        border: 'none',
+                        borderRadius: '8px',
+                        margin: '0 4px',
                       }}
                       inputStyle={{
-                        background: "transparent",
-                        width: "100%",
-                        height: "48px",
-                        border: "none",
-                        color: "#ACB0DC",
-                        fontSize: "14px",
-                        fontWeight: "500",
-                        lineHeight: "19px",
-                        padding: "0 50px",
-                        direction: "ltr",
-                        textAlign: locale === "ar" ? "right" : "left",
+                        background: 'transparent',
+                        width: '100%',
+                        height: '48px',
+                        border: 'none',
+                        color: '#ACB0DC',
+                        fontSize: '14px',
+                        fontWeight: '500',
+                        lineHeight: '19px',
+                        padding: '0 50px',
+                        direction: 'ltr',
+                        textAlign: locale === 'ar' ? 'right' : 'left',
                       }}
                       dropdownStyle={{
-                        background: "#1C1C30",
-                        color: "#F5F6FF",
-                        direction: "ltr",
-                        textAlign: locale === "ar" ? "right" : "left",
+                        background: '#1C1C30',
+                        color: '#F5F6FF',
+                        direction: 'ltr',
+                        textAlign: locale === 'ar' ? 'right' : 'left',
                       }}
                     />
                   </div>
                 </div>
-                <div className="mb-[12px]  lg:w-[552px]">
-                  <label htmlFor="password" className="form-label">
-                    {t("profile:profile_form_password_label")}
+                <div className='mb-[12px]  lg:w-[552px]'>
+                  <label htmlFor='password' className='form-label'>
+                    {t('profile:profile_form_password_label')}
                   </label>
-                  <div className="flex relative w-full ">
+                  <div className='flex relative w-full '>
                     <input
-                      type={showPassword ? "text" : "password"}
-                      id="password"
+                      type={showPassword ? 'text' : 'password'}
+                      id='password'
                       className={`auth-box w-full bg-transparent rounded-[8px] text-sm  text-white border border-input-border px-[15px] focus:border-accent-color`}
                       placeholder={
-                        t("profile:profile_form_current_password") as string
+                        t('profile:profile_form_current_password') as string
                       }
                     />
                     <Image
                       className={`absolute ${
-                        locale === "ar" ? "left-[20px]" : "right-[20px]"
+                        locale === 'ar' ? 'left-[20px]' : 'right-[20px]'
                       } cursor-pointer top-[50%] translate-y-[-50%]`}
-                      src="/assets/images/auth/icons/eyes.svg"
-                      alt="eye-img"
+                      src='/assets/images/auth/icons/eyes.svg'
+                      alt='eye-img'
                       width={20}
                       height={20}
                       onClick={() => setShowPassword(!showPassword)}
                     />
                   </div>
                 </div>
-                <div className=" lg:w-[552px]">
-                  <div className="flex relative w-full ">
+                <div className=' lg:w-[552px]'>
+                  <div className='flex relative w-full '>
                     <input
-                      type={showPassword ? "text" : "password"}
-                      id="password"
+                      type={showPassword ? 'text' : 'password'}
+                      id='password'
                       className={`auth-box w-full bg-transparent rounded-[8px] text-sm  text-white border border-input-border px-[15px] focus:border-accent-color`}
                       placeholder={
-                        t("profile:profile_form_new_password") as string
+                        t('profile:profile_form_new_password') as string
                       }
                     />
                     <Image
                       className={`absolute ${
-                        locale === "ar" ? "left-[20px]" : "right-[20px]"
+                        locale === 'ar' ? 'left-[20px]' : 'right-[20px]'
                       } cursor-pointer top-[50%] translate-y-[-50%]`}
-                      src="/assets/images/auth/icons/eyes.svg"
-                      alt="eye-img"
+                      src='/assets/images/auth/icons/eyes.svg'
+                      alt='eye-img'
                       width={20}
                       height={20}
                       onClick={() => setShowPassword(!showPassword)}
                     />
                   </div>
                 </div>
-                <div className="flex items-center gap-[16px] md:gap-0 mt-[50px]">
+                <div className='flex items-center gap-[16px] md:gap-0 mt-[50px]'>
                   <button
-                    type="submit"
-                    className="w-[146px] h-[40px] hover:bg-accent-color-hover transition-all duration-200 text-neutral-50 text-md font-[500] rounded-[12px] bg-accent-color"
+                    type='submit'
+                    className='w-[146px] h-[40px] hover:bg-accent-color-hover transition-all duration-200 text-neutral-50 text-md font-[500] rounded-[12px] bg-accent-color'
                   >
-                    {t("profile:profile_form_save")}
+                    {t('profile:profile_form_save')}
                   </button>
                   <button
                     onClick={() => setShowForm(false)}
-                    className="w-[146px] md:mx-[15px] h-[40px] text-neutral-50 text-md font-[500] rounded-[12px] bg-[#1F1F36] hover:bg-[#171729] transition-all duration-200"
+                    className='w-[146px] md:mx-[15px] h-[40px] text-neutral-50 text-md font-[500] rounded-[12px] bg-[#1F1F36] hover:bg-[#171729] transition-all duration-200'
                   >
-                    {t("profile:profile_form_cancel")}
+                    {t('profile:profile_form_cancel')}
                   </button>
                 </div>
               </form>
@@ -292,9 +295,9 @@ export async function getServerSideProps({ locale }: { locale: string }) {
   return {
     props: {
       ...(await serverSideTranslations(locale, [
-        "dashboard",
-        "profile",
-        "common",
+        'dashboard',
+        'profile',
+        'common',
       ])),
     },
   };

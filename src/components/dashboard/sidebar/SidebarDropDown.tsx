@@ -110,21 +110,23 @@ function SidebarDropDown({ sidebar, t }: any) {
             <Avatar
               variant='circular'
               alt='account-img'
-              src={'/assets/images/dashboard/account-img.png'}
+              src={
+                session.data?.user?.image ||
+                '/assets/images/dashboard/account-img.png'
+              }
               className='rounded-[50%] w-[24px] h-[24px] md:w-[40px] md:h-[40px]'
             />
 
             <div className='md:flex items-center hidden'>
-              Kareem Mohamed
-              {/* {session.data?.user && (
+              {session.data?.user && (
                 <div
                   className={`text-neutral-50 px-[16px] text-sm font-[500] ${
                     !sidebar && 'scale-0 absolute top-[50%] translate-y-[-50%]'
                   }`}
                 >
-                  Kareem Mohamed
+                  {session.data.user.name}
                 </div>
-              )} */}
+              )}
               {sidebar && (
                 <Image
                   src='/assets/images/dashboard/icons/home/three-dots.svg'

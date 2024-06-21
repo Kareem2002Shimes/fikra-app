@@ -1,6 +1,6 @@
-import NextAuth, { NextAuthOptions } from "next-auth";
-import CredentialsProvider from "next-auth/providers/credentials";
-import GoogleProvider from "next-auth/providers/google";
+import NextAuth, { NextAuthOptions } from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
 export const authOptions: NextAuthOptions = {
   providers: [
     GoogleProvider({
@@ -8,17 +8,17 @@ export const authOptions: NextAuthOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
     }),
     CredentialsProvider({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
         email: {
-          label: "Email",
-          type: "email",
-          placeholder: "Please enter your email",
+          label: 'Email',
+          type: 'email',
+          placeholder: 'Please enter your email',
         },
         password: {
-          label: "Password",
-          type: "password",
-          placeholder: "At least 6 characters",
+          label: 'Password',
+          type: 'password',
+          placeholder: 'At least 6 characters',
         },
       },
       async authorize(credentials, req) {
@@ -26,10 +26,10 @@ export const authOptions: NextAuthOptions = {
           email: string;
           password: string;
         };
-        const res = await fetch(`${process.env.BASE_URL}/auth`, {
-          method: "POST",
+        const res = await fetch(`${process.env.NEXTAUTH_URL}/auth`, {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify({ email, password }),
         });
@@ -43,10 +43,10 @@ export const authOptions: NextAuthOptions = {
     }),
   ],
   session: {
-    strategy: "jwt",
+    strategy: 'jwt',
   },
   pages: {
-    signIn: "/auth/login",
+    signIn: '/auth/login',
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {

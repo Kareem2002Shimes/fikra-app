@@ -11,6 +11,7 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 function Profile() {
   const { t } = useTranslation();
+  const session = useSession();
   const [phone, setPhone] = useState('+201212160988');
   const { locale } = useRouter();
   const { data } = useSession();
@@ -64,7 +65,10 @@ function Profile() {
             <div className='flex items-center mx-auto sm:mx-0 order-2 sm:-order-none'>
               <button className='relative '>
                 <Image
-                  src={'/assets/images/dashboard/account-img.png'}
+                  src={
+                    session.data?.user?.image ||
+                    '/assets/images/dashboard/account-img.png'
+                  }
                   alt='account-img'
                   width={64}
                   height={64}

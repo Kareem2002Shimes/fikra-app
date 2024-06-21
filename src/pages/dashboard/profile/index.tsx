@@ -1,5 +1,4 @@
 import Layout from '@/src/components/dashboard/Layout';
-import { useGetUsersQuery } from '@/src/redux/features/users/usersApiSlice';
 import { useSession } from 'next-auth/react';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Image from 'next/image';

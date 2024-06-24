@@ -18,9 +18,12 @@ import {
 } from 'react-share';
 import { toast } from 'react-hot-toast';
 import imageCompression from 'browser-image-compression';
+import axios from 'axios';
+import { ColorRing } from 'react-loader-spinner';
 
 function View({ t, setShowControls }: any) {
   const { locale } = useRouter();
+  const [loading, setLoading] = useState(false);
 
   const options = [
     {
@@ -192,6 +195,39 @@ function View({ t, setShowControls }: any) {
       window.removeEventListener('click', closeMenu);
     };
   }, []);
+
+  const generateIdea = () => {
+    const room = settings.selectedTypeOfRoom?.label;
+
+    if (settings.uploadedImage && room) {
+      const reader = new FileReader();
+      reader.readAsDataURL(settings.uploadedImage);
+      reader.onload = async () => {
+        const binaryStr = reader.result as string;
+        try {
+          setLoading(true);
+          const res = await axios.post(
+            `${process.env.NEXT_PUBLIC_BASE_URL}/api/replicate`,
+            {
+              image: binaryStr,
+              room,
+              theme: 'Modern',
+            }
+          );
+          if (res.status === 201) {
+            setLoading(false);
+            console.log(res);
+            toast.success(t('dashboard:ideas_generated_successfully'));
+            dispatch(setReceivedImage(res.data.output[1]));
+          }
+        } catch (error) {
+          console.log(error);
+          setLoading(false);
+        }
+      };
+    }
+  };
+
   return (
     <div className='w-full min-h-full '>
       <div
@@ -304,7 +340,7 @@ function View({ t, setShowControls }: any) {
 
           {settings.receivedImage && (
             <div className='grid grid-cols-1 sm:grid-cols-2 gap-[16px] sm:gap-[24px] w-full xl:w-auto xl:block'>
-              <div className='grid grid-cols-4 gap-[8px] xl:block'>
+              {/* <div className='grid grid-cols-4 gap-[8px] xl:block'>
                 {ideas.map((idea) => (
                   <button
                     type='button'
@@ -327,25 +363,35 @@ function View({ t, setShowControls }: any) {
                     </span>
                   </button>
                 ))}
-              </div>
+              </div> */}
               <button
                 type='button'
-                onClick={() => {
-                  dispatch(
-                    setReceivedImage('/assets/images/dashboard/test_result.jpg')
-                  );
-                  setActiveIdea(null);
-                }}
+                disabled={loading}
+                onClick={generateIdea}
                 className={` xl:w-[135px] h-[72px] xl:h-[120px]  xl:mt-[70px] text-white content-center flex-col primary-border`}
               >
-                <Image
-                  src='/assets/images/dashboard/icons/home/new-idea-icon.svg'
-                  alt='new-idea-icon'
-                  width={24}
-                  height={24}
-                  className='mb-[8px]'
-                />
-                {t('dashboard:new_idea_btn')}
+                {loading ? (
+                  <ColorRing
+                    visible={true}
+                    height='40'
+                    width='40'
+                    ariaLabel='color-ring-loading'
+                    wrapperStyle={{}}
+                    wrapperClass='color-ring-wrapper'
+                    colors={['#fff', '#fff', '#fff', '#fff', '#fff']}
+                  />
+                ) : (
+                  <>
+                    <Image
+                      src='/assets/images/dashboard/icons/home/new-idea-icon.svg'
+                      alt='new-idea-icon'
+                      width={24}
+                      height={24}
+                      className='mb-[8px]'
+                    />
+                    {t('dashboard:new_idea_btn')}
+                  </>
+                )}
               </button>
             </div>
           )}
